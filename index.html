@@ -49,7 +49,7 @@
 					<div class="card mb-4 rounded-3 shadow-sm">
 						<div class="card-header py-3 d-flex justify-content-between">
 							<h4 class="my-0 fw-bold text-success"><i class="bi bi-cash"></i> Saldo Atual</h4>
-							<h5 class="fw-bold text-success">R$ 200,00</h5>
+							<h5 class="fw-bold text-success">R$ 17.562,30</h5>
 						</div>
 					</div>
 
@@ -79,9 +79,19 @@
 										<td>26.5%</td>
 									</tr>
 									<tr>
-										<th>Roupas</th>
+										<th>Compras Físicas</th>
 										<td>R$ 890,00</td>
 										<td>36.5%</td>
+									</tr>
+									<tr>
+										<th>Lazer e Hobbies</th>
+										<td>R$ 390,00</td>
+										<td>20.5%</td>
+									</tr>
+									<tr>
+										<th>Transporte</th>
+										<td>R$ 90,00</td>
+										<td>6.5%</td>
 									</tr>
 									<tr>
 										<th>Outros</th>
@@ -131,9 +141,12 @@
 				
 
 				<div class="col-lg-7">
-					<h3>Filtrar Transação</h3>
+					
+					<h3 class="mb-3">Filtrar Transação</h3>
+					
 					<form class="mb-5 d-flex justify-content-between" action="" method="">
 						<div class="col-lg-3">
+							<label>Categoria:</label>
 							<select class="form-select">
 								<option value="todos" selected>Todos</option>
 								<option value="2">Alimentação</option>
@@ -143,16 +156,25 @@
 						</div>
 						
 						<div class="col-lg-3">
+							<label>Data Inicial:</label>
 							<input class="form-control" type="date" id="data_inicial" name="data_inicial">
 						</div>
 
 						<div class="col-lg-3">
+							<label>Data Final:</label>
 							<input class="form-control" type="date" id="data_final" name="data_final">
 						</div>
 
 						<button type="submit" class="btn btn-primary mb-3">Buscar</button>
 
 					</form>
+
+					<div class="d-flex justify-content-between mb-3">
+						<h3>Exportar Dados</h3>
+						<button type="submit" class="btn btn-primary mb-3">Exportar JSON</button>
+						<button type="submit" class="btn btn-primary mb-3">Exportar Excel</button>
+						<button type="submit" class="btn btn-primary mb-3">Exportar CSV</button>
+					</div>
 
 					<h3>Transações</h3>
 
@@ -194,7 +216,7 @@
 								<small>Investimento</small>
 							</div>
 							<div class="ms-auto">
-								<h5 class="fw-bold text-primary">R$ 5.000,00</h4>
+								<h5 class="fw-bold text-primary">R$ 500,00</h4>
 									<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square"></i> Editar</button>
 									<button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Excluir</button>
 							</div>
