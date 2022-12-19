@@ -9,7 +9,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
+
 <body>
+	
 	<div class="fixed-top shadow bg-dark mb-5">
 	
 		<nav class="container pt-2 pb-2 col-lg-12 navbar navbar-expand-lg fixed navbar-dark bg-dark text-white">
@@ -23,15 +25,19 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#"><button class="btn btn-lg btn-outline-success" type="submit">Depositar</button></a>
+							<a class="nav-link active" aria-current="page" href="#">
+								<button class="btn btn-lg btn-outline-success" type="submit" data-bs-toggle="modal" data-bs-target="#modalDepositar">Depositar</button>
+							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#"><button class="btn btn-lg btn-outline-danger"
-							type="submit">Sacar</button></a>
+							<a class="nav-link active" aria-current="page" href="#">
+								<button class="btn btn-lg btn-outline-danger" type="submit" data-bs-toggle="modal" data-bs-target="#modalSacar">Sacar</button>
+							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#"><button class="btn btn-lg btn-outline-primary"
-							type="submit">Investir</button></a>
+							<a class="nav-link active" aria-current="page" href="#">
+								<button class="btn btn-lg btn-outline-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalInvestir">Investir</button>
+							</a>
 						</li>
 					</ul>
 					
@@ -42,7 +48,119 @@
 		</nav>
 	</div>
 
-	<main style="margin-top: 100px">
+	<!-- Modal Depositar -->
+	<div class="modal fade" id="modalDepositar" tabindex="-1" aria-labelledby="modalDepositarLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5 fw-bold text-success" id="modalDepositarLabel"><i class="bi bi-cash"></i> Depositar</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form method="" action="">
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Total a depositar</label>
+							<input type="number" class="form-control" id="number_to_deposit" placeholder="R$ 10.00">
+						</div>
+
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Descrição do depósito</label>
+							<input type="number" class="form-control" id="number_to_deposit" placeholder="Exemplo: Freelancer do Primo" required>
+						</div>
+
+						<label>Categoria:</label>
+						<select class="form-select">
+							<option value="salario" selected>Salário</option>
+							<option value="freelancer">Freelancer</option>
+							<option value="outros">Outros</option>
+						</select>
+
+						<br>
+						<button type="submit" class="btn btn-success">Confirmar Depósito</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal SACAR -->
+	<div class="modal fade" id="modalSacar" tabindex="-1" aria-labelledby="modalSacarLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5 fw-bold text-danger" id="modalSacarLabel"><i class="bi bi-cash-stack"></i>
+						Sacar</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form method="" action="">
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Total a sacar</label>
+							<input type="number" class="form-control" id="number_to_deposit" placeholder="R$ 10.00">
+						</div>
+	
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Descrição do saque</label>
+							<input type="number" class="form-control" id="number_to_deposit"
+								placeholder="Exemplo: Almoço Pizza Dominós" required>
+						</div>
+	
+						<label>Categoria:</label>
+						<select class="form-select">
+							<option value="salario" selected>Alimentação</option>
+							<option value="freelancer">Assinaturas</option>
+							<option value="outros">Compras Físicas</option>
+							<option value="outros">Lazer e Hobbies</option>
+							<option value="outros">Transporte</option>
+							<option value="outros">Outros</option>
+						</select>
+	
+						<br>
+						<button type="submit" class="btn btn-danger">Confirmar Saque</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal INVESTIR -->
+	<div class="modal fade" id="modalInvestir" tabindex="-1" aria-labelledby="modalInvestirLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5 fw-bold text-primary" id="modalInvestirLabel"><i class="bi bi-bar-chart"></i>
+						Investir</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form method="" action="">
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Total a investir</label>
+							<input type="number" class="form-control" id="number_to_deposit" placeholder="R$ 10.00">
+						</div>
+	
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Descrição do investimento</label>
+							<input type="number" class="form-control" id="number_to_deposit"
+								placeholder="Exemplo: Tesouro SELIC Prefixado Outubro 2023" required>
+						</div>
+	
+						<label>Categoria:</label>
+						<select class="form-select">
+							<option value="salario" selected>Renda Fixa</option>
+							<option value="freelancer">Renda Variável</option>
+							<option value="outros">Criptomoedas</option>
+						</select>
+	
+						<br>
+						<button type="submit" class="btn btn-primary">Confirmar Investimento</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<main style="margin-top: 100px; margin-bottom: 50px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-5">
@@ -171,9 +289,9 @@
 
 					<div class="d-flex justify-content-between mb-3">
 						<h3>Exportar Dados</h3>
-						<button type="submit" class="btn btn-primary mb-3">Exportar JSON</button>
-						<button type="submit" class="btn btn-primary mb-3">Exportar Excel</button>
-						<button type="submit" class="btn btn-primary mb-3">Exportar CSV</button>
+						<button type="submit" class="btn btn-warning mb-3">Exportar JSON</button>
+						<button type="submit" class="btn btn-warning mb-3">Exportar EXCEL</button>
+						<button type="submit" class="btn btn-warning mb-3">Exportar CSV</button>
 					</div>
 
 					<h3>Transações</h3>
