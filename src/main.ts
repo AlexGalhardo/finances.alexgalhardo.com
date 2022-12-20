@@ -1,6 +1,8 @@
 // import './style.css'
-import typescriptLogo from './typescript.svg'
-import { setupCounter } from './counter'
+// import typescriptLogo from './typescript.svg'
+// import { setupCounter } from './counter'
+import { newDeposit } from './new-deposit'
+import { allTransactions } from './allTransactions'
 
 document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
   <div class="fixed-top shadow bg-dark mb-5">
@@ -36,40 +38,42 @@ document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
 `
 
 document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
-  <!-- Modal Depositar -->
+    <!-- Modal Depositar -->
 	<div class="modal fade" id="modalDepositar" tabindex="-1" aria-labelledby="modalDepositarLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h1 class="modal-title fs-5 fw-bold text-success" id="modalDepositarLabel"><i class="bi bi-cash"></i> Depositar</h1>
+					<h1 class="modal-title fs-5 fw-bold text-success" id="modalDepositarLabel"><i class="bi bi-cash"></i> Deposit Money</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form method="" action="">
+					<form method="" action="#">
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Total a depositar</label>
-							<input type="number" class="form-control" id="number_to_deposit" placeholder="R$ 10.00">
+							<label for="exampleFormControlInput1" class="form-label">Total to deposit</label>
+							<input type="number" class="form-control" id="total_to_deposit" placeholder="R$ 10.00" min="100" required value="">
 						</div>
 
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Descrição do depósito</label>
-							<input type="number" class="form-control" id="number_to_deposit" placeholder="Exemplo: Freelancer do Primo" required>
+							<label for="exampleFormControlInput1" class="form-label">Deposit Description</label>
+							<input type="text" class="form-control" id="deposit_description" placeholder="Exemplo: Freelancer do Primo" required value="">
 						</div>
 
-						<label>Categoria:</label>
-						<select class="form-select">
-							<option value="salario" selected>Salário</option>
-							<option value="freelancer">Freelancer</option>
-							<option value="outros">Outros</option>
+						<label>Category:</label>
+						<select class="form-select" name="deposit_category_selected" id="deposit_category">
+							<option value="WAGE" selected>Wage</option>
+							<option value="FREELANCER">Freelancer</option>
+							<option value="INVESTMENT_PROFIT">Investment Profit</option>
 						</select>
 
 						<br>
-						<button type="submit" class="btn btn-success">Confirmar Depósito</button>
+						<button class="btn btn-success" id="confirm_deposit" type="button">Confirm Deposit</button>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
 
 	<!-- Modal SACAR -->
 	<div class="modal fade" id="modalSacar" tabindex="-1" aria-labelledby="modalSacarLabel" aria-hidden="true">
@@ -289,119 +293,19 @@ document.querySelector<HTMLDivElement>('#TRANSACTIONS')!.innerHTML = `
 	<h3>Transações</h3>
 
 	<ul class="list-group list-group-item-action" id="ul_transactions">
-		
-		<li class="list-group-item list-group-item-action d-flex justify-content-between">
-			<div class="me-auto">
-				<h5 class="fw-bold text-danger">Almoço MacDonalds</h5>
-				<small>13/05/2022 13:45:32</small>
-					<br>
-				<small>Alimentação</small>							
-			</div>
-			<div class="ms-auto">
-				<h5 class="fw-bold text-danger">- R$ 54,90</h4>
-				<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square"></i> Editar</button>
-				<button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Excluir</button>
-			</div>
-		</li>
-
-		<li class="list-group-item list-group-item-action d-flex justify-content-between">
-			<div class="me-auto">
-				<h5 class="fw-bold text-success">Salário Google</h5>
-				<small>13/05/2022 13:45:32</small>
-				<br>
-				<small>Salário</small>
-			</div>
-			<div class="ms-auto">
-				<h5 class="fw-bold text-success">+ R$ 30.000,00</h4>
-					<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square"></i> Editar</button>
-					<button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Excluir</button>
-			</div>
-		</li>
-
-		<li class="list-group-item list-group-item-action d-flex justify-content-between">
-			<div class="me-auto">
-				<h5 class="fw-bold text-primary">Investimento em Bictoin</h5>
-				<small>19/12/2022 13:45:32</small>
-				<br>
-				<small>Investimento</small>
-			</div>
-			<div class="ms-auto">
-				<h5 class="fw-bold text-primary">R$ 500,00</h4>
-					<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square"></i> Editar</button>
-					<button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Excluir</button>
-			</div>
-		</li>
-
-		<li class="list-group-item list-group-item-action d-flex justify-content-between">
-			<div class="me-auto">
-				<h5 class="fw-bold text-danger">God Of War Ragnarok PS5</h5>
-				<small>13/05/2022 13:45:32</small>
-				<br>
-				<small>Entretenimento</small>
-			</div>
-			<div class="ms-auto">
-				<h5 class="fw-bold text-danger">- R$ 329,90</h4>
-					<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square"></i> Editar</button>
-					<button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Excluir</button>
-			</div>
-		</li>
-
-		<li class="list-group-item list-group-item-action d-flex justify-content-between">
-			<div class="me-auto">
-				<h5 class="fw-bold text-danger">PIX para Fulano</h5>
-				<small>13/05/2022 13:45:32</small>
-				<br>
-				<small>Transferência</small>
-			</div>
-			<div class="ms-auto">
-				<h5 class="fw-bold text-danger">- R$ 100,00</h4>
-					<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square"></i> Editar</button>
-					<button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Excluir</button>
-			</div>
-		</li>
-
-		<li class="list-group-item list-group-item-action d-flex justify-content-between">
-			<div class="me-auto">
-				<h5 class="fw-bold text-danger">Cinema 3D Avatar 2</h5>
-				<small>13/05/2022 13:45:32</small>
-				<br>
-				<small>Entretenimento</small>
-			</div>
-			<div class="ms-auto">
-				<h5 class="fw-bold text-danger">- R$ 29,90</h4>
-					<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square"></i> Editar</button>
-					<button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Excluir</button>
-			</div>
-		</li>
-
+		${allTransactions}
 	</ul>
 `
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-	<div>
-		<div id="navbar"></div>
-		<div id="modals"></div>
-		<main style="margin-top: 100px; margin-bottom: 50px;">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-5"></div>
-						<div id="BALANCE">
-						<div id="EXPENSES">
-						<div id="INVESTMENTS">
-					</div>
-					<div class="col-lg-7"></div>
-						<div id="FILTER">
-						<div id="EXPORT">
-						<div id="TRANSACTIONS">
-					</div>
-				</div>
-			</div>
-		</main>
-	</div>
-`
+// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+
+newDeposit(document.querySelector<HTMLButtonElement>('#confirm_deposit')!,
+		   document.querySelector<HTMLInputElement>('#total_to_deposit')!,
+		   document.querySelector<HTMLInputElement>('#deposit_description')!,
+		   document.querySelector<HTMLSelectElement>('#deposit_category')!)
 
 
-document.querySelector<HTMLDivElement>('#app_old')!.innerHTML = `
+/*document.querySelector<HTMLDivElement>('#app_old')!.innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -417,6 +321,4 @@ document.querySelector<HTMLDivElement>('#app_old')!.innerHTML = `
       Click on the Vite and TypeScript logos to learn more
     </p>
   </div>
-`
-
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+`*/

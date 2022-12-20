@@ -1,6 +1,6 @@
 interface ITransaction {
 	id: string;
-	created_at: Date;
+	created_at: string;
 	updated_at: Date;
 	type: TransactionType,
 	category: DepositCategory,
