@@ -20,8 +20,8 @@ function getTransactions() {
 						</div>
 						<div class="ms-auto">
 							<h5 class="fw-bold text-success">+ R$ ${account.transactions[i].total}</h4>
-								<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square"></i> Editar</button>
-								<button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Excluir</button>
+								<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Editar</button>
+								<button class="btn btn-sm btn-outline-danger" disabled><i class="bi bi-trash"></i> Excluir</button>
 						</div>
 					</li>
 				`
@@ -37,8 +37,8 @@ function getTransactions() {
 						</div>
 						<div class="ms-auto">
 							<h5 class="fw-bold text-danger">- R$ ${account.transactions[i].total}</h4>
-								<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square"></i> Editar</button>
-								<button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Excluir</button>
+								<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Editar</button>
+								<button class="btn btn-sm btn-outline-danger" disabled><i class="bi bi-trash"></i> Excluir</button>
 						</div>
 					</li>
 				`
@@ -53,8 +53,8 @@ function getTransactions() {
 						</div>
 						<div class="ms-auto">
 							<h5 class="fw-bold text-primary"> R$ ${account.transactions[i].total}</h4>
-								<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square"></i> Editar</button>
-								<button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Excluir</button>
+								<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Editar</button>
+								<button class="btn btn-sm btn-outline-danger" disabled><i class="bi bi-trash"></i> Excluir</button>
 						</div>
 					</li>
 				`

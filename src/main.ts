@@ -62,7 +62,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 						</div>
 
 						<label>Category:</label>
-						<select class="form-select" name="deposit_category_selected" id="deposit_category">
+						<select class="form-select" name="deposit_category_selected" id="deposit_category" required>
 							<option value="WAGE" selected>Wage</option>
 							<option value="FREELANCER">Freelancer</option>
 							<option value="INVESTMENT_PROFIT">Investment Profit</option>
@@ -91,7 +91,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 					<form method="GET" action="/">
 						<div class="mb-3">
 							<label for="" class="form-label">Total to expense</label>
-							<input type="number" class="form-control" id="total_to_expense" placeholder="R$ 10.00">
+							<input type="number" class="form-control" id="total_to_expense" placeholder="R$ 10.00" required>
 						</div>
 
 						<div class="mb-3">
@@ -101,7 +101,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 						</div>
 
 						<label>Category:</label>
-						<select class="form-select" name="expense_category_selected" id="expense_category">
+						<select class="form-select" name="expense_category_selected" id="expense_category" required>
 							<option value="FOOD" selected>Food</option>
 							<option value="SUBSCRIPTION">Subscription</option>
 							<option value="SHOP">Shop</option>
@@ -131,7 +131,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 					<form method="GET" action="/">
 						<div class="mb-3">
 							<label for="" class="form-label">Total to invest</label>
-							<input type="number" class="form-control" id="total_to_investment" placeholder="R$ 10.00">
+							<input type="number" class="form-control" id="total_to_investment" placeholder="R$ 10.00" required>
 						</div>
 
 						<div class="mb-3">
@@ -141,7 +141,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 						</div>
 
 						<label>Category:</label>
-						<select class="form-select" name="investment_category_selected" id="investment_category">
+						<select class="form-select" name="investment_category_selected" id="investment_category" required>
 							<option value="FIXED_INCOME" selected>Fixed Income</option>
 							<option value="VARIABLE_INCOME">Variable Income</option>
 							<option value="CRIPTOCURRENCIES">Criptocurrencies</option>
@@ -282,16 +282,16 @@ document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 			<input class="form-control" type="date" id="data_final" name="data_final">
 		</div>
 
-		<button type="submit" class="btn btn-primary mb-3">Search</button>
+		<button type="submit" class="btn btn-outline-primary mb-3">Search</button>
 	</form>
 `
 
 document.querySelector<HTMLDivElement>('#EXPORT')!.innerHTML = `
 	<div class="d-flex justify-content-between mb-3">
 		<h3>Export Data</h3>
-		<button class="btn btn-warning mb-3">Export JSON</button>
-		<button class="btn btn-warning mb-3">Export EXCEL</button>
-		<button class="btn btn-warning mb-3">Export CSV</button>
+		<button class="btn btn-outline-warning mb-3" disabled>Export JSON</button>
+		<button class="btn btn-outline-warning mb-3" disabled>Export EXCEL</button>
+		<button class="btn btn-outline-warning mb-3" disabled>Export CSV</button>
 	</div>
 `
 

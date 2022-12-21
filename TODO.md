@@ -1,0 +1,5 @@
+-   inverter ordem das transactions para ficar do mais recente
+-   arrumar pontuação dos valores em reais
+-   arrumar porcentagens para 2 casas decimais
+-   fazer busca do filter transaction
+-   editar/excluir das transactions
