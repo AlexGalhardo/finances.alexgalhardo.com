@@ -5,10 +5,10 @@ import { newInvestment } from './new-investment'
 import { newExpense } from './new-withdraw'
 
 document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
-  <div class="fixed-top shadow bg-dark mb-5">
-		<nav class="container pt-2 pb-2 col-lg-12 navbar navbar-expand-lg fixed navbar-dark bg-dark text-white">
+  <div class="fixed-top shadow-sm bg-light mb-5">
+		<nav class="container pt-2 pb-2 col-lg-12 navbar navbar-expand-lg fixed navbar-dark bg-light text-bold">
 			<div class="container-fluid">
-				<h1><a class="navbar-brand fw-bold" href="#">Galhardo Finances</a></h1>
+				<h3><a class="fw-bold text-dark text-decoration-none" href="/"><i class="bi bi-bank"></i> Galhardo Finances</a></h3>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -17,17 +17,17 @@ document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="#">
-								<button class="btn btn-lg btn-outline-success" type="submit" data-bs-toggle="modal" data-bs-target="#modalDepositar">Deposit</button>
+								<button class="btn btn-lg btn-outline-success" type="submit" data-bs-toggle="modal" data-bs-target="#modalDepositar"><i class="bi bi-cash"></i> Deposit</button>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="#">
-								<button class="btn btn-lg btn-outline-danger" type="submit" data-bs-toggle="modal" data-bs-target="#modalSacar">Expense</button>
+								<button class="btn btn-lg btn-outline-danger" type="submit" data-bs-toggle="modal" data-bs-target="#modalSacar"><i class="bi bi-cash-stack"></i> Expense</button>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="#">
-								<button class="btn btn-lg btn-outline-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalInvestir">Invest</button>
+								<button class="btn btn-lg btn-outline-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalInvestir"><i class="bi bi-bar-chart"></i> Invest</button>
 							</a>
 						</li>
 					</ul>
@@ -279,7 +279,7 @@ document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 			<input class="form-control" type="date" id="data_final" name="data_final">
 		</div>
 
-		<button type="submit" class="btn btn-outline-primary mb-3">Search</button>
+		<button type="submit" class="mt-4 btn btn-outline-primary mb-3"><i class="bi bi-search"></i> Search</button>
 	</form>
 `
 
@@ -317,7 +317,7 @@ document.getElementById("total_to_deposit")!.addEventListener("keyup", maskInput
 document.getElementById("total_to_expense")!.addEventListener("keyup", maskInputToBrazilReal);
 document.getElementById("total_to_investment")!.addEventListener("keyup", maskInputToBrazilReal);
 
-function maskInputToBrazilReal (e) {
+function maskInputToBrazilReal (e: any) {
 	let inputValue = e.target.value.replace(/\D/g, "");
 	inputValue = (inputValue / 100).toFixed(2) + "";
 	inputValue = inputValue.replace(".", ",");
