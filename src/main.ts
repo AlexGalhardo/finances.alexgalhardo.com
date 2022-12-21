@@ -255,45 +255,48 @@ document.querySelector<HTMLDivElement>('#INVESTMENTS')!.innerHTML = `
 `
 
 document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
-	<h3 class="mb-3">Filtrar Transação</h3>
+	<h3 class="mb-3">Filter Transaction</h3>
 
-	<form class="mb-5 d-flex justify-content-between" action="" method="">
+	<form class="mb-5 d-flex justify-content-between" action="GET" method="/">
 		<div class="col-lg-3">
-			<label>Categoria:</label>
+			<label>Category:</label>
 			<select class="form-select">
-				<option value="todos" selected>Todos</option>
-				<option value="2">Alimentação</option>
-				<option value="2">Roupas</option>
-				<option value="3">Investimentos</option>
+				<option value="ALL" selected>ALL</option>
+				<option value="FOOD">Food</option>
+				<option value="SUBSCRIPTIONS">Subscriptions</option>
+				<option value="SHOP">Shop</option>
+				<option value="ENTERTAINMENT">Entertainment</option>
+				<option value="TRANSPORT">Transport</option>
+				<option value="HOUSE">House</option>
+				<option value="INVESTMENTS">Investments</option>
 			</select>
 		</div>
 
 		<div class="col-lg-3">
-			<label>Data Inicial:</label>
+			<label>Start Date:</label>
 			<input class="form-control" type="date" id="data_inicial" name="data_inicial">
 		</div>
 
 		<div class="col-lg-3">
-			<label>Data Final:</label>
+			<label>Final Date:</label>
 			<input class="form-control" type="date" id="data_final" name="data_final">
 		</div>
 
-		<button type="submit" class="btn btn-primary mb-3">Buscar</button>
-
+		<button type="submit" class="btn btn-primary mb-3">Search</button>
 	</form>
 `
 
 document.querySelector<HTMLDivElement>('#EXPORT')!.innerHTML = `
 	<div class="d-flex justify-content-between mb-3">
-		<h3>Exportar Dados</h3>
-		<button type="submit" class="btn btn-warning mb-3">Exportar JSON</button>
-		<button type="submit" class="btn btn-warning mb-3">Exportar EXCEL</button>
-		<button type="submit" class="btn btn-warning mb-3">Exportar CSV</button>
+		<h3>Export Data</h3>
+		<button class="btn btn-warning mb-3">Export JSON</button>
+		<button class="btn btn-warning mb-3">Export EXCEL</button>
+		<button class="btn btn-warning mb-3">Export CSV</button>
 	</div>
 `
 
 document.querySelector<HTMLDivElement>('#TRANSACTIONS')!.innerHTML = `
-	<h3>Transações</h3>
+	<h3>Transactions</h3>
 
 	<ul class="list-group list-group-item-action" id="ul_transactions">
 		${allTransactions}

@@ -26,28 +26,28 @@ export const currentExpense = Account.total_expenses
 export const currentInvestments = Account.investments_total
 
 export const investments_fixed_income = Account.investments_fixed_income
-export const percentage_fixed_income = Number(Account.investments_fixed_income / Account.investments_total) * 100
+export const percentage_fixed_income = Account.investments_total ? Account.investments_fixed_income / Account.investments_total * 100 : 0
 
 export const investments_variable_income = Account.investments_variable_income
-export const percentage_variable_income = Number(Account.investments_variable_income / Account.investments_total) * 100
+export const percentage_variable_income = Account.investments_total ? Account.investments_variable_income / Account.investments_total * 100 :0
 
 export const investments_criptocurrencies = Account.investments_criptocurrencies
-export const percentage_criptocurrencies = Number(Account.investments_criptocurrencies / Account.investments_total) * 100
+export const percentage_criptocurrencies = Account.investments_total ? Account.investments_criptocurrencies / Account.investments_total * 100 : 0
 
 export const total_food = Account.total_food
-export const percentage_food = Number(Account.total_food / Account.total_expenses) * 100
+export const percentage_food = Account.total_expenses ? Account.total_food / Account.total_expenses * 100 : 0
 
 export const total_subscriptions = Account.total_subscriptions
-export const percentage_subscriptions = Number(Account.total_subscriptions / Account.total_expenses) * 100
+export const percentage_subscriptions = Account.total_expenses ? Account.total_subscriptions / Account.total_expenses * 100 : 0
 
 export const total_shop = Account.total_shop
-export const percentage_shop = Number(Account.total_shop / Account.total_expenses) * 100
+export const percentage_shop = Account.total_expenses ? Account.total_shop / Account.total_expenses * 100 : 0
 
 export const total_entertainment = Account.total_entertainment
-export const percentage_entertainment = Number(Account.total_entertainment / Account.total_expenses) * 100
+export const percentage_entertainment = Account.total_expenses ? Account.total_entertainment / Account.total_expenses * 100 : 0
 
 export const total_transport = Account.total_transport
-export const percentage_transport = Number(Account.total_transport / Account.total_expenses) * 100
+export const percentage_transport = Account.total_expenses ? Account.total_transport / Account.total_expenses * 100 : 0
 
 export const total_house = Account.total_house
-export const percentage_house = Number(Account.total_house / Account.total_expenses) * 100
+export const percentage_house = Account.total_expenses ? Account.total_house / Account.total_expenses * 100 : 0
