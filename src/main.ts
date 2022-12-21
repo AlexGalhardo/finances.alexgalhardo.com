@@ -179,32 +179,32 @@ document.querySelector<HTMLDivElement>('#EXPENSES')!.innerHTML = `
 				</thead>
 				<tbody>
 					<tr>
-						<th>Food</th>
+						<th><i class="bi bi-apple"></i> Food</th>
 						<td>R$ ${total_food}</td>
 						<td>${percentage_food} %</td>
 					</tr>
 					<tr>
-						<th>Subscriptions</th>
+						<th><i class="bi bi-bookmark-star"></i> Subscriptions</th>
 						<td>R$ ${total_subscriptions}</td>
 						<td>${percentage_subscriptions} %</td>
 					</tr>
 					<tr>
-						<th>Shop</th>
+						<th><i class="bi bi-shop"></i> Shop</th>
 						<td>R$ ${total_shop}</td>
 						<td>${percentage_shop} %</td>
 					</tr>
 					<tr>
-						<th>Hobbies & Entertainment</th>
+						<th><i class="bi bi-controller"></i> Hobbies & Entertainment</th>
 						<td>R$ ${total_entertainment}</td>
 						<td>${percentage_entertainment} %</td>
 					</tr>
 					<tr>
-						<th>Transport</th>
+						<th><i class="bi bi-car-front-fill"></i> Transport</th>
 						<td>R$ ${total_transport}</td>
 						<td>${percentage_transport} %</td>
 					</tr>
 					<tr>
-						<th>House</th>
+						<th><i class="bi bi-house-door"></i> House</th>
 						<td>R$ ${total_house}</td>
 						<td>${percentage_house} %</td>
 					</tr>
@@ -231,17 +231,17 @@ document.querySelector<HTMLDivElement>('#INVESTMENTS')!.innerHTML = `
 				</thead>
 				<tbody>
 					<tr>
-						<th>Fixed Income</th>
+						<th><i class="bi bi-graph-up-arrow"></i> Fixed Income</th>
 						<td>R$ ${investments_fixed_income}</td>
 						<td>${percentage_fixed_income} %</td>
 					</tr>
 					<tr>
-						<th>Variable Income</th>
+						<th><i class="bi bi-graph-down-arrow"></i> Variable Income</th>
 						<td>R$ ${investments_variable_income}</td>
 						<td>${percentage_variable_income} %</td>
 					</tr>
 					<tr>
-						<th>Criptocurrencies</th>
+						<th><i class="bi bi-currency-bitcoin"></i> Criptocurrencies</th>
 						<td>R$ ${investments_criptocurrencies}</td>
 						<td>${percentage_criptocurrencies} %</td>
 					</tr>
@@ -254,7 +254,7 @@ document.querySelector<HTMLDivElement>('#INVESTMENTS')!.innerHTML = `
 document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 	<h3 class="mb-3">Filter Transaction</h3>
 
-	<form class="mb-5 d-flex justify-content-between" action="GET" method="/">
+	<form class="mb-3 d-flex justify-content-between" action="GET" method="/">
 		<div class="col-lg-3">
 			<label>Category:</label>
 			<select class="form-select" id="category" name="category">
@@ -284,16 +284,16 @@ document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 `
 
 document.querySelector<HTMLDivElement>('#EXPORT')!.innerHTML = `
-	<div class="d-flex justify-content-between mb-3">
+	<div class="d-flex justify-content-between mb-5">
 		<h3>Export Data</h3>
-		<button class="btn btn-outline-warning mb-3" disabled>Export JSON</button>
-		<button class="btn btn-outline-warning mb-3" disabled>Export EXCEL</button>
-		<button class="btn btn-outline-warning mb-3" disabled>Export CSV</button>
+		<button class="btn btn-outline-dark mb-3" disabled><i class="bi bi-filetype-json"></i> Export JSON</button>
+		<button class="btn btn-outline-dark mb-3" disabled><i class="bi bi-filetype-xlsx"></i> Export EXCEL</button>
+		<button class="btn btn-outline-dark mb-3" disabled><i class="bi bi-filetype-csv"></i> Export CSV</button>
 	</div>
 `
 
 document.querySelector<HTMLDivElement>('#TRANSACTIONS')!.innerHTML = `
-	<h3>Transactions</h3>
+	<h3><i class="bi bi-receipt-cutoff"></i> Transactions</h3>
 	<ul class="list-group list-group-item-action" id="ul_transactions">
 		${allTransactions}
 	</ul>
