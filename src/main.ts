@@ -3,6 +3,9 @@
 // import { setupCounter } from './counter'
 import { newDeposit } from './new-deposit'
 import { allTransactions } from './allTransactions'
+import { currentBalance, currentExpense, currentInvestments, investments_criptocurrencies, investments_fixed_income, investments_variable_income, percentage_criptocurrencies, percentage_entertainment, percentage_fixed_income, percentage_food, percentage_house, percentage_shop, percentage_subscriptions, percentage_transport, percentage_variable_income, total_entertainment, total_food, total_house, total_shop, total_subscriptions, total_transport } from './getDashboardData'
+import { newInvestment } from './new-investment'
+import { newExpense } from './new-withdraw'
 
 document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
   <div class="fixed-top shadow bg-dark mb-5">
@@ -17,17 +20,17 @@ document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="#">
-								<button class="btn btn-lg btn-outline-success" type="submit" data-bs-toggle="modal" data-bs-target="#modalDepositar">Depositar</button>
+								<button class="btn btn-lg btn-outline-success" type="submit" data-bs-toggle="modal" data-bs-target="#modalDepositar">Deposit</button>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="#">
-								<button class="btn btn-lg btn-outline-danger" type="submit" data-bs-toggle="modal" data-bs-target="#modalSacar">Sacar</button>
+								<button class="btn btn-lg btn-outline-danger" type="submit" data-bs-toggle="modal" data-bs-target="#modalSacar">Expense</button>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="#">
-								<button class="btn btn-lg btn-outline-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalInvestir">Investir</button>
+								<button class="btn btn-lg btn-outline-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalInvestir">Invest</button>
 							</a>
 						</li>
 					</ul>
@@ -47,7 +50,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form method="" action="#">
+					<form method="GET" action="/">
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label">Total to deposit</label>
 							<input type="number" class="form-control" id="total_to_deposit" placeholder="R$ 10.00" min="100" required value="">
@@ -66,7 +69,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 						</select>
 
 						<br>
-						<button class="btn btn-success" id="confirm_deposit" type="button">Confirm Deposit</button>
+						<button class="btn btn-outline-success" id="confirm_deposit" type="submit">Confirm Deposit</button>
 					</form>
 				</div>
 			</div>
@@ -81,34 +84,34 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5 fw-bold text-danger" id="modalSacarLabel"><i class="bi bi-cash-stack"></i>
-						Sacar</h1>
+						New Expense</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form method="" action="">
+					<form method="GET" action="/">
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Total a sacar</label>
-							<input type="number" class="form-control" id="number_to_deposit" placeholder="R$ 10.00">
+							<label for="" class="form-label">Total to expense</label>
+							<input type="number" class="form-control" id="total_to_expense" placeholder="R$ 10.00">
 						</div>
-	
+
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Descrição do saque</label>
-							<input type="number" class="form-control" id="number_to_deposit"
-								placeholder="Exemplo: Almoço Pizza Dominós" required>
+							<label for="exampleFormControlInput1" class="form-label">Deposit Description</label>
+							<input type="text" class="form-control" id="expense_description"
+								placeholder="Example: Dinner Pizza Dominós" required>
 						</div>
-	
-						<label>Categoria:</label>
-						<select class="form-select">
-							<option value="salario" selected>Alimentação</option>
-							<option value="freelancer">Assinaturas</option>
-							<option value="outros">Compras Físicas</option>
-							<option value="outros">Lazer e Hobbies</option>
-							<option value="outros">Transporte</option>
-							<option value="outros">Outros</option>
+
+						<label>Category:</label>
+						<select class="form-select" name="expense_category_selected" id="expense_category">
+							<option value="FOOD" selected>Food</option>
+							<option value="SUBSCRIPTION">Subscription</option>
+							<option value="SHOP">Shop</option>
+							<option value="ENTERTAINMENT">Hobbies and Entertainment</option>
+							<option value="TRANSPORT">Transport</option>
+							<option value="HOUSE">House</option>
 						</select>
-	
+
 						<br>
-						<button type="submit" class="btn btn-danger">Confirmar Saque</button>
+						<button class="btn btn-outline-danger" id="confirm_expense" type="submit">Confirm Expense</button>
 					</form>
 				</div>
 			</div>
@@ -121,31 +124,31 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5 fw-bold text-primary" id="modalInvestirLabel"><i class="bi bi-bar-chart"></i>
-						Investir</h1>
+						New Investment</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form method="" action="">
+					<form method="GET" action="/">
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Total a investir</label>
-							<input type="number" class="form-control" id="number_to_deposit" placeholder="R$ 10.00">
+							<label for="" class="form-label">Total to invest</label>
+							<input type="number" class="form-control" id="total_to_investment" placeholder="R$ 10.00">
 						</div>
-	
+
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Descrição do investimento</label>
-							<input type="number" class="form-control" id="number_to_deposit"
-								placeholder="Exemplo: Tesouro SELIC Prefixado Outubro 2023" required>
+							<label for="exampleFormControlInput1" class="form-label">Investment Description</label>
+							<input type="text" class="form-control" id="investment_description"
+								placeholder="Example: Tesouro SELIC Prefixado October 2023" required>
 						</div>
-	
-						<label>Categoria:</label>
-						<select class="form-select">
-							<option value="salario" selected>Renda Fixa</option>
-							<option value="freelancer">Renda Variável</option>
-							<option value="outros">Criptomoedas</option>
+
+						<label>Category:</label>
+						<select class="form-select" name="investment_category_selected" id="investment_category">
+							<option value="FIXED_INCOME" selected>Fixed Income</option>
+							<option value="VARIABLE_INCOME">Variable Income</option>
+							<option value="CRIPTOCURRENCIES">Criptocurrencies</option>
 						</select>
-	
+
 						<br>
-						<button type="submit" class="btn btn-primary">Confirmar Investimento</button>
+						<button class="btn btn-outline-primary" id="confirm_investment" type="submit">Confirm Investment</button>
 					</form>
 				</div>
 			</div>
@@ -156,8 +159,8 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 document.querySelector<HTMLDivElement>('#BALANCE')!.innerHTML = `
 	<div class="card mb-4 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
-			<h4 class="my-0 fw-bold text-success"><i class="bi bi-cash"></i> Saldo Atual</h4>
-			<h5 class="fw-bold text-success">R$ 17.562,30</h5>
+			<h4 class="my-0 fw-bold text-success"><i class="bi bi-cash"></i> Current Balance</h4>
+			<h5 class="fw-bold text-success">R$ ${currentBalance}</h5>
 		</div>
 	</div>
 `
@@ -165,48 +168,48 @@ document.querySelector<HTMLDivElement>('#BALANCE')!.innerHTML = `
 document.querySelector<HTMLDivElement>('#EXPENSES')!.innerHTML = `
 	<div class="card mb-4 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
-			<h4 class="my-0 fw-bold text-start text-danger"><i class="bi bi-cash-stack"></i> Despesas </h4>
-			<p class="my-0 fw-bold text-end text-danger">R$ 2.263,40</p>
+			<h4 class="my-0 fw-bold text-start text-danger"><i class="bi bi-cash-stack"></i> Expenses </h4>
+			<p class="my-0 fw-bold text-end text-danger">R$ ${currentExpense}</p>
 		</div>
 		<div class="card-body">
 			<table class="table table-striped">
 				<thead>
 					<tr class="bg-info">
-						<th scope="col">Categoria</th>
-						<th scope="col">Total</th>
-						<th scope="col">Porcentagem</th>
+						<th scope="col">CATEGORY</th>
+						<th scope="col">TOTAL</th>
+						<th scope="col">PERCENTAGE</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th>Alimentação</th>
-						<td>R$ 567,90</td>
-						<td>16.5%</td>
+						<th>Food</th>
+						<td>R$ ${total_food}</td>
+						<td>${percentage_food} %</td>
 					</tr>
 					<tr>
-						<th>Assinaturas</th>
-						<td>R$ 320,00</td>
-						<td>26.5%</td>
+						<th>Subscriptions</th>
+						<td>R$ ${total_subscriptions}</td>
+						<td>${percentage_subscriptions} %</td>
 					</tr>
 					<tr>
-						<th>Compras Físicas</th>
-						<td>R$ 890,00</td>
-						<td>36.5%</td>
+						<th>Shop</th>
+						<td>R$ ${total_shop}</td>
+						<td>${percentage_shop} %</td>
 					</tr>
 					<tr>
-						<th>Lazer e Hobbies</th>
-						<td>R$ 390,00</td>
-						<td>20.5%</td>
+						<th>Hobbies & Entertainment</th>
+						<td>R$ ${total_entertainment}</td>
+						<td>${percentage_entertainment} %</td>
 					</tr>
 					<tr>
-						<th>Transporte</th>
-						<td>R$ 90,00</td>
-						<td>6.5%</td>
+						<th>Transport</th>
+						<td>R$ ${total_transport}</td>
+						<td>${percentage_transport} %</td>
 					</tr>
 					<tr>
-						<th>Outros</th>
-						<td>R$ 500,00</td>
-						<td>10 %</td>
+						<th>House</th>
+						<td>R$ ${total_house}</td>
+						<td>${percentage_house} %</td>
 					</tr>
 				</tbody>
 			</table>
@@ -217,33 +220,33 @@ document.querySelector<HTMLDivElement>('#EXPENSES')!.innerHTML = `
 document.querySelector<HTMLDivElement>('#INVESTMENTS')!.innerHTML = `
 	<div class="card mb-4 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
-			<h4 class="my-0 fw-bold text-start text-primary"><i class="bi bi-bar-chart"></i> Investimentos </h4>
-			<span class="my-0 fw-bold text-end text-primary">R$ 10.000,00</span>
+			<h4 class="my-0 fw-bold text-start text-primary"><i class="bi bi-bar-chart"></i> Investments </h4>
+			<span class="my-0 fw-bold text-end text-primary">R$ ${currentInvestments}</span>
 		</div>
 		<div class="card-body">
 			<table class="table table-striped">
 				<thead>
 					<tr class="bg-info">
-						<th scope="col">Categoria</th>
-						<th scope="col">Total</th>
-						<th scope="col">Porcentagem</th>
+						<th scope="col">CATEGORY</th>
+						<th scope="col">TOTAL</th>
+						<th scope="col">PERCENTAGE</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th>Renda Fixa</th>
-						<td>R$ 7.500,00</td>
-						<td>75 %</td>
+						<th>Fixed Income</th>
+						<td>R$ ${investments_fixed_income}</td>
+						<td>${percentage_fixed_income} %</td>
 					</tr>
 					<tr>
-						<th>Renda Variável</th>
-						<td>R$ 2.000,00</td>
-						<td>20 %</td>
+						<th>Variable Income</th>
+						<td>R$ ${investments_variable_income}</td>
+						<td>${percentage_variable_income} %</td>
 					</tr>
 					<tr>
-						<th>Criptomoedas</th>
-						<td>R$ 500,00</td>
-						<td>5 %</td>
+						<th>Criptocurrencies</th>
+						<td>R$ ${investments_criptocurrencies}</td>
+						<td>${percentage_criptocurrencies} %</td>
 					</tr>
 				</tbody>
 			</table>
@@ -253,7 +256,7 @@ document.querySelector<HTMLDivElement>('#INVESTMENTS')!.innerHTML = `
 
 document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 	<h3 class="mb-3">Filtrar Transação</h3>
-					
+
 	<form class="mb-5 d-flex justify-content-between" action="" method="">
 		<div class="col-lg-3">
 			<label>Categoria:</label>
@@ -264,7 +267,7 @@ document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 				<option value="3">Investimentos</option>
 			</select>
 		</div>
-		
+
 		<div class="col-lg-3">
 			<label>Data Inicial:</label>
 			<input class="form-control" type="date" id="data_inicial" name="data_inicial">
@@ -303,6 +306,16 @@ newDeposit(document.querySelector<HTMLButtonElement>('#confirm_deposit')!,
 		   document.querySelector<HTMLInputElement>('#total_to_deposit')!,
 		   document.querySelector<HTMLInputElement>('#deposit_description')!,
 		   document.querySelector<HTMLSelectElement>('#deposit_category')!)
+
+newExpense(document.querySelector<HTMLButtonElement>('#confirm_expense')!,
+		   document.querySelector<HTMLInputElement>('#total_to_expense')!,
+		   document.querySelector<HTMLInputElement>('#expense_description')!,
+		   document.querySelector<HTMLSelectElement>('#expense_category')!)
+
+newInvestment(document.querySelector<HTMLButtonElement>('#confirm_investment')!,
+		   document.querySelector<HTMLInputElement>('#total_to_investment')!,
+		   document.querySelector<HTMLInputElement>('#investment_description')!,
+		   document.querySelector<HTMLSelectElement>('#investment_category')!)
 
 
 /*document.querySelector<HTMLDivElement>('#app_old')!.innerHTML = `

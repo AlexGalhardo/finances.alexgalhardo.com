@@ -1,9 +1,11 @@
 function getTransactions() {
-		
-	if(localStorage.getItem('galhardo_account')){
-		let account = JSON.parse(localStorage.getItem('galhardo_account')!)
+
+	if(localStorage.getItem('finances_account')){
+		let account = JSON.parse(localStorage.getItem('finances_account')!)
 
 		console.log(account.transactions)
+
+		if(!account.transactions) return 'No transactions available'
 
 		let stringReturn = '';
 		for(let i = 0; i < account.transactions.length; i++){
@@ -44,7 +46,7 @@ function getTransactions() {
 				stringReturn += `
 					<li class="list-group-item list-group-item-action d-flex justify-content-between">
 						<div class="me-auto">
-							<h5 class="fw-bold text-danger">${account.transactions[i].description}</h5>
+							<h5 class="fw-bold text-primary">${account.transactions[i].description}</h5>
 							<small>${account.transactions[i].created_at}</small>
 							<br>
 							<small>${account.transactions[i].category}</small>
@@ -60,6 +62,9 @@ function getTransactions() {
 		}
 
 		return stringReturn
+	}
+	else {
+		return 'No transactions available'
 	}
 }
 
