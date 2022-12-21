@@ -21,33 +21,54 @@ if(localStorage.getItem('finances_account')){
 	Account = JSON.parse(localStorage.getItem('finances_account')!)
 }
 
-export const currentBalance = Account.current_balance
-export const currentExpense = Account.total_expenses
-export const currentInvestments = Account.investments_total
+export function transformToBRL(amount: number){
+	return (amount / 100).toLocaleString('pt-br', {minimumFractionDigits: 2})
+}
 
-export const investments_fixed_income = Account.investments_fixed_income
-export const percentage_fixed_income = Account.investments_total ? Account.investments_fixed_income / Account.investments_total * 100 : 0
+function transformToFixedTwo(value: number){
+	return value.toFixed(2)
+}
 
-export const investments_variable_income = Account.investments_variable_income
-export const percentage_variable_income = Account.investments_total ? Account.investments_variable_income / Account.investments_total * 100 :0
+export function getDateTimeBrazil(){
+	let date = new Date().toLocaleDateString("pt-BR")
+	let time = new Date().toLocaleTimeString("pt-BR")
+	return `${date} ${time}`;
+}
 
-export const investments_criptocurrencies = Account.investments_criptocurrencies
-export const percentage_criptocurrencies = Account.investments_total ? Account.investments_criptocurrencies / Account.investments_total * 100 : 0
+export function transformStringInputValueMaskToNumber(value: string): number {
+	value = value.replace("R$ ", "");
+	value = value.replace(",", "");
+	value = value.replace(".", "");
+	return Number(value)
+}
 
-export const total_food = Account.total_food
-export const percentage_food = Account.total_expenses ? Account.total_food / Account.total_expenses * 100 : 0
+export const currentBalance = transformToBRL(Account.current_balance)
+export const currentExpense = transformToBRL(Account.total_expenses)
+export const currentInvestments = transformToBRL(Account.investments_total)
 
-export const total_subscriptions = Account.total_subscriptions
-export const percentage_subscriptions = Account.total_expenses ? Account.total_subscriptions / Account.total_expenses * 100 : 0
+export const investments_fixed_income = transformToBRL(Account.investments_fixed_income)
+export const percentage_fixed_income = transformToFixedTwo(Account.investments_total ? Account.investments_fixed_income / Account.investments_total * 100 : 0)
 
-export const total_shop = Account.total_shop
-export const percentage_shop = Account.total_expenses ? Account.total_shop / Account.total_expenses * 100 : 0
+export const investments_variable_income = transformToBRL(Account.investments_variable_income)
+export const percentage_variable_income = transformToFixedTwo(Account.investments_total ? Account.investments_variable_income / Account.investments_total * 100 :0)
 
-export const total_entertainment = Account.total_entertainment
-export const percentage_entertainment = Account.total_expenses ? Account.total_entertainment / Account.total_expenses * 100 : 0
+export const investments_criptocurrencies = transformToBRL(Account.investments_criptocurrencies)
+export const percentage_criptocurrencies = transformToFixedTwo(Account.investments_total ? Account.investments_criptocurrencies / Account.investments_total * 100 : 0)
 
-export const total_transport = Account.total_transport
-export const percentage_transport = Account.total_expenses ? Account.total_transport / Account.total_expenses * 100 : 0
+export const total_food = transformToBRL(Account.total_food)
+export const percentage_food = transformToFixedTwo(Account.total_expenses ? Account.total_food / Account.total_expenses * 100 : 0)
 
-export const total_house = Account.total_house
-export const percentage_house = Account.total_expenses ? Account.total_house / Account.total_expenses * 100 : 0
+export const total_subscriptions = transformToBRL(Account.total_subscriptions)
+export const percentage_subscriptions = transformToFixedTwo(Account.total_expenses ? Account.total_subscriptions / Account.total_expenses * 100 : 0)
+
+export const total_shop = transformToBRL(Account.total_shop)
+export const percentage_shop = transformToFixedTwo(Account.total_expenses ? Account.total_shop / Account.total_expenses * 100 : 0)
+
+export const total_entertainment = transformToBRL(Account.total_entertainment)
+export const percentage_entertainment = transformToFixedTwo(Account.total_expenses ? Account.total_entertainment / Account.total_expenses * 100 : 0)
+
+export const total_transport = transformToBRL(Account.total_transport)
+export const percentage_transport = transformToFixedTwo(Account.total_expenses ? Account.total_transport / Account.total_expenses * 100 : 0)
+
+export const total_house = transformToBRL(Account.total_house)
+export const percentage_house = transformToFixedTwo(Account.total_expenses ? Account.total_house / Account.total_expenses * 100 : 0)

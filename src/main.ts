@@ -1,6 +1,3 @@
-// import './style.css'
-// import typescriptLogo from './typescript.svg'
-// import { setupCounter } from './counter'
 import { newDeposit } from './new-deposit'
 import { allTransactions } from './allTransactions'
 import { currentBalance, currentExpense, currentInvestments, investments_criptocurrencies, investments_fixed_income, investments_variable_income, percentage_criptocurrencies, percentage_entertainment, percentage_fixed_income, percentage_food, percentage_house, percentage_shop, percentage_subscriptions, percentage_transport, percentage_variable_income, total_entertainment, total_food, total_house, total_shop, total_subscriptions, total_transport } from './getDashboardData'
@@ -53,7 +50,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 					<form method="GET" action="/">
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label">Total to deposit</label>
-							<input type="number" class="form-control" id="total_to_deposit" placeholder="R$ 10.00" min="100" required value="">
+							<input class="form-control" id="total_to_deposit" placeholder="R$ 10.00" min="100" required value="">
 						</div>
 
 						<div class="mb-3">
@@ -91,7 +88,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 					<form method="GET" action="/">
 						<div class="mb-3">
 							<label for="" class="form-label">Total to expense</label>
-							<input type="number" class="form-control" id="total_to_expense" placeholder="R$ 10.00" required>
+							<input class="form-control" id="total_to_expense" placeholder="R$ 10.00" required>
 						</div>
 
 						<div class="mb-3">
@@ -131,7 +128,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 					<form method="GET" action="/">
 						<div class="mb-3">
 							<label for="" class="form-label">Total to invest</label>
-							<input type="number" class="form-control" id="total_to_investment" placeholder="R$ 10.00" required>
+							<input class="form-control" id="total_to_investment" placeholder="R$ 10.00" required>
 						</div>
 
 						<div class="mb-3">
@@ -260,15 +257,15 @@ document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 	<form class="mb-5 d-flex justify-content-between" action="GET" method="/">
 		<div class="col-lg-3">
 			<label>Category:</label>
-			<select class="form-select">
+			<select class="form-select" id="category" name="category">
 				<option value="ALL" selected>ALL</option>
-				<option value="FOOD">Food</option>
-				<option value="SUBSCRIPTIONS">Subscriptions</option>
-				<option value="SHOP">Shop</option>
-				<option value="ENTERTAINMENT">Entertainment</option>
-				<option value="TRANSPORT">Transport</option>
-				<option value="HOUSE">House</option>
-				<option value="INVESTMENTS">Investments</option>
+				<option value="FOOD">FOOD</option>
+				<option value="SUBSCRIPTIONS">SUBSCRIPTIONS</option>
+				<option value="SHOP">SHOP</option>
+				<option value="ENTERTAINMENT">ENTERTAINMENT</option>
+				<option value="TRANSPORT">TRANSPORT</option>
+				<option value="HOUSE">HOUSE</option>
+				<option value="INVESTMENTS">INVESTMENTS</option>
 			</select>
 		</div>
 
@@ -297,14 +294,10 @@ document.querySelector<HTMLDivElement>('#EXPORT')!.innerHTML = `
 
 document.querySelector<HTMLDivElement>('#TRANSACTIONS')!.innerHTML = `
 	<h3>Transactions</h3>
-
 	<ul class="list-group list-group-item-action" id="ul_transactions">
 		${allTransactions}
 	</ul>
 `
-
-// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
-
 newDeposit(document.querySelector<HTMLButtonElement>('#confirm_deposit')!,
 		   document.querySelector<HTMLInputElement>('#total_to_deposit')!,
 		   document.querySelector<HTMLInputElement>('#deposit_description')!,
@@ -320,21 +313,15 @@ newInvestment(document.querySelector<HTMLButtonElement>('#confirm_investment')!,
 		   document.querySelector<HTMLInputElement>('#investment_description')!,
 		   document.querySelector<HTMLSelectElement>('#investment_category')!)
 
+document.getElementById("total_to_deposit")!.addEventListener("keyup", maskInputToBrazilReal);
+document.getElementById("total_to_expense")!.addEventListener("keyup", maskInputToBrazilReal);
+document.getElementById("total_to_investment")!.addEventListener("keyup", maskInputToBrazilReal);
 
-/*document.querySelector<HTMLDivElement>('#app_old')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`*/
+function maskInputToBrazilReal (e) {
+	let inputValue = e.target.value.replace(/\D/g, "");
+	inputValue = (inputValue / 100).toFixed(2) + "";
+	inputValue = inputValue.replace(".", ",");
+	inputValue = inputValue.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
+	inputValue = inputValue.replace(/(\d)(\d{3}),/g, "$1.$2,");
+	e.target.value = `R$ ${inputValue}`;
+}
