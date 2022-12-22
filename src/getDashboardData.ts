@@ -42,6 +42,35 @@ export function transformStringInputValueMaskToNumber(value: string): number {
 	return Number(value)
 }
 
+export function getTransactionCategoryIcon(category: string) {
+	switch(category){
+		case 'WAGE':
+			return `<i class="bi bi-building-fill-add"></i>`
+		case 'FREELANCER':
+			return `<i class="bi bi-file-earmark-medical"></i>`
+		case 'FOOD':
+			return `<i class="bi bi-apple"></i>`
+		case 'SUBSCRIPTION':
+			return `<i class="bi bi-bookmark-star"></i>`
+		case 'SHOP':
+			return `<i class="bi bi-shop"></i>`
+		case 'ENTERTAINMENT':
+			return `<i class="bi bi-controller"></i>`
+		case 'TRANSPORT':
+			return `<i class="bi bi-car-front-fill"></i>`
+		case 'HOUSE':
+			return `<i class="bi bi-house-door"></i>`
+		case 'FIXED_INCOME':
+			return `<i class="bi bi-graph-up-arrow"></i>`
+		case 'VARIABLE_INCOME':
+			return `<i class="bi bi-graph-down-arrow"></i>`
+		case 'CRIPTOCURRENCIES':
+			return `<i class="bi bi-currency-bitcoin"></i>`
+		default:
+			return '';
+	}
+}
+
 export const currentBalance = transformToBRL(Account.current_balance)
 export const currentExpense = transformToBRL(Account.total_expenses)
 export const currentInvestments = transformToBRL(Account.investments_total)

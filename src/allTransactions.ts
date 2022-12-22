@@ -1,4 +1,4 @@
-import { transformToBRL } from "./getDashboardData";
+import { getTransactionCategoryIcon, transformToBRL } from "./getDashboardData";
 
 function getTransactions() {
 
@@ -22,10 +22,8 @@ function getTransactions() {
 			transactions += `
 				<li class="list-group-item list-group-item-action d-flex justify-content-between">
 					<div class="me-auto">
-						<h5 class="fw-bold ${colorType}">${account.transactions[i].description}</h5>
+						<h5 class="fw-bold ${colorType}">${getTransactionCategoryIcon(account.transactions[i].category)}   ${account.transactions[i].description}</h5>
 						<small>${account.transactions[i].created_at}</small>
-						<br>
-						<small>${account.transactions[i].category}</small>
 					</div>
 					<div class="ms-auto">
 						<h5 class="fw-bold ${colorType}">+ R$ ${transformToBRL(account.transactions[i].total)}</h5>

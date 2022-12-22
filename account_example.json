@@ -1,0 +1,134 @@
+{
+	"account_id": "8d3a7a6a-1db3-4183-a43e-f9d747d18f1a",
+	"current_balance": 1214610,
+	"total_expenses": 98380,
+	"total_food": 1900,
+	"total_subscriptions": 8490,
+	"total_shop": 20000,
+	"total_entertainment": 2990,
+	"total_transport": 10000,
+	"total_house": 55000,
+	"investments_total": 1700000,
+	"investments_fixed_income": 1000000,
+	"investments_variable_income": 500000,
+	"investments_criptocurrencies": 200000,
+	"transactions": [
+		{
+			"id": "458ff3ac-1333-4c1d-9bb8-2394af509c6b",
+			"created_at": "21/12/2022 13:33:53",
+			"updated_at": null,
+			"type": "DEPOSIT",
+			"category": "WAGE",
+			"description": "Salário Pravaler",
+			"total": 3000000
+		},
+		{
+			"id": "557e6c3f-5afb-423e-a836-317174ccb41d",
+			"created_at": "21/12/2022 13:34:02",
+			"updated_at": null,
+			"type": "EXPENSE",
+			"category": "FOOD",
+			"description": "Marmitex Média",
+			"total": 1900
+		},
+		{
+			"id": "6e28d906-055e-4f68-81df-8b516d49102f",
+			"created_at": "21/12/2022 13:34:13",
+			"updated_at": null,
+			"type": "EXPENSE",
+			"category": "ENTERTAINMENT",
+			"description": "FILME 3D Avatar 2D ",
+			"total": 2990
+		},
+		{
+			"id": "3e37bd4f-3a0a-48c8-a8de-d1157374f765",
+			"created_at": "21/12/2022 13:34:31",
+			"updated_at": null,
+			"type": "INVESTMENT",
+			"category": "FIXED_INCOME",
+			"description": "Tesouro Selic Prefixado 2023",
+			"total": 1000000
+		},
+		{
+			"id": "808787d1-5d3c-4c3f-ab37-a36840234dfb",
+			"created_at": "21/12/2022 13:34:49",
+			"updated_at": null,
+			"type": "INVESTMENT",
+			"category": "CRIPTOCURRENCIES",
+			"description": "Bitcoin Binance",
+			"total": 200000
+		},
+		{
+			"id": "df6b893a-a1e0-46fd-9f1b-3bad05071801",
+			"created_at": "21/12/2022 13:35:09",
+			"updated_at": null,
+			"type": "INVESTMENT",
+			"category": "VARIABLE_INCOME",
+			"description": "Ações Tesla",
+			"total": 500000
+		},
+		{
+			"id": "b767bdbd-4e74-4ed0-a2d3-453e5d275216",
+			"created_at": "21/12/2022 13:35:31",
+			"updated_at": null,
+			"type": "EXPENSE",
+			"category": "SUBSCRIPTION",
+			"description": "Netflix PREMIUM",
+			"total": 5490
+		},
+		{
+			"id": "504b27c4-7928-4ad9-a54f-6222b0318a53",
+			"created_at": "21/12/2022 13:38:35",
+			"updated_at": null,
+			"type": "EXPENSE",
+			"category": "HOUSE",
+			"description": "Mercado Produtos de Limpeza",
+			"total": 50000
+		},
+		{
+			"id": "af3b9be1-a55b-4e3c-a5cb-583a1636bfca",
+			"created_at": "21/12/2022 13:38:46",
+			"updated_at": null,
+			"type": "EXPENSE",
+			"category": "TRANSPORT",
+			"description": "Gasolina Carro",
+			"total": 10000
+		},
+		{
+			"id": "eb1598c2-ac6b-45fb-992b-711798beabc6",
+			"created_at": "21/12/2022 13:39:02",
+			"updated_at": null,
+			"type": "EXPENSE",
+			"category": "SHOP",
+			"description": "Camisetas Academia",
+			"total": 20000
+		},
+		{
+			"id": "5f6a1756-5f98-4799-a93b-a826a78dd6cb",
+			"created_at": "22/12/2022 09:03:31",
+			"updated_at": null,
+			"type": "EXPENSE",
+			"category": "HOUSE",
+			"description": "vassoura e papel toalha",
+			"total": 5000
+		},
+		{
+			"id": "f9f70676-e76d-4ab8-85c9-84187c7df5ea",
+			"created_at": "22/12/2022 10:09:48",
+			"updated_at": null,
+			"type": "DEPOSIT",
+			"category": "FREELANCER",
+			"description": "freelancer site vizinho",
+			"total": 12990
+		},
+		{
+			"id": "5d13142c-450a-473f-b75e-4c521bb4014e",
+			"created_at": "22/12/2022 10:15:34",
+			"updated_at": null,
+			"type": "EXPENSE",
+			"category": "SUBSCRIPTION",
+			"description": "ASSINATURA HBO MAX",
+			"total": 3000
+		}
+	]
+}

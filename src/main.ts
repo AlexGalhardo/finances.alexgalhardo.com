@@ -3,6 +3,7 @@ import { allTransactions } from './allTransactions'
 import { currentBalance, currentExpense, currentInvestments, investments_criptocurrencies, investments_fixed_income, investments_variable_income, percentage_criptocurrencies, percentage_entertainment, percentage_fixed_income, percentage_food, percentage_house, percentage_shop, percentage_subscriptions, percentage_transport, percentage_variable_income, total_entertainment, total_food, total_house, total_shop, total_subscriptions, total_transport } from './getDashboardData'
 import { newInvestment } from './new-investment'
 import { newExpense } from './new-withdraw'
+import { searchTransactions } from './searchTransactions'
 
 document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
   <div class="fixed-top shadow-sm bg-light mb-5">
@@ -60,9 +61,9 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 
 						<label>Category:</label>
 						<select class="form-select" name="deposit_category_selected" id="deposit_category" required>
-							<option value="WAGE" selected>Wage</option>
-							<option value="FREELANCER">Freelancer</option>
-							<option value="INVESTMENT_PROFIT">Investment Profit</option>
+							<option value="WAGE" selected>WAGE</option>
+							<option value="FREELANCER">FREELANCER</option>
+							<option value="INVESTMENT_PROFIT">INVESTMENT PROFIT</option>
 						</select>
 
 						<br>
@@ -254,32 +255,36 @@ document.querySelector<HTMLDivElement>('#INVESTMENTS')!.innerHTML = `
 document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 	<h3 class="mb-3">Filter Transaction</h3>
 
-	<form class="mb-3 d-flex justify-content-between" action="GET" method="/">
+	<form class="mb-3 d-flex justify-content-between" action="#" id="form_search_transactions">
 		<div class="col-lg-3">
 			<label>Category:</label>
-			<select class="form-select" id="category" name="category">
+			<select class="form-select" id="search_transaction_category" name="search_transaction_category" required>
 				<option value="ALL" selected>ALL</option>
+				<option value="WAGE">WAGE</option>
+				<option value="FREELANCER">FREELANCER</option>
 				<option value="FOOD">FOOD</option>
-				<option value="SUBSCRIPTIONS">SUBSCRIPTIONS</option>
+				<option value="SUBSCRIPTION">SUBSCRIPTION</option>
 				<option value="SHOP">SHOP</option>
 				<option value="ENTERTAINMENT">ENTERTAINMENT</option>
 				<option value="TRANSPORT">TRANSPORT</option>
 				<option value="HOUSE">HOUSE</option>
-				<option value="INVESTMENTS">INVESTMENTS</option>
+				<option value="FIXED_INCOME">FIXED INCOME</option>
+				<option value="VARIABLE_INCOME">VARIABLE INCOME</option>
+				<option value="CRIPTOCURRENCIES">CRIPTOCURRENCIES</option>
 			</select>
 		</div>
 
 		<div class="col-lg-3">
 			<label>Start Date:</label>
-			<input class="form-control" type="date" id="data_inicial" name="data_inicial">
+			<input class="form-control" type="date" id="search_transaction_start_date" name="search_transaction_start_date" value="" required>
 		</div>
 
 		<div class="col-lg-3">
 			<label>Final Date:</label>
-			<input class="form-control" type="date" id="data_final" name="data_final">
+			<input class="form-control" type="date" id="search_transaction_final_date" name="search_transaction_final_date" value="" required>
 		</div>
 
-		<button type="submit" class="mt-4 btn btn-outline-primary mb-3"><i class="bi bi-search"></i> Search</button>
+		<button class="mt-4 btn btn-outline-primary mb-3" id="button_search_transactions"><i class="bi bi-search"></i> Search</button>
 	</form>
 `
 
@@ -312,6 +317,11 @@ newInvestment(document.querySelector<HTMLButtonElement>('#confirm_investment')!,
 		   document.querySelector<HTMLInputElement>('#total_to_investment')!,
 		   document.querySelector<HTMLInputElement>('#investment_description')!,
 		   document.querySelector<HTMLSelectElement>('#investment_category')!)
+
+searchTransactions(document.querySelector<HTMLButtonElement>('#button_search_transactions')!,
+		   document.querySelector<HTMLSelectElement>('#search_transaction_category')!,
+		   document.querySelector<HTMLSelectElement>('#search_transaction_start_date')!,
+		   document.querySelector<HTMLSelectElement>('#search_transaction_final_date')!)
 
 document.getElementById("total_to_deposit")!.addEventListener("keyup", maskInputToBrazilReal);
 document.getElementById("total_to_expense")!.addEventListener("keyup", maskInputToBrazilReal);
