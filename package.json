@@ -1,20 +1,19 @@
 {
-  "name": "galhardo_finances",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@types/node": "^18.11.17",
-    "@types/uuid": "^9.0.0",
-    "typescript": "^4.9.3",
-    "vite": "^4.0.0"
-  },
-  "dependencies": {
-    "uuid": "^9.0.0"
-  }
+	"name": "galhardo_finances",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"@types/node": "^18.11.17",
+		"@types/uuid": "^9.0.0",
+		"typescript": "^4.9.3",
+		"vite": "^4.0.0"
+	},
+	"dependencies": {
+		"uuid": "^9.0.0"
+	}
 }

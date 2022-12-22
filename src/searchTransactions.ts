@@ -1,5 +1,3 @@
-// import { getTransactionCategoryIcon, transformToBRL } from "./getDashboardData";
-
 import { getTransactionCategoryIcon, transformToBRL } from "./getDashboardData"
 
 export function searchTransactions(buttonSearchTransactions: HTMLButtonElement,
