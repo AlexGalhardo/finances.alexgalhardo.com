@@ -10,8 +10,6 @@ export function searchTransactions(buttonSearchTransactions: HTMLButtonElement,
 	buttonSearchTransactions.addEventListener('click', (event: Event) => {
 		event.preventDefault()
 
-		alert(`CATEGORY => ${searchCategory.value}`)
-
 		if(localStorage.getItem('finances_account')){
 			let account = JSON.parse(localStorage.getItem('finances_account')!)
 
