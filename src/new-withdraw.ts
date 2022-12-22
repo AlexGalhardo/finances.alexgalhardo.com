@@ -7,9 +7,9 @@ export function newExpense(element: HTMLButtonElement,
 							expenseCategory: HTMLSelectElement) {
 
     element.addEventListener('click', () => {
-		console.log('totalExpense => ', totalExpense.value)
-		console.log('expenseDescription => ', expenseDescription.value)
-		console.log('expenseCategory => ', expenseCategory.value)
+		// console.log('totalExpense => ', totalExpense.value)
+		// console.log('expenseDescription => ', expenseDescription.value)
+		// console.log('expenseCategory => ', expenseCategory.value)
 
 		if(totalExpense.value && expenseDescription.value && expenseCategory.value){
 			let Account = JSON.parse(localStorage.getItem('finances_account')!)
@@ -36,6 +36,8 @@ export function newExpense(element: HTMLButtonElement,
 						if(expenseCategory.value === 'TRANSPORT') Account.total_transport += totalWithdraw
 
 						if(expenseCategory.value === 'HOUSE') Account.total_house += totalWithdraw
+
+						if(expenseCategory.value === 'SERVICES') Account.total_services += totalWithdraw
 
 						Account.transactions.push({
 							id: uuidv4(),
@@ -64,6 +66,7 @@ export function newExpense(element: HTMLButtonElement,
 						total_entertainment: 0,
 						total_transport: 0,
 						total_house: 0,
+						total_services: 0,
 						investments_total: 0,
 						investments_fixed_income: 0,
 						investments_variable_income: 0,
@@ -95,6 +98,8 @@ export function newExpense(element: HTMLButtonElement,
 					if(expenseCategory.value === 'TRANSPORT') Account.total_transport += totalWithdraw
 
 					if(expenseCategory.value === 'HOUSE') Account.total_house += totalWithdraw
+
+					if(expenseCategory.value === 'SERVICES') Account.total_services += totalWithdraw
 
 					let accountString = JSON.stringify(Account);
 					localStorage.setItem('finances_account', accountString)

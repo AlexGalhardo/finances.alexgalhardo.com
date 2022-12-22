@@ -10,6 +10,7 @@ let Account = {
 	total_entertainment: 0,
 	total_transport: 0,
 	total_house: 0,
+	total_services: 0,
 	investments_total: 0,
 	investments_fixed_income: 0,
 	investments_variable_income: 0,
@@ -60,6 +61,8 @@ export function getTransactionCategoryIcon(category: string) {
 			return `<i class="bi bi-car-front-fill"></i>`
 		case 'HOUSE':
 			return `<i class="bi bi-house-door"></i>`
+		case 'SERVICES':
+			return `<i class="bi bi-tools"></i>`
 		case 'FIXED_INCOME':
 			return `<i class="bi bi-graph-up-arrow"></i>`
 		case 'VARIABLE_INCOME':
@@ -101,3 +104,6 @@ export const percentage_transport = transformToFixedTwo(Account.total_expenses ?
 
 export const total_house = transformToBRL(Account.total_house)
 export const percentage_house = transformToFixedTwo(Account.total_expenses ? Account.total_house / Account.total_expenses * 100 : 0)
+
+export const total_services = transformToBRL(Account.total_services)
+export const percentage_services = transformToFixedTwo(Account.total_expenses ? Account.total_services / Account.total_expenses * 100 : 0)

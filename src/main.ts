@@ -1,6 +1,6 @@
 import { newDeposit } from './new-deposit'
 import { allTransactions } from './allTransactions'
-import { currentBalance, currentExpense, currentInvestments, investments_criptocurrencies, investments_fixed_income, investments_variable_income, percentage_criptocurrencies, percentage_entertainment, percentage_fixed_income, percentage_food, percentage_house, percentage_shop, percentage_subscriptions, percentage_transport, percentage_variable_income, total_entertainment, total_food, total_house, total_shop, total_subscriptions, total_transport } from './getDashboardData'
+import { currentBalance, currentExpense, currentInvestments, investments_criptocurrencies, investments_fixed_income, investments_variable_income, percentage_criptocurrencies, percentage_entertainment, percentage_fixed_income, percentage_food, percentage_house, percentage_shop, percentage_subscriptions, percentage_transport, percentage_variable_income, total_entertainment, total_food, total_house, total_shop, total_subscriptions, total_transport, total_services, percentage_services } from './getDashboardData'
 import { newInvestment } from './new-investment'
 import { newExpense } from './new-withdraw'
 import { searchTransactions } from './searchTransactions'
@@ -100,12 +100,13 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 
 						<label>Category:</label>
 						<select class="form-select" name="expense_category_selected" id="expense_category" required>
-							<option value="FOOD" selected>Food</option>
-							<option value="SUBSCRIPTION">Subscription</option>
-							<option value="SHOP">Shop</option>
-							<option value="ENTERTAINMENT">Hobbies and Entertainment</option>
-							<option value="TRANSPORT">Transport</option>
-							<option value="HOUSE">House</option>
+							<option value="FOOD" selected>FOOD</option>
+							<option value="SUBSCRIPTION">SUBSCRIPTION</option>
+							<option value="SHOP">SHOP</option>
+							<option value="ENTERTAINMENT">ENTERTAINMENT</option>
+							<option value="TRANSPORT">TRANSPORT</option>
+							<option value="HOUSE">HOUSE</option>
+							<option value="SERVICES">SERVICES</option>
 						</select>
 
 						<br>
@@ -155,7 +156,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 `
 
 document.querySelector<HTMLDivElement>('#BALANCE')!.innerHTML = `
-	<div class="card mb-4 rounded-3 shadow-sm">
+	<div class="card mb-3 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
 			<h4 class="my-0 fw-bold text-success"><i class="bi bi-cash"></i> Current Balance</h4>
 			<h5 class="fw-bold text-success">R$ ${currentBalance}</h5>
@@ -164,20 +165,13 @@ document.querySelector<HTMLDivElement>('#BALANCE')!.innerHTML = `
 `
 
 document.querySelector<HTMLDivElement>('#EXPENSES')!.innerHTML = `
-	<div class="card mb-4 rounded-3 shadow-sm">
+	<div class="card mb-3 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
 			<h4 class="my-0 fw-bold text-start text-danger"><i class="bi bi-cash-stack"></i> Expenses </h4>
 			<p class="my-0 fw-bold text-end text-danger">R$ ${currentExpense}</p>
 		</div>
 		<div class="card-body">
 			<table class="table table-striped">
-				<thead>
-					<tr class="bg-info">
-						<th scope="col">CATEGORY</th>
-						<th scope="col">TOTAL</th>
-						<th scope="col">PERCENTAGE</th>
-					</tr>
-				</thead>
 				<tbody>
 					<tr>
 						<th><i class="bi bi-apple"></i> Food</th>
@@ -209,6 +203,11 @@ document.querySelector<HTMLDivElement>('#EXPENSES')!.innerHTML = `
 						<td>R$ ${total_house}</td>
 						<td>${percentage_house} %</td>
 					</tr>
+					<tr>
+						<th><i class="bi bi-tools"></i> Services</th>
+						<td>R$ ${total_services}</td>
+						<td>${percentage_services} %</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -216,20 +215,13 @@ document.querySelector<HTMLDivElement>('#EXPENSES')!.innerHTML = `
 `
 
 document.querySelector<HTMLDivElement>('#INVESTMENTS')!.innerHTML = `
-	<div class="card mb-4 rounded-3 shadow-sm">
+	<div class="card mb-3 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
 			<h4 class="my-0 fw-bold text-start text-primary"><i class="bi bi-bar-chart"></i> Investments </h4>
 			<span class="my-0 fw-bold text-end text-primary">R$ ${currentInvestments}</span>
 		</div>
 		<div class="card-body">
 			<table class="table table-striped">
-				<thead>
-					<tr class="bg-info">
-						<th scope="col">CATEGORY</th>
-						<th scope="col">TOTAL</th>
-						<th scope="col">PERCENTAGE</th>
-					</tr>
-				</thead>
 				<tbody>
 					<tr>
 						<th><i class="bi bi-graph-up-arrow"></i> Fixed Income</th>
@@ -268,6 +260,7 @@ document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 				<option value="ENTERTAINMENT">ENTERTAINMENT</option>
 				<option value="TRANSPORT">TRANSPORT</option>
 				<option value="HOUSE">HOUSE</option>
+				<option value="SERVICES">SERVICES</option>
 				<option value="FIXED_INCOME">FIXED INCOME</option>
 				<option value="VARIABLE_INCOME">VARIABLE INCOME</option>
 				<option value="CRIPTOCURRENCIES">CRIPTOCURRENCIES</option>

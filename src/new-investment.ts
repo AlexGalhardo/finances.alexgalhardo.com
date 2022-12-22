@@ -7,9 +7,9 @@ export function newInvestment(element: HTMLButtonElement,
 							investmentCategory: HTMLSelectElement) {
 
     element.addEventListener('click', () => {
-		console.log('totalInvestment => ', totalInvestment.value)
-		console.log('investmentDescription => ', investmentDescription.value)
-		console.log('investmentCategory => ', investmentCategory.value)
+		// console.log('totalInvestment => ', totalInvestment.value)
+		// console.log('investmentDescription => ', investmentDescription.value)
+		// console.log('investmentCategory => ', investmentCategory.value)
 
 		if(totalInvestment.value && investmentDescription.value && investmentCategory.value){
 			let Account = JSON.parse(localStorage.getItem('finances_account')!)
