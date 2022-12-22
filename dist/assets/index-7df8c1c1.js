@@ -1,23 +1,23 @@
-(function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))o(t);new MutationObserver(t=>{for(const e of t)if(e.type==="childList")for(const l of e.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&o(l)}).observe(document,{childList:!0,subtree:!0});function i(t){const e={};return t.integrity&&(e.integrity=t.integrity),t.referrerpolicy&&(e.referrerPolicy=t.referrerpolicy),t.crossorigin==="use-credentials"?e.credentials="include":t.crossorigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function o(t){if(t.ep)return;t.ep=!0;const e=i(t);fetch(t.href,e)}})();let _;const I=new Uint8Array(16);function T(){if(!_&&(_=typeof crypto<"u"&&crypto.getRandomValues&&crypto.getRandomValues.bind(crypto),!_))throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");return _(I)}const c=[];for(let a=0;a<256;++a)c.push((a+256).toString(16).slice(1));function N(a,n=0){return(c[a[n+0]]+c[a[n+1]]+c[a[n+2]]+c[a[n+3]]+"-"+c[a[n+4]]+c[a[n+5]]+"-"+c[a[n+6]]+c[a[n+7]]+"-"+c[a[n+8]]+c[a[n+9]]+"-"+c[a[n+10]]+c[a[n+11]]+c[a[n+12]]+c[a[n+13]]+c[a[n+14]]+c[a[n+15]]).toLowerCase()}const x=typeof crypto<"u"&&crypto.randomUUID&&crypto.randomUUID.bind(crypto),g={randomUUID:x};function u(a,n,i){if(g.randomUUID&&!n&&!a)return g.randomUUID();a=a||{};const o=a.random||(a.rng||T)();if(o[6]=o[6]&15|64,o[8]=o[8]&63|128,n){i=i||0;for(let t=0;t<16;++t)n[i+t]=o[t];return n}return N(o)}let s={account_id:u(),current_balance:0,total_expenses:0,total_food:0,total_subscriptions:0,total_shop:0,total_entertainment:0,total_transport:0,total_house:0,investments_total:0,investments_fixed_income:0,investments_variable_income:0,investments_criptocurrencies:0,transactions:[]};localStorage.getItem("finances_account")&&(s=JSON.parse(localStorage.getItem("finances_account")));function r(a){return(a/100).toLocaleString("pt-br",{minimumFractionDigits:2})}function b(a){return a.toFixed(2)}function p(){let a=new Date().toLocaleDateString("pt-BR"),n=new Date().toLocaleTimeString("pt-BR");return`${a} ${n}`}function v(a){return a=a.replace("R$ ",""),a=a.replace(",",""),a=a.replace(".",""),Number(a)}function S(a){switch(a){case"WAGE":return'<i class="bi bi-building-fill-add"></i>';case"FREELANCER":return'<i class="bi bi-file-earmark-medical"></i>';case"FOOD":return'<i class="bi bi-apple"></i>';case"SUBSCRIPTION":return'<i class="bi bi-bookmark-star"></i>';case"SHOP":return'<i class="bi bi-shop"></i>';case"ENTERTAINMENT":return'<i class="bi bi-controller"></i>';case"TRANSPORT":return'<i class="bi bi-car-front-fill"></i>';case"HOUSE":return'<i class="bi bi-house-door"></i>';case"FIXED_INCOME":return'<i class="bi bi-graph-up-arrow"></i>';case"VARIABLE_INCOME":return'<i class="bi bi-graph-down-arrow"></i>';case"CRIPTOCURRENCIES":return'<i class="bi bi-currency-bitcoin"></i>';default:return""}}const R=r(s.current_balance),O=r(s.total_expenses),$=r(s.investments_total),L=r(s.investments_fixed_income),A=b(s.investments_total?s.investments_fixed_income/s.investments_total*100:0),w=r(s.investments_variable_income),C=b(s.investments_total?s.investments_variable_income/s.investments_total*100:0),D=r(s.investments_criptocurrencies),P=b(s.investments_total?s.investments_criptocurrencies/s.investments_total*100:0),q=r(s.total_food),F=b(s.total_expenses?s.total_food/s.total_expenses*100:0),M=r(s.total_subscriptions),U=b(s.total_expenses?s.total_subscriptions/s.total_expenses*100:0),k=r(s.total_shop),H=b(s.total_expenses?s.total_shop/s.total_expenses*100:0),B=r(s.total_entertainment),V=b(s.total_expenses?s.total_entertainment/s.total_expenses*100:0),G=r(s.total_transport),J=b(s.total_expenses?s.total_transport/s.total_expenses*100:0),X=r(s.total_house),j=b(s.total_expenses?s.total_house/s.total_expenses*100:0);function W(a,n,i,o){a.addEventListener("click",()=>{if(console.log("totalDeposit => ",n.value),console.log("depositDescription => ",i.value),console.log("depositCategory => ",o.value),n.value&&i.value&&o.value){let t=JSON.parse(localStorage.getItem("finances_account"));const e=v(n.value);if(e<=0&&alert("Enter a valid deposit value greater than 0!"),e>0)if(t){t.current_balance+=e,t.transactions.push({id:u(),created_at:p(),updated_at:null,type:"DEPOSIT",category:o.value,description:i.value,total:e});let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}else{t={account_id:u(),current_balance:0,total_expenses:0,total_food:0,total_subscriptions:0,total_shop:0,total_entertainment:0,total_transport:0,total_house:0,investments_total:0,investments_fixed_income:0,investments_variable_income:0,investments_criptocurrencies:0,transactions:[{id:u(),created_at:p(),updated_at:null,type:"DEPOSIT",category:o.value,description:i.value,total:e}]},t.current_balance+=e;let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}}})}function z(){if(localStorage.getItem("finances_account")){let a=JSON.parse(localStorage.getItem("finances_account"));if(a.transactions.reverse(),console.log(a.transactions),!a.transactions)return"No transactions available";let n="";for(let i=0;i<a.transactions.length;i++){let o=a.transactions[i].type==="DEPOSIT"?"text-success":a.transactions[i].type==="EXPENSE"?"text-danger":"text-primary";n+=`
+(function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))o(t);new MutationObserver(t=>{for(const e of t)if(e.type==="childList")for(const l of e.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&o(l)}).observe(document,{childList:!0,subtree:!0});function i(t){const e={};return t.integrity&&(e.integrity=t.integrity),t.referrerpolicy&&(e.referrerPolicy=t.referrerpolicy),t.crossorigin==="use-credentials"?e.credentials="include":t.crossorigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function o(t){if(t.ep)return;t.ep=!0;const e=i(t);fetch(t.href,e)}})();let _;const T=new Uint8Array(16);function N(){if(!_&&(_=typeof crypto<"u"&&crypto.getRandomValues&&crypto.getRandomValues.bind(crypto),!_))throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");return _(T)}const c=[];for(let a=0;a<256;++a)c.push((a+256).toString(16).slice(1));function x(a,n=0){return(c[a[n+0]]+c[a[n+1]]+c[a[n+2]]+c[a[n+3]]+"-"+c[a[n+4]]+c[a[n+5]]+"-"+c[a[n+6]]+c[a[n+7]]+"-"+c[a[n+8]]+c[a[n+9]]+"-"+c[a[n+10]]+c[a[n+11]]+c[a[n+12]]+c[a[n+13]]+c[a[n+14]]+c[a[n+15]]).toLowerCase()}const R=typeof crypto<"u"&&crypto.randomUUID&&crypto.randomUUID.bind(crypto),g={randomUUID:R};function u(a,n,i){if(g.randomUUID&&!n&&!a)return g.randomUUID();a=a||{};const o=a.random||(a.rng||N)();if(o[6]=o[6]&15|64,o[8]=o[8]&63|128,n){i=i||0;for(let t=0;t<16;++t)n[i+t]=o[t];return n}return x(o)}let s={account_id:u(),current_balance:0,total_expenses:0,total_food:0,total_subscriptions:0,total_shop:0,total_entertainment:0,total_transport:0,total_house:0,investments_total:0,investments_fixed_income:0,investments_variable_income:0,investments_criptocurrencies:0,transactions:[]};localStorage.getItem("finances_account")&&(s=JSON.parse(localStorage.getItem("finances_account")));function r(a){return(a/100).toLocaleString("pt-br",{minimumFractionDigits:2})}function b(a){return a.toFixed(2)}function p(){let a=new Date().toLocaleDateString("pt-BR"),n=new Date().toLocaleTimeString("pt-BR");return`${a} ${n}`}function v(a){return a=a.replace("R$ ",""),a=a.replace(",",""),a=a.replace(".",""),Number(a)}function S(a){switch(a){case"WAGE":return'<i class="bi bi-building-fill-add"></i>';case"FREELANCER":return'<i class="bi bi-file-earmark-medical"></i>';case"FOOD":return'<i class="bi bi-apple"></i>';case"SUBSCRIPTION":return'<i class="bi bi-bookmark-star"></i>';case"SHOP":return'<i class="bi bi-shop"></i>';case"ENTERTAINMENT":return'<i class="bi bi-controller"></i>';case"TRANSPORT":return'<i class="bi bi-car-front-fill"></i>';case"HOUSE":return'<i class="bi bi-house-door"></i>';case"FIXED_INCOME":return'<i class="bi bi-graph-up-arrow"></i>';case"VARIABLE_INCOME":return'<i class="bi bi-graph-down-arrow"></i>';case"CRIPTOCURRENCIES":return'<i class="bi bi-currency-bitcoin"></i>';default:return""}}const O=r(s.current_balance),$=r(s.total_expenses),L=r(s.investments_total),A=r(s.investments_fixed_income),w=b(s.investments_total?s.investments_fixed_income/s.investments_total*100:0),C=r(s.investments_variable_income),P=b(s.investments_total?s.investments_variable_income/s.investments_total*100:0),D=r(s.investments_criptocurrencies),q=b(s.investments_total?s.investments_criptocurrencies/s.investments_total*100:0),F=r(s.total_food),M=b(s.total_expenses?s.total_food/s.total_expenses*100:0),U=r(s.total_subscriptions),k=b(s.total_expenses?s.total_subscriptions/s.total_expenses*100:0),H=r(s.total_shop),B=b(s.total_expenses?s.total_shop/s.total_expenses*100:0),V=r(s.total_entertainment),X=b(s.total_expenses?s.total_entertainment/s.total_expenses*100:0),G=r(s.total_transport),J=b(s.total_expenses?s.total_transport/s.total_expenses*100:0),j=r(s.total_house),W=b(s.total_expenses?s.total_house/s.total_expenses*100:0);function z(a,n,i,o){a.addEventListener("click",()=>{if(console.log("totalDeposit => ",n.value),console.log("depositDescription => ",i.value),console.log("depositCategory => ",o.value),n.value&&i.value&&o.value){let t=JSON.parse(localStorage.getItem("finances_account"));const e=v(n.value);if(e<=0&&alert("Enter a valid deposit value greater than 0!"),e>0)if(t){t.current_balance+=e,t.transactions.push({id:u(),created_at:p(),updated_at:null,type:"DEPOSIT",category:o.value,description:i.value,total:e});let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}else{t={account_id:u(),current_balance:0,total_expenses:0,total_food:0,total_subscriptions:0,total_shop:0,total_entertainment:0,total_transport:0,total_house:0,investments_total:0,investments_fixed_income:0,investments_variable_income:0,investments_criptocurrencies:0,transactions:[{id:u(),created_at:p(),updated_at:null,type:"DEPOSIT",category:o.value,description:i.value,total:e}]},t.current_balance+=e;let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}}})}function Y(){if(localStorage.getItem("finances_account")){let a=JSON.parse(localStorage.getItem("finances_account"));if(a.transactions.reverse(),console.log(a.transactions),!a.transactions)return"No transactions available";let n="";for(let i=0;i<a.transactions.length;i++){let o=a.transactions[i].type==="DEPOSIT"?"text-success":a.transactions[i].type==="EXPENSE"?"text-danger":"text-primary",t=a.transactions[i].type==="DEPOSIT"?"+":a.transactions[i].type==="EXPENSE"?"-":"";n+=`
 				<li class="list-group-item list-group-item-action d-flex justify-content-between">
 					<div class="me-auto">
 						<h5 class="fw-bold ${o}">${S(a.transactions[i].category)}   ${a.transactions[i].description}</h5>
 						<small>${a.transactions[i].created_at}</small>
 					</div>
 					<div class="ms-auto">
-						<h5 class="fw-bold ${o}">+ R$ ${r(a.transactions[i].total)}</h5>
+						<h5 class="fw-bold ${o}">${t} R$ ${r(a.transactions[i].total)}</h5>
 							<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Editar</button>
 							<button class="btn btn-sm btn-outline-danger" disabled><i class="bi bi-trash"></i> Excluir</button>
 					</div>
 				</li>
-			`}return n}else return"No transactions available"}const Y=z();function K(a,n,i,o){a.addEventListener("click",()=>{if(console.log("totalInvestment => ",n.value),console.log("investmentDescription => ",i.value),console.log("investmentCategory => ",o.value),n.value&&i.value&&o.value){let t=JSON.parse(localStorage.getItem("finances_account"));const e=v(n.value);if(e<=0&&alert("Enter a valid investment value greater than 0!"),e>0)if(t)if(e<=t.current_balance){t.current_balance-=e,t.investments_total+=e,o.value==="FIXED_INCOME"&&(t.investments_fixed_income+=e),o.value==="VARIABLE_INCOME"&&(t.investments_variable_income+=e),o.value==="CRIPTOCURRENCIES"&&(t.investments_criptocurrencies+=e),t.transactions.push({id:u(),created_at:p(),updated_at:null,type:"INVESTMENT",category:o.value,description:i.value,total:e});let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}else alert("You dont have sufficient balance to make this investment!");else{t={account_id:u(),current_balance:0,total_expenses:0,total_food:0,total_subscriptions:0,total_shop:0,total_entertainment:0,total_transport:0,total_house:0,investments_total:0,investments_fixed_income:0,investments_variable_income:0,investments_criptocurrencies:0,transactions:[{id:u(),created_at:p(),updated_at:null,type:"INVESTMENT",category:o.value,description:i.value,total:e}]},t.current_balance-=e,t.investments_total+=e,o.value==="FIXED_INCOME"&&(t.investments_fixed_income+=e),o.value==="VARIABLE_INCOME"&&(t.investments_variable_income+=e),o.value==="CRIPTOCURRENCIES"&&(t.investments_criptocurrencies+=e);let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}}})}function Q(a,n,i,o){a.addEventListener("click",()=>{if(console.log("totalExpense => ",n.value),console.log("expenseDescription => ",i.value),console.log("expenseCategory => ",o.value),n.value&&i.value&&o.value){let t=JSON.parse(localStorage.getItem("finances_account"));const e=v(n.value);if(e<=0&&alert("Enter a valid expense value greater than 0!"),e>0)if(t)if(e<=t.current_balance){t.current_balance-=e,t.total_expenses+=e,o.value==="FOOD"&&(t.total_food+=e),o.value==="SUBSCRIPTION"&&(t.total_subscriptions+=e),o.value==="SHOP"&&(t.total_shop+=e),o.value==="ENTERTAINMENT"&&(t.total_entertainment+=e),o.value==="TRANSPORT"&&(t.total_transport+=e),o.value==="HOUSE"&&(t.total_house+=e),t.transactions.push({id:u(),created_at:p(),updated_at:null,type:"EXPENSE",category:o.value,description:i.value,total:e});let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}else alert("You dont have sufficient balance to make this expense!");else{t={account_id:u(),current_balance:0,total_expenses:0,total_food:0,total_subscriptions:0,total_shop:0,total_entertainment:0,total_transport:0,total_house:0,investments_total:0,investments_fixed_income:0,investments_variable_income:0,investments_criptocurrencies:0,transactions:[{id:u(),created_at:p(),updated_at:null,type:"EXPENSE",category:o.value,description:i.value,total:e}]},t.current_balance-=e,t.total_expenses+=e,o.value==="FOOD"&&(t.total_food+=e),o.value==="SUBSCRIPTION"&&(t.total_subscriptions+=e),o.value==="SHOP"&&(t.total_shop+=e),o.value==="ENTERTAINMENT"&&(t.total_entertainment+=e),o.value==="TRANSPORT"&&(t.total_transport+=e),o.value==="HOUSE"&&(t.total_house+=e);let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}}})}function Z(a,n,i,o){a.addEventListener("click",t=>{if(t.preventDefault(),localStorage.getItem("finances_account")){let e=JSON.parse(localStorage.getItem("finances_account"));if(e.transactions.reverse(),!e.transactions)return"No transactions available";let l="";for(let d=0;d<e.transactions.length;d++){let m=e.transactions[d].created_at.slice(0,10),y=`${m[3]}${m[4]}/${m[0]}${m[1]}/${m[6]}${m[7]}${m[8]}${m[9]}`,h=new Date(y).getTime();if(n.value==="ALL"||e.transactions[d].category===n.value&&h>=new Date(i.value).getTime()&&h<=new Date(o.value).getTime()){let E=e.transactions[d].type==="DEPOSIT"?"text-success":e.transactions[d].type==="EXPENSE"?"text-danger":"text-primary";l+=`
+			`}return n}else return"No transactions available"}const K=Y();function Q(a,n,i,o){a.addEventListener("click",()=>{if(console.log("totalInvestment => ",n.value),console.log("investmentDescription => ",i.value),console.log("investmentCategory => ",o.value),n.value&&i.value&&o.value){let t=JSON.parse(localStorage.getItem("finances_account"));const e=v(n.value);if(e<=0&&alert("Enter a valid investment value greater than 0!"),e>0)if(t)if(e<=t.current_balance){t.current_balance-=e,t.investments_total+=e,o.value==="FIXED_INCOME"&&(t.investments_fixed_income+=e),o.value==="VARIABLE_INCOME"&&(t.investments_variable_income+=e),o.value==="CRIPTOCURRENCIES"&&(t.investments_criptocurrencies+=e),t.transactions.push({id:u(),created_at:p(),updated_at:null,type:"INVESTMENT",category:o.value,description:i.value,total:e});let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}else alert("You dont have sufficient balance to make this investment!");else{t={account_id:u(),current_balance:0,total_expenses:0,total_food:0,total_subscriptions:0,total_shop:0,total_entertainment:0,total_transport:0,total_house:0,investments_total:0,investments_fixed_income:0,investments_variable_income:0,investments_criptocurrencies:0,transactions:[{id:u(),created_at:p(),updated_at:null,type:"INVESTMENT",category:o.value,description:i.value,total:e}]},t.current_balance-=e,t.investments_total+=e,o.value==="FIXED_INCOME"&&(t.investments_fixed_income+=e),o.value==="VARIABLE_INCOME"&&(t.investments_variable_income+=e),o.value==="CRIPTOCURRENCIES"&&(t.investments_criptocurrencies+=e);let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}}})}function Z(a,n,i,o){a.addEventListener("click",()=>{if(console.log("totalExpense => ",n.value),console.log("expenseDescription => ",i.value),console.log("expenseCategory => ",o.value),n.value&&i.value&&o.value){let t=JSON.parse(localStorage.getItem("finances_account"));const e=v(n.value);if(e<=0&&alert("Enter a valid expense value greater than 0!"),e>0)if(t)if(e<=t.current_balance){t.current_balance-=e,t.total_expenses+=e,o.value==="FOOD"&&(t.total_food+=e),o.value==="SUBSCRIPTION"&&(t.total_subscriptions+=e),o.value==="SHOP"&&(t.total_shop+=e),o.value==="ENTERTAINMENT"&&(t.total_entertainment+=e),o.value==="TRANSPORT"&&(t.total_transport+=e),o.value==="HOUSE"&&(t.total_house+=e),t.transactions.push({id:u(),created_at:p(),updated_at:null,type:"EXPENSE",category:o.value,description:i.value,total:e});let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}else alert("You dont have sufficient balance to make this expense!");else{t={account_id:u(),current_balance:0,total_expenses:0,total_food:0,total_subscriptions:0,total_shop:0,total_entertainment:0,total_transport:0,total_house:0,investments_total:0,investments_fixed_income:0,investments_variable_income:0,investments_criptocurrencies:0,transactions:[{id:u(),created_at:p(),updated_at:null,type:"EXPENSE",category:o.value,description:i.value,total:e}]},t.current_balance-=e,t.total_expenses+=e,o.value==="FOOD"&&(t.total_food+=e),o.value==="SUBSCRIPTION"&&(t.total_subscriptions+=e),o.value==="SHOP"&&(t.total_shop+=e),o.value==="ENTERTAINMENT"&&(t.total_entertainment+=e),o.value==="TRANSPORT"&&(t.total_transport+=e),o.value==="HOUSE"&&(t.total_house+=e);let l=JSON.stringify(t);localStorage.setItem("finances_account",l)}}})}function tt(a,n,i,o){a.addEventListener("click",t=>{if(t.preventDefault(),localStorage.getItem("finances_account")){let e=JSON.parse(localStorage.getItem("finances_account"));if(e.transactions.reverse(),!e.transactions)return"No transactions available";let l="";for(let d=0;d<e.transactions.length;d++){let m=e.transactions[d].created_at.slice(0,10),y=`${m[3]}${m[4]}/${m[0]}${m[1]}/${m[6]}${m[7]}${m[8]}${m[9]}`,h=new Date(y).getTime();if(n.value==="ALL"||e.transactions[d].category===n.value&&h>=new Date(i.value).getTime()&&h<=new Date(o.value).getTime()){let E=e.transactions[d].type==="DEPOSIT"?"text-success":e.transactions[d].type==="EXPENSE"?"text-danger":"text-primary",I=e.transactions[d].type==="DEPOSIT"?"+":e.transactions[d].type==="EXPENSE"?"-":"";l+=`
 						<li class="list-group-item list-group-item-action d-flex justify-content-between">
 							<div class="me-auto">
 								<h5 class="fw-bold ${E}">${S(e.transactions[d].category)}   ${e.transactions[d].description}</h5>
 								<small>${e.transactions[d].created_at}</small>
 							</div>
 							<div class="ms-auto">
-								<h5 class="fw-bold ${E}">+ R$ ${r(e.transactions[d].total)}</h5>
+								<h5 class="fw-bold ${E}">${I} R$ ${r(e.transactions[d].total)}</h5>
 									<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Editar</button>
 									<button class="btn btn-sm btn-outline-danger" disabled><i class="bi bi-trash"></i> Excluir</button>
 							</div>
@@ -171,14 +171,14 @@
 	<div class="card mb-4 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
 			<h4 class="my-0 fw-bold text-success"><i class="bi bi-cash"></i> Current Balance</h4>
-			<h5 class="fw-bold text-success">R$ ${R}</h5>
+			<h5 class="fw-bold text-success">R$ ${O}</h5>
 		</div>
 	</div>
 `;document.querySelector("#EXPENSES").innerHTML=`
 	<div class="card mb-4 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
 			<h4 class="my-0 fw-bold text-start text-danger"><i class="bi bi-cash-stack"></i> Expenses </h4>
-			<p class="my-0 fw-bold text-end text-danger">R$ ${O}</p>
+			<p class="my-0 fw-bold text-end text-danger">R$ ${$}</p>
 		</div>
 		<div class="card-body">
 			<table class="table table-striped">
@@ -192,23 +192,23 @@
 				<tbody>
 					<tr>
 						<th><i class="bi bi-apple"></i> Food</th>
-						<td>R$ ${q}</td>
-						<td>${F} %</td>
+						<td>R$ ${F}</td>
+						<td>${M} %</td>
 					</tr>
 					<tr>
 						<th><i class="bi bi-bookmark-star"></i> Subscriptions</th>
-						<td>R$ ${M}</td>
-						<td>${U} %</td>
+						<td>R$ ${U}</td>
+						<td>${k} %</td>
 					</tr>
 					<tr>
 						<th><i class="bi bi-shop"></i> Shop</th>
-						<td>R$ ${k}</td>
-						<td>${H} %</td>
+						<td>R$ ${H}</td>
+						<td>${B} %</td>
 					</tr>
 					<tr>
 						<th><i class="bi bi-controller"></i> Hobbies & Entertainment</th>
-						<td>R$ ${B}</td>
-						<td>${V} %</td>
+						<td>R$ ${V}</td>
+						<td>${X} %</td>
 					</tr>
 					<tr>
 						<th><i class="bi bi-car-front-fill"></i> Transport</th>
@@ -217,8 +217,8 @@
 					</tr>
 					<tr>
 						<th><i class="bi bi-house-door"></i> House</th>
-						<td>R$ ${X}</td>
-						<td>${j} %</td>
+						<td>R$ ${j}</td>
+						<td>${W} %</td>
 					</tr>
 				</tbody>
 			</table>
@@ -228,7 +228,7 @@
 	<div class="card mb-4 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
 			<h4 class="my-0 fw-bold text-start text-primary"><i class="bi bi-bar-chart"></i> Investments </h4>
-			<span class="my-0 fw-bold text-end text-primary">R$ ${$}</span>
+			<span class="my-0 fw-bold text-end text-primary">R$ ${L}</span>
 		</div>
 		<div class="card-body">
 			<table class="table table-striped">
@@ -242,18 +242,18 @@
 				<tbody>
 					<tr>
 						<th><i class="bi bi-graph-up-arrow"></i> Fixed Income</th>
-						<td>R$ ${L}</td>
-						<td>${A} %</td>
+						<td>R$ ${A}</td>
+						<td>${w} %</td>
 					</tr>
 					<tr>
 						<th><i class="bi bi-graph-down-arrow"></i> Variable Income</th>
-						<td>R$ ${w}</td>
-						<td>${C} %</td>
+						<td>R$ ${C}</td>
+						<td>${P} %</td>
 					</tr>
 					<tr>
 						<th><i class="bi bi-currency-bitcoin"></i> Criptocurrencies</th>
 						<td>R$ ${D}</td>
-						<td>${P} %</td>
+						<td>${q} %</td>
 					</tr>
 				</tbody>
 			</table>
@@ -303,6 +303,6 @@
 `;document.querySelector("#TRANSACTIONS").innerHTML=`
 	<h3><i class="bi bi-receipt-cutoff"></i> Transactions</h3>
 	<ul class="list-group list-group-item-action" id="ul_transactions">
-		${Y}
+		${K}
 	</ul>
-`;W(document.querySelector("#confirm_deposit"),document.querySelector("#total_to_deposit"),document.querySelector("#deposit_description"),document.querySelector("#deposit_category"));Q(document.querySelector("#confirm_expense"),document.querySelector("#total_to_expense"),document.querySelector("#expense_description"),document.querySelector("#expense_category"));K(document.querySelector("#confirm_investment"),document.querySelector("#total_to_investment"),document.querySelector("#investment_description"),document.querySelector("#investment_category"));Z(document.querySelector("#button_search_transactions"),document.querySelector("#search_transaction_category"),document.querySelector("#search_transaction_start_date"),document.querySelector("#search_transaction_final_date"));document.getElementById("total_to_deposit").addEventListener("keyup",f);document.getElementById("total_to_expense").addEventListener("keyup",f);document.getElementById("total_to_investment").addEventListener("keyup",f);function f(a){let n=a.target.value.replace(/\D/g,"");n=(n/100).toFixed(2)+"",n=n.replace(".",","),n=n.replace(/(\d)(\d{3})(\d{3}),/g,"$1.$2.$3,"),n=n.replace(/(\d)(\d{3}),/g,"$1.$2,"),a.target.value=`R$ ${n}`}
+`;z(document.querySelector("#confirm_deposit"),document.querySelector("#total_to_deposit"),document.querySelector("#deposit_description"),document.querySelector("#deposit_category"));Z(document.querySelector("#confirm_expense"),document.querySelector("#total_to_expense"),document.querySelector("#expense_description"),document.querySelector("#expense_category"));Q(document.querySelector("#confirm_investment"),document.querySelector("#total_to_investment"),document.querySelector("#investment_description"),document.querySelector("#investment_category"));tt(document.querySelector("#button_search_transactions"),document.querySelector("#search_transaction_category"),document.querySelector("#search_transaction_start_date"),document.querySelector("#search_transaction_final_date"));document.getElementById("total_to_deposit").addEventListener("keyup",f);document.getElementById("total_to_expense").addEventListener("keyup",f);document.getElementById("total_to_investment").addEventListener("keyup",f);function f(a){let n=a.target.value.replace(/\D/g,"");n=(n/100).toFixed(2)+"",n=n.replace(".",","),n=n.replace(/(\d)(\d{3})(\d{3}),/g,"$1.$2.$3,"),n=n.replace(/(\d)(\d{3}),/g,"$1.$2,"),a.target.value=`R$ ${n}`}

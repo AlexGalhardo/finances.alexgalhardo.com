@@ -37,6 +37,12 @@ export function searchTransactions(buttonSearchTransactions: HTMLButtonElement,
 									'text-danger'
 								: 'text-primary';
 
+					let simbolType = account.transactions[i].type === "DEPOSIT" ?
+								'+'
+							: account.transactions[i].type === "EXPENSE" ?
+								'-'
+							: '';
+
 					transactions += `
 						<li class="list-group-item list-group-item-action d-flex justify-content-between">
 							<div class="me-auto">
@@ -44,7 +50,7 @@ export function searchTransactions(buttonSearchTransactions: HTMLButtonElement,
 								<small>${account.transactions[i].created_at}</small>
 							</div>
 							<div class="ms-auto">
-								<h5 class="fw-bold ${colorType}">+ R$ ${transformToBRL(account.transactions[i].total)}</h5>
+								<h5 class="fw-bold ${colorType}">${simbolType} R$ ${transformToBRL(account.transactions[i].total)}</h5>
 									<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Editar</button>
 									<button class="btn btn-sm btn-outline-danger" disabled><i class="bi bi-trash"></i> Excluir</button>
 							</div>
