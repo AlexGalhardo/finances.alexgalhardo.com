@@ -49,8 +49,7 @@ export function newExpense(element: HTMLButtonElement,
 							total: totalWithdraw
 						})
 
-						let accountString = JSON.stringify(Account);
-						localStorage.setItem('finances_account', accountString)
+						localStorage.setItem('finances_account', JSON.stringify(Account))
 					} else {
 						alert("You dont have sufficient balance to make this expense!");
 					}
@@ -101,8 +100,7 @@ export function newExpense(element: HTMLButtonElement,
 
 					if(expenseCategory.value === 'SERVICES') Account.total_services += totalWithdraw
 
-					let accountString = JSON.stringify(Account);
-					localStorage.setItem('finances_account', accountString)
+					localStorage.setItem('finances_account', JSON.stringify(Account))
 				}
 			}
 		}

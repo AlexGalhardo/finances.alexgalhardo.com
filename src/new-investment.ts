@@ -41,8 +41,7 @@ export function newInvestment(element: HTMLButtonElement,
 							total: totalInvested
 						})
 
-						let accountString = JSON.stringify(Account);
-						localStorage.setItem('finances_account', accountString)
+						localStorage.setItem('finances_account', JSON.stringify(Account))
 					} else {
 						alert("You dont have sufficient balance to make this investment!");
 					}
@@ -58,6 +57,7 @@ export function newInvestment(element: HTMLButtonElement,
 						total_entertainment: 0,
 						total_transport: 0,
 						total_house: 0,
+						total_services: 0,
 						investments_total: 0,
 						investments_fixed_income: 0,
 						investments_variable_income: 0,
@@ -84,8 +84,7 @@ export function newInvestment(element: HTMLButtonElement,
 
 					if(investmentCategory.value === 'CRIPTOCURRENCIES') Account.investments_criptocurrencies += totalInvested
 
-					let accountString = JSON.stringify(Account);
-					localStorage.setItem('finances_account', accountString)
+					localStorage.setItem('finances_account', JSON.stringify(Account))
 				}
 			}
 		}

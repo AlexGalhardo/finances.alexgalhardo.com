@@ -33,8 +33,7 @@ export function newDeposit(element: HTMLButtonElement,
 						total: totalDeposited
 					})
 
-					let accountString = JSON.stringify(Account);
-					localStorage.setItem('finances_account', accountString)
+					localStorage.setItem('finances_account', JSON.stringify(Account))
 				}
 				else {
 					Account = {
@@ -67,8 +66,7 @@ export function newDeposit(element: HTMLButtonElement,
 
 					Account.current_balance += totalDeposited
 
-					let accountString = JSON.stringify(Account);
-					localStorage.setItem('finances_account', accountString)
+					localStorage.setItem('finances_account', JSON.stringify(Account))
 				}
 			}
 		}

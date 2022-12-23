@@ -7,7 +7,7 @@
 
 -   <b>"Talk is cheap. Show me the code." - Linus Torvalds</b>
 -   First Commit: December 19, 2022
--   I created this project to learn mostly ReactJS v18+ and Clean Architecture Principles, applyying to a API using REST, Graphql and gRPC
+-   I created this project to learn mostly ReactJS v18+ and Clean Architecture Principles, applying to a API using REST, Graphql and gRPC
 
 ## <a href="https://galhardo-finances.vercel.app/" target="_blank">LIVE DEMO</a>
 
