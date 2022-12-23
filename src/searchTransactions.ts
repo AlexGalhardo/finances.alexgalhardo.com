@@ -51,8 +51,8 @@ export function searchTransactions(buttonSearchTransactions: HTMLButtonElement,
 							</div>
 							<div class="ms-auto">
 								<h5 class="fw-bold ${colorType}">${simbolType} R$ ${transformToBRL(account.transactions[i].total)}</h5>
-									<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Editar</button>
-									<button class="btn btn-sm btn-outline-danger" disabled><i class="bi bi-trash"></i> Excluir</button>
+									<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Edit</button>
+									<button class="btn btn-sm btn-outline-danger" disabled><i class="bi bi-trash"></i> Delete</button>
 							</div>
 						</li>
 					`
