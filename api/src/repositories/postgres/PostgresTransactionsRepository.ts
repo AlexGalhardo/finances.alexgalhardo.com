@@ -5,24 +5,37 @@ import prisma from "../../config/prisma";
 import {
     ITransactionsRepository,
     ICreateTransactionParams,
-    IUpdateTransactionsParams,
+    IUpdateTransactionParams,
 } from "../../ports/ITransactionsRepository";
 
 export default class PostgresTransactionsRepository implements ITransactionsRepository {
-    async getAll(): Promise<Transaction[]> {
-        const queryResponse = await prisma.transaction.findMany({});
+    async getAll(user_id: string): Promise<Transaction[]> {
+        const queryResponse = await prisma.transaction.findMany({
+            where: {
+                user_id,
+            },
+        });
 
         return queryResponse;
     }
 
-    async getById(blogId: string): Promise<Transaction> {
-        const queryResponse = await prisma.transaction.findUnique({
+    async getAllByCategory(
+        user_id: string,
+        category: string,
+        startDate: string,
+        finalDate: string,
+    ): Promise<Transaction[]> {
+        const queryResponse = await prisma.transaction.findMany({
             where: {
-                id: blogId,
+                category,
+                user_id,
             },
         });
 
-        return queryResponse as Transaction;
+        // todo
+        // get only transactions in date interval
+
+        return queryResponse as Transaction[];
     }
 
     async create(transactionObject: ICreateTransactionParams): Promise<Transaction> {
@@ -41,7 +54,7 @@ export default class PostgresTransactionsRepository implements ITransactionsRepo
         return queryResponse;
     }
 
-    async updateById(transactionObject: IUpdateTransactionsParams): Promise<Transaction> {
+    async updateById(transactionObject: IUpdateTransactionParams): Promise<Transaction> {
         const { id, type, category, description, amount } = transactionObject;
 
         const queryResponse = await prisma.transaction.update({

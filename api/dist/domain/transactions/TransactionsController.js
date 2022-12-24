@@ -6,6 +6,7 @@ Object.defineProperty(exports, "default", {
     enumerable: true,
     get: ()=>_default
 });
+const _jsonwebtoken = /*#__PURE__*/ _interopRequireDefault(require("jsonwebtoken"));
 const _getTransactionsRepository = require("../../factories/getTransactionsRepository");
 const _createTransactionUseCase = /*#__PURE__*/ _interopRequireDefault(require("./CreateTransactionUseCase"));
 const _deleteTransactionByIdUseCase = /*#__PURE__*/ _interopRequireDefault(require("./DeleteTransactionByIdUseCase"));
@@ -18,13 +19,21 @@ function _interopRequireDefault(obj) {
     };
 }
 class TransactionsController {
+    getDecodedJwtToken(req) {
+        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
+        return _jsonwebtoken.default.verify(JWT_TOKEN, process.env.JWT_SECRET);
+    }
     async getAllTransactions(req, res) {
-        const allTransactions = await new _getAllTransactionsUseCase.default((0, _getTransactionsRepository.getTransactionsRepository)()).execute();
+        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
+        const jwtPayload = _jsonwebtoken.default.verify(JWT_TOKEN, process.env.JWT_SECRET);
+        const allTransactions = await new _getAllTransactionsUseCase.default((0, _getTransactionsRepository.getTransactionsRepository)()).execute(jwtPayload.userId);
         return res.status(allTransactions ? 200 : 404).json(allTransactions);
     }
     async getTransactionsByCategory(req, res) {
-        const { category  } = req.body;
-        const response = await new _getTransactionsByCategoryUseCase.default((0, _getTransactionsRepository.getTransactionsRepository)()).execute(category);
+        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
+        const jwtPayload = _jsonwebtoken.default.verify(JWT_TOKEN, process.env.JWT_SECRET);
+        const { category , startDate , finalDate  } = req.body;
+        const response = await new _getTransactionsByCategoryUseCase.default((0, _getTransactionsRepository.getTransactionsRepository)()).execute(jwtPayload.userId, category, startDate, finalDate);
         return res.status(response ? 200 : 400).json(response);
     }
     async createTransaction(req, res) {

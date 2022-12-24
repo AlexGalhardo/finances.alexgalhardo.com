@@ -51,7 +51,7 @@ class UserController {
 
         const jwtToken = jwt.sign(
             {
-                userId: user.id,
+                userId: user?.id,
             },
             process.env.JWT_SECRET as string,
             { expiresIn: "1h" },
@@ -65,21 +65,23 @@ class UserController {
     }
 
     async logout(req: Request, res: Response) {
-        const { httpStatusCodeResponse, response } = await new UserLogoutUseCase(getUsersRepository()).execute(
-            this.getDecodedJwtToken(req).userId,
-        );
+        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
+        const jwtPayload = jwt.verify(JWT_TOKEN as string, process.env.JWT_SECRET as string) as jwt.JwtPayload;
 
-        return res.status(httpStatusCodeResponse).json(response);
+        const response = await new UserLogoutUseCase(getUsersRepository()).execute(jwtPayload.userId);
+
+        return res.status(response ? 200 : 400).json({
+            success: true,
+            message: `logout successfully`,
+        });
     }
 
     async deleteById(req: Request, res: Response) {
         const { user_id } = req.params;
 
-        const { httpStatusCodeResponse, response } = await new UserDeleteByIdUseCase(getUsersRepository()).execute(
-            user_id,
-        );
+        const response = await new UserDeleteByIdUseCase(getUsersRepository()).execute(user_id);
 
-        return res.status(httpStatusCodeResponse).json(response);
+        return res.status(response ? 200 : 400).json(response);
     }
 }
 

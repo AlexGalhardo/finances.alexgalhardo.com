@@ -7,7 +7,7 @@ export default class GetAllTransactionsUseCase {
         this.transactionsRepository = transactionsRepository;
     }
 
-    async execute(category: string) {
-        return this.transactionsRepository.getAllByCategory(category);
+    async execute(user_id: string, category: string, startDate: string, finalDate: string) {
+        return this.transactionsRepository.getAllByCategory(user_id, category.toUpperCase(), startDate, finalDate);
     }
 }

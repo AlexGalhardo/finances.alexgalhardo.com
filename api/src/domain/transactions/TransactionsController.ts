@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
 
 import { getTransactionsRepository } from "../../factories/getTransactionsRepository";
 import CreateTransactionUseCase from "./CreateTransactionUseCase";
@@ -8,15 +9,34 @@ import GetTransactionsByCategoryUseCase from "./GetTransactionsByCategoryUseCase
 import UpdateTransactionByIdUseCase from "./UpdateTransactionByIdUseCase";
 
 class TransactionsController {
+    private getDecodedJwtToken(req: Request) {
+        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
+        return jwt.verify(JWT_TOKEN as string, process.env.JWT_SECRET as string) as jwt.JwtPayload;
+    }
+
     async getAllTransactions(req: Request, res: Response) {
-        const allTransactions = await new GetAllTransactionsUseCase(getTransactionsRepository()).execute();
+        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
+        const jwtPayload = jwt.verify(JWT_TOKEN as string, process.env.JWT_SECRET as string) as jwt.JwtPayload;
+
+        const allTransactions = await new GetAllTransactionsUseCase(getTransactionsRepository()).execute(
+            jwtPayload.userId,
+        );
+
         return res.status(allTransactions ? 200 : 404).json(allTransactions);
     }
 
     async getTransactionsByCategory(req: Request, res: Response) {
-        const { category } = req.body;
+        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
+        const jwtPayload = jwt.verify(JWT_TOKEN as string, process.env.JWT_SECRET as string) as jwt.JwtPayload;
 
-        const response = await new GetTransactionsByCategoryUseCase(getTransactionsRepository()).execute(category);
+        const { category, startDate, finalDate } = req.body;
+
+        const response = await new GetTransactionsByCategoryUseCase(getTransactionsRepository()).execute(
+            jwtPayload.userId,
+            category,
+            startDate,
+            finalDate,
+        );
 
         return res.status(response ? 200 : 400).json(response);
     }

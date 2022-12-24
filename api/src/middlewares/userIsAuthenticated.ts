@@ -23,7 +23,6 @@ export const userIsAuthenticated = async (req: Request, res: Response, next: Nex
         const JWT_TOKEN = req.headers.authorization.split(" ")[1];
         const decoded = jwt.verify(JWT_TOKEN, process.env.JWT_SECRET as string) as IUserJwtPayload;
 
-        // const userExists = await new InMemoryUsersRepository().userExists(decoded.userId);
         const userExists = await new PostgresUsersRepository().userExists(decoded.userId);
 
         if (!userExists) {

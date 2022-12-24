@@ -15,8 +15,8 @@ model User {
     reset_password_token String?
     jwt_token            String?
     Account              Account[]
-    created_at           DateTime      @default(now())
-    updated_at           DateTime      @updatedAt
+    created_at           String
+    updated_at           String?
     Transaction          Transaction[]
 
     @@map("users")
@@ -37,30 +37,28 @@ model Account {
     investments_variable_income  Int
     investments_criptocurrencies Int
     user_id                      String
-    user                         User          @relation(fields: [user_id], references: [id])
+    user                         User          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
     user_email                   String
-    account_json                 Json
     Transaction                  Transaction[]
-    created_at                   DateTime      @default(now())
-    updated_at                   DateTime      @updatedAt
+    created_at                   String
+    updated_at                   String?
 
     @@map("accounts")
 }
 
 model Transaction {
-    id               String   @id @default(uuid())
-    user_id          String
-    user             User     @relation(fields: [user_id], references: [id])
-    user_email       String
-    account_id       String
-    account          Account  @relation(fields: [account_id], references: [id])
-    type             String
-    category         String
-    description      String
-    amount           Int
-    transaction_json Json
-    created_at       DateTime @default(now())
-    updated_at       DateTime @updatedAt
+    id          String  @id @default(uuid())
+    user_id     String
+    user        User    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    user_email  String
+    account_id  String
+    account     Account @relation(fields: [account_id], references: [id])
+    type        String
+    category    String
+    description String
+    amount      Int
+    created_at  String
+    updated_at  String?
 
     @@map("transactions")
 }

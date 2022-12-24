@@ -50,7 +50,7 @@ class UserController {
             password
         });
         const jwtToken = _jsonwebtoken.default.sign({
-            userId: user.id
+            userId: user?.id
         }, process.env.JWT_SECRET, {
             expiresIn: "1h"
         });
@@ -61,13 +61,18 @@ class UserController {
         });
     }
     async logout(req, res) {
-        const { httpStatusCodeResponse , response  } = await new _userLogoutUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute(this.getDecodedJwtToken(req).userId);
-        return res.status(httpStatusCodeResponse).json(response);
+        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
+        const jwtPayload = _jsonwebtoken.default.verify(JWT_TOKEN, process.env.JWT_SECRET);
+        const response = await new _userLogoutUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute(jwtPayload.userId);
+        return res.status(response ? 200 : 400).json({
+            success: true,
+            message: `logout successfully`
+        });
     }
     async deleteById(req, res) {
         const { user_id  } = req.params;
-        const { httpStatusCodeResponse , response  } = await new _userDeleteByIdUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute(user_id);
-        return res.status(httpStatusCodeResponse).json(response);
+        const response = await new _userDeleteByIdUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute(user_id);
+        return res.status(response ? 200 : 400).json(response);
     }
 }
 const _default = new UserController();

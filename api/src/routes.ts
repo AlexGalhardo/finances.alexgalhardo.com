@@ -11,7 +11,7 @@ export default Router()
 
     .put("/user/update/:userId", userIsAuthenticated, UserController.update)
 
-    .get("/transaction/all", TransactionsController.getAllTransactions)
+    .get("/transaction/all", /* userIsAuthenticated */ TransactionsController.getAllTransactions)
     .get("/transaction/filter", TransactionsController.getTransactionsByCategory)
     .post("/transaction/create", userIsAuthenticated, TransactionsController.createTransaction)
     .put("/transaction/update/:transaction_id", userIsAuthenticated, TransactionsController.updateTransactionById)

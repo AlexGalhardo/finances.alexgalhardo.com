@@ -7,7 +7,7 @@ export default class GetAllTransactionsUseCase {
         this.transactionsRepository = transactionsRepository;
     }
 
-    async execute() {
-        return await this.transactionsRepository.getAll();
+    async execute(userId: string) {
+        return this.transactionsRepository.getAll(userId);
     }
 }

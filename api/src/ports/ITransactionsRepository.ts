@@ -60,9 +60,9 @@ export interface IUpdateTransactionParams {
 }
 
 export interface ITransactionsRepository {
-    getAll(): Promise<Transaction[]>;
+    getAll(userId: string): Promise<Transaction[]>;
 
-    getAllByCategory(transactionCategory: string): Promise<Transaction[]>;
+    getAllByCategory(user_id: string, category: string, startDate: string, finalDate: string): Promise<Transaction[]>;
 
     create(transactionObject: ICreateTransactionParams): Promise<Transaction>;
 

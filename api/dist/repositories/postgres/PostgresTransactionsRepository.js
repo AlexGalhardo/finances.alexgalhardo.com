@@ -14,16 +14,23 @@ function _interopRequireDefault(obj) {
     };
 }
 class PostgresTransactionsRepository {
-    async getAll() {
-        const queryResponse = await _prisma.default.transaction.findMany({});
-        return queryResponse;
-    }
-    async getById(blogId) {
-        const queryResponse = await _prisma.default.transaction.findUnique({
+    async getAll(user_id) {
+        const queryResponse = await _prisma.default.transaction.findMany({
             where: {
-                id: blogId
+                user_id
             }
         });
+        return queryResponse;
+    }
+    async getAllByCategory(user_id, category, startDate, finalDate) {
+        const queryResponse = await _prisma.default.transaction.findMany({
+            where: {
+                category,
+                user_id
+            }
+        });
+        // todo
+        // get only transactions in date interval
         return queryResponse;
     }
     async create(transactionObject) {
