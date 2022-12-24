@@ -32,6 +32,7 @@ model Account {
     total_entertainment          Int
     total_transport              Int
     total_house                  Int
+    total_services               Int
     investments_total            Int
     investments_fixed_income     Int
     investments_variable_income  Int

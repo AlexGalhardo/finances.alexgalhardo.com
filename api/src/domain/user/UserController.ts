@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 import { getUsersRepository } from "../../factories/getUsersRepository";
+import { getDecodedJwtToken } from "../../helpers/DecodeJwtToken";
 import UserDeleteByIdUseCase from "./UserDeleteByIdUseCase";
 import UserLoginUseCase from "./UserLoginUseCase";
 import UserLogoutUseCase from "./UserLogoutUseCase";
@@ -9,11 +10,6 @@ import UserRegisterUseCase from "./UserRegisterUseCase";
 import UserUpdateByIdUseCase from "./UserUpdateByIdUseCase";
 
 class UserController {
-    private getDecodedJwtToken(req: Request) {
-        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
-        return jwt.verify(JWT_TOKEN as string, process.env.JWT_SECRET as string) as jwt.JwtPayload;
-    }
-
     async register(req: Request, res: Response) {
         const { name, email, password } = req.body;
 
@@ -27,12 +23,10 @@ class UserController {
     }
 
     async update(req: Request, res: Response) {
-        const { userId } = this.getDecodedJwtToken(req);
-
         const { name, email, password } = req.body;
 
         const response = await new UserUpdateByIdUseCase(getUsersRepository()).execute({
-            id: userId,
+            id: getDecodedJwtToken(req).userId,
             name,
             email,
             password,
@@ -48,8 +42,6 @@ class UserController {
             email,
             password,
         });
-
-        console.log("user => ", user);
 
         const jwtToken = jwt.sign(
             {
@@ -68,10 +60,7 @@ class UserController {
     }
 
     async logout(req: Request, res: Response) {
-        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
-        const jwtPayload = jwt.verify(JWT_TOKEN as string, process.env.JWT_SECRET as string) as jwt.JwtPayload;
-
-        const response = await new UserLogoutUseCase(getUsersRepository()).execute(jwtPayload.userId);
+        const response = await new UserLogoutUseCase(getUsersRepository()).execute(getDecodedJwtToken(req).userId);
 
         return res.status(response ? 200 : 400).json({
             success: true,

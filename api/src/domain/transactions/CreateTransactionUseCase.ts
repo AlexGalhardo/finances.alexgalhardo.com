@@ -1,4 +1,4 @@
-import { ITransactionsRepository } from "../../ports/ITransactionsRepository";
+import { ICreateTransactionParams, ITransactionsRepository } from "../../ports/ITransactionsRepository";
 
 export default class CreateTransactionUseCase {
     private readonly transactionsRepository: ITransactionsRepository;
@@ -7,12 +7,7 @@ export default class CreateTransactionUseCase {
         this.transactionsRepository = transactionsRepository;
     }
 
-    async execute({ type, category, description, total }) {
-        return await this.transactionsRepository.create({
-            type,
-            category,
-            description,
-            total,
-        });
+    async execute(transactionObject: ICreateTransactionParams) {
+        return this.transactionsRepository.create(transactionObject);
     }
 }

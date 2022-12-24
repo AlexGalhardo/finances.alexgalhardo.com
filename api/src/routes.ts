@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import AccountController from "./domain/account/AccountController";
 import TransactionsController from "./domain/transactions/TransactionsController";
 import UserController from "./domain/user/UserController";
 import { userIsAuthenticated } from "./middlewares/userIsAuthenticated";
@@ -11,8 +12,10 @@ export default Router()
 
     .put("/user/update/:userId", userIsAuthenticated, UserController.update)
 
-    .get("/transaction/all", /* userIsAuthenticated */ TransactionsController.getAllTransactions)
-    .get("/transaction/filter", TransactionsController.getTransactionsByCategory)
+    .get("/transaction/all", userIsAuthenticated, TransactionsController.getAllTransactions)
+    .get("/transaction/filter", userIsAuthenticated, TransactionsController.getTransactionsByCategory)
     .post("/transaction/create", userIsAuthenticated, TransactionsController.createTransaction)
     .put("/transaction/update/:transaction_id", userIsAuthenticated, TransactionsController.updateTransactionById)
-    .delete("/transaction/delete/:transaction_id", userIsAuthenticated, TransactionsController.deleteTransactionById);
+    .delete("/transaction/delete/:transaction_id", userIsAuthenticated, TransactionsController.deleteTransactionById)
+
+    .get("/account/dashboard", userIsAuthenticated, AccountController.getDashboardData);

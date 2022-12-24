@@ -8,6 +8,7 @@ Object.defineProperty(exports, "default", {
 });
 const _jsonwebtoken = /*#__PURE__*/ _interopRequireDefault(require("jsonwebtoken"));
 const _getUsersRepository = require("../../factories/getUsersRepository");
+const _decodeJwtToken = require("../../helpers/DecodeJwtToken");
 const _userDeleteByIdUseCase = /*#__PURE__*/ _interopRequireDefault(require("./UserDeleteByIdUseCase"));
 const _userLoginUseCase = /*#__PURE__*/ _interopRequireDefault(require("./UserLoginUseCase"));
 const _userLogoutUseCase = /*#__PURE__*/ _interopRequireDefault(require("./UserLogoutUseCase"));
@@ -19,10 +20,6 @@ function _interopRequireDefault(obj) {
     };
 }
 class UserController {
-    getDecodedJwtToken(req) {
-        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
-        return _jsonwebtoken.default.verify(JWT_TOKEN, process.env.JWT_SECRET);
-    }
     async register(req, res) {
         const { name , email , password  } = req.body;
         const response = await new _userRegisterUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute({
@@ -30,13 +27,12 @@ class UserController {
             email,
             password
         });
-        return res.status(response ? 200 : 400).json(response);
+        return res.status(201).json(response);
     }
     async update(req, res) {
-        const { userId  } = this.getDecodedJwtToken(req);
         const { name , email , password  } = req.body;
         const response = await new _userUpdateByIdUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute({
-            id: userId,
+            id: (0, _decodeJwtToken.getDecodedJwtToken)(req).userId,
             name,
             email,
             password
@@ -49,13 +45,12 @@ class UserController {
             email,
             password
         });
-        console.log("user => ", user);
         const jwtToken = _jsonwebtoken.default.sign({
             userId: user?.id
         }, process.env.JWT_SECRET, {
             expiresIn: "1h"
         });
-        return res.status(user ? 200 : 404).json({
+        return res.status(200).json({
             success: true,
             message: `${email} login successfully`,
             user_id: user?.id,
@@ -63,9 +58,7 @@ class UserController {
         });
     }
     async logout(req, res) {
-        const JWT_TOKEN = req.headers.authorization?.split(" ")[1];
-        const jwtPayload = _jsonwebtoken.default.verify(JWT_TOKEN, process.env.JWT_SECRET);
-        const response = await new _userLogoutUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute(jwtPayload.userId);
+        const response = await new _userLogoutUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute((0, _decodeJwtToken.getDecodedJwtToken)(req).userId);
         return res.status(response ? 200 : 400).json({
             success: true,
             message: `logout successfully`

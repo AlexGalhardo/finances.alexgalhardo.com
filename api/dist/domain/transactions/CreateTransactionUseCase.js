@@ -7,13 +7,8 @@ Object.defineProperty(exports, "default", {
     get: ()=>CreateTransactionUseCase
 });
 class CreateTransactionUseCase {
-    async execute({ type , category , description , total  }) {
-        return await this.transactionsRepository.create({
-            type,
-            category,
-            description,
-            total
-        });
+    async execute(transactionObject) {
+        return this.transactionsRepository.create(transactionObject);
     }
     constructor(transactionsRepository){
         this.transactionsRepository = transactionsRepository;

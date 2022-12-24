@@ -4,7 +4,7 @@ export interface ITransactionCreateUseCaseResponse {
     httpStatusCodeResponse: 201 | 400;
     response: {
         success: boolean;
-        message: "Blog Post Created!" | "Blog Post NOT created";
+        message: "Transaction Created!" | "Transaction NOT created";
         blogCreated?: Transaction;
     };
 }
@@ -45,6 +45,7 @@ export interface ITransactionUpdateByIdUseCaseResponse {
 }
 
 export interface ICreateTransactionParams {
+    user_id: string;
     type: string;
     category: string;
     description: string;
@@ -64,7 +65,7 @@ export interface ITransactionsRepository {
 
     getAllByCategory(user_id: string, category: string, startDate: string, finalDate: string): Promise<Transaction[]>;
 
-    create(transactionObject: ICreateTransactionParams): Promise<Transaction>;
+    create(transactionObject: ICreateTransactionParams): Promise<Transaction | null>;
 
     updateById(transactionObject: IUpdateTransactionParams): Promise<Transaction>;
 
