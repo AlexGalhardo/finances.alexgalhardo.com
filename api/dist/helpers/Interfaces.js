@@ -10,7 +10,8 @@ function _export(target, all) {
 }
 _export(exports, {
     TransactionTypeEnum: ()=>TransactionTypeEnum,
-    TransactionCategoryEnum: ()=>TransactionCategoryEnum
+    TransactionCategoryEnum: ()=>TransactionCategoryEnum,
+    HttpStatusCodeEnum: ()=>HttpStatusCodeEnum
 });
 var TransactionTypeEnum;
 (function(TransactionTypeEnum) {
@@ -34,3 +35,12 @@ var TransactionCategoryEnum;
     TransactionCategoryEnum["VARIABLE_INCOME"] = "VARIABLE_INCOME";
     TransactionCategoryEnum["CRIPTOCURRENCIES"] = "CRIPTOCURRENCIES";
 })(TransactionCategoryEnum || (TransactionCategoryEnum = {}));
+var HttpStatusCodeEnum;
+(function(HttpStatusCodeEnum) {
+    HttpStatusCodeEnum[HttpStatusCodeEnum["OK"] = 200] = "OK";
+    HttpStatusCodeEnum[HttpStatusCodeEnum["CREATED"] = 201] = "CREATED";
+    HttpStatusCodeEnum[HttpStatusCodeEnum["BAD_REQUEST"] = 400] = "BAD_REQUEST";
+    HttpStatusCodeEnum[HttpStatusCodeEnum["NOT_AUTHORIZED"] = 401] = "NOT_AUTHORIZED";
+    HttpStatusCodeEnum[HttpStatusCodeEnum["NOT_FOUND"] = 404] = "NOT_FOUND";
+    HttpStatusCodeEnum[HttpStatusCodeEnum["INTERNAL_SERVER_ERROR"] = 500] = "INTERNAL_SERVER_ERROR";
+})(HttpStatusCodeEnum || (HttpStatusCodeEnum = {}));

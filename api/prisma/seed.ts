@@ -7,22 +7,23 @@ import { TransactionTypeEnum, TransactionCategoryEnum } from "../src/helpers/Int
 
 const prisma = new PrismaClient();
 
+export const testAccountId = randomUUID();
+export const testUserId = randomUUID();
+export const testUserEmail = "test@gmail.com";
+export const testUserPassword = "test123";
+
 const main = async () => {
     await prisma.user.deleteMany({});
     await prisma.account.deleteMany({});
     await prisma.transaction.deleteMany({});
 
-    const accountId = randomUUID();
-    const userId = randomUUID();
-    const userEmail = "testing@gmail.com";
-
     await prisma.user.createMany({
         data: [
             {
-                id: userId,
-                email: userEmail,
-                name: "testing",
-                password: await Bcrypt.hash("teste123"),
+                id: testUserId,
+                email: testUserEmail,
+                name: "test",
+                password: await Bcrypt.hash(testUserPassword),
                 reset_password_token: null,
                 created_at: DateTime.getNow(),
             },
@@ -33,9 +34,9 @@ const main = async () => {
     await prisma.account.createMany({
         data: [
             {
-                id: accountId,
-                user_email: userEmail,
-                user_id: userId,
+                id: testAccountId,
+                user_email: testUserEmail,
+                user_id: testUserId,
                 current_balance: 1214610,
                 total_expenses: 98380,
                 total_food: 1900,
@@ -58,9 +59,9 @@ const main = async () => {
         data: [
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.DEPOSIT,
                 category: TransactionCategoryEnum.WAGE,
                 description: "Salario Google",
@@ -69,9 +70,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.FOOD,
                 description: "Almoço Macdonalds",
@@ -80,9 +81,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.FOOD,
                 description: "Marmitex Média",
@@ -91,9 +92,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.FOOD,
                 description: "Pizza Dominós Janta",
@@ -102,9 +103,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.SUBSCRIPTIONS,
                 description: "Netflix Premium",
@@ -113,9 +114,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.SHOP,
                 description: "Tenis Adidas",
@@ -124,9 +125,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.ENTERTAINMENT,
                 description: "God Of War Ragnarok PS5",
@@ -135,9 +136,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.ENTERTAINMENT,
                 description: "Call Of Duty Modern Warfare 2 PS5",
@@ -146,9 +147,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.TRANSPORT,
                 description: "Gasolina Carro",
@@ -157,9 +158,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.HOUSE,
                 description: "Produtos de Limpeza",
@@ -168,9 +169,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.SERVICES,
                 description: "Tatuagem Nova",
@@ -179,9 +180,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.FIXED_INCOME,
                 description: "Tesouro Selic Prefixado 2023",
@@ -190,9 +191,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.VARIABLE_INCOME,
                 description: "Ações Tesla",
@@ -201,9 +202,9 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: userId,
-                user_email: userEmail,
-                account_id: accountId,
+                user_id: testUserId,
+                user_email: testUserEmail,
+                account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
                 category: TransactionCategoryEnum.CRIPTOCURRENCIES,
                 description: "Bitcoin Binance",

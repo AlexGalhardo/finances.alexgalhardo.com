@@ -49,6 +49,7 @@ class UserController {
             email,
             password
         });
+        console.log("user => ", user);
         const jwtToken = _jsonwebtoken.default.sign({
             userId: user?.id
         }, process.env.JWT_SECRET, {
@@ -57,6 +58,7 @@ class UserController {
         return res.status(user ? 200 : 404).json({
             success: true,
             message: `${email} login successfully`,
+            user_id: user?.id,
             jwt_token: jwtToken
         });
     }

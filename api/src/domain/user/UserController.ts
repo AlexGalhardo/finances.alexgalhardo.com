@@ -23,7 +23,7 @@ class UserController {
             password,
         });
 
-        return res.status(response ? 200 : 400).json(response);
+        return res.status(201).json(response);
     }
 
     async update(req: Request, res: Response) {
@@ -49,6 +49,8 @@ class UserController {
             password,
         });
 
+        console.log("user => ", user);
+
         const jwtToken = jwt.sign(
             {
                 userId: user?.id,
@@ -57,9 +59,10 @@ class UserController {
             { expiresIn: "1h" },
         );
 
-        return res.status(user ? 200 : 404).json({
+        return res.status(200).json({
             success: true,
             message: `${email} login successfully`,
+            user_id: user?.id,
             jwt_token: jwtToken,
         });
     }

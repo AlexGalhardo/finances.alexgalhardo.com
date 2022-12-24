@@ -15,8 +15,9 @@ export default class PostgresTransactionsRepository implements ITransactionsRepo
                 user_id,
             },
         });
+        console.log("queryResponse =>>>> ", queryResponse);
 
-        return queryResponse;
+        return queryResponse as Transaction[];
     }
 
     async getAllByCategory(
