@@ -1,12 +1,19 @@
-import { ApolloServer, gql } from "apollo-server";
-
-import PostgresTransactionsRepository from "../repositories/postgres/PostgresTransactionsRepository";
-
-const GraphqlServer = new ApolloServer({
-    context: { hello: "world" },
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: ()=>_default
+});
+const _apolloServer = require("apollo-server");
+const GraphqlServer = new _apolloServer.ApolloServer({
+    context: {
+        hello: "world"
+    },
     csrfPrevention: true,
     cache: "bounded",
-    typeDefs: gql`
+    typeDefs: (0, _apolloServer.gql)`
         type User {
             id: ID!
             name: String!
@@ -63,11 +70,10 @@ const GraphqlServer = new ApolloServer({
     resolvers: {
         Query: {},
         Mutation: {
-            createUser: async () => {
+            createUser: async ()=>{
                 return null;
-            },
-        },
-    },
+            }
+        }
+    }
 });
-
-export default GraphqlServer;
+const _default = GraphqlServer;

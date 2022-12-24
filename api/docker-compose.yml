@@ -2,9 +2,9 @@ version: '3'
 
 services:
 
-    galhardoapp_api_postgres:
+    galhardo_finances_postgres:
         image: postgres
-        container_name: galhardoapp_api_postgres
+        container_name: galhardo_finances_postgres
         environment:
             POSTGRES_PASSWORD: "postgres"
         ports:
@@ -12,7 +12,7 @@ services:
         volumes:
             - postgres-data:/var/lib/postgresql
         networks:
-            - galhardoapp_api_network
+            - galhardo_finances_network
 
     # system: postgresql | username: postgres | password: postgres |server: galhardoapp_api_postgres
     galhardoapp_api_adminer:
@@ -21,23 +21,10 @@ services:
         ports:
             - "8080:8080"
         networks:
-            - galhardoapp_api_network
-
-    galhardoapp_api_rabbitmq:
-        image: rabbitmq:3-management
-        container_name: 'galhardoapp_api_rabbitmq'
-        restart: always
-        environment:
-            - "RABBITMQ_DEFAULT_PASS=rabbitmq"
-            - "RABBITMQ_DEFAULT_USER=rabbitmq"
-        ports:
-            - 5672:5672
-            - 15672:15672
-        networks:
-            - galhardoapp_api_network
+            - galhardo_finances_network
 
 networks:
-    galhardoapp_api_network:
+    galhardo_finances_network:
         driver: bridge
 
 volumes:

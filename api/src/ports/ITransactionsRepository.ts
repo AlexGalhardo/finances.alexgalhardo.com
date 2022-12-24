@@ -1,6 +1,6 @@
 import { Transaction } from "@prisma/client";
 
-export interface IBlogCreateUseCaseResponse {
+export interface ITransactionCreateUseCaseResponse {
     httpStatusCodeResponse: 201 | 400;
     response: {
         success: boolean;
@@ -9,7 +9,7 @@ export interface IBlogCreateUseCaseResponse {
     };
 }
 
-export interface IBlogDeleteByIdUseCaseResponse {
+export interface ITransactionDeleteByIdUseCaseResponse {
     httpStatusCodeResponse: 200 | 404;
     response: {
         success: boolean;
@@ -17,7 +17,7 @@ export interface IBlogDeleteByIdUseCaseResponse {
     };
 }
 
-export interface IBlogGetAllUseCaseResponse {
+export interface ITransactionGetAllUseCaseResponse {
     httpStatusCodeResponse: 200 | 404;
     response: {
         success: boolean;
@@ -26,7 +26,7 @@ export interface IBlogGetAllUseCaseResponse {
     };
 }
 
-export interface IBlogGetByIdUseCaseResponse {
+export interface ITransactionGetAllByCategoryUseCaseResponse {
     httpStatusCodeResponse: 200 | 404;
     response: {
         success: boolean;
@@ -35,7 +35,7 @@ export interface IBlogGetByIdUseCaseResponse {
     };
 }
 
-export interface IBlogUpdateByIdUseCaseResponse {
+export interface ITransactionUpdateByIdUseCaseResponse {
     httpStatusCodeResponse: 200 | 404;
     response: {
         success: boolean;
@@ -44,7 +44,7 @@ export interface IBlogUpdateByIdUseCaseResponse {
     };
 }
 
-export interface ICreateBlogParams {
+export interface ICreateTransactionParams {
     type: string;
     category: string;
     description: string;
@@ -59,12 +59,12 @@ export interface IUpdateTransactionParams {
     amount: number;
 }
 
-export interface IBlogRepository {
+export interface ITransactionsRepository {
     getAll(): Promise<Transaction[]>;
 
     getAllByCategory(transactionCategory: string): Promise<Transaction[]>;
 
-    create(transactionObject: ICreateBlogParams): Promise<Transaction>;
+    create(transactionObject: ICreateTransactionParams): Promise<Transaction>;
 
     updateById(transactionObject: IUpdateTransactionParams): Promise<Transaction>;
 

@@ -87,16 +87,6 @@ export type typeUserAddItemToShopCartMethodResponse = {
         status?: string;
         error?: string;
         user?: string;
-        game_added_to_shop_cart?: {
-            id: string;
-            title: string;
-            price: number;
-        };
-        book_added_to_shop_cart?: {
-            id: string;
-            title: string;
-            price: number;
-        };
     };
 };
 
@@ -106,4 +96,5 @@ export interface IUsersRepository {
     login(email: string, password: string): Promise<User | null>;
     userExists(userId: string): Promise<boolean>;
     logout(userId: string): Promise<boolean>;
+    deleteById(userId: string): Promise<boolean>;
 }

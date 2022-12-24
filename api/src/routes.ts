@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import FinancesController from "./domain/finances/FinancesController";
+import TransactionsController from "./domain/transactions/TransactionsController";
 import UserController from "./domain/user/UserController";
 import { userIsAuthenticated } from "./middlewares/userIsAuthenticated";
 
@@ -11,10 +11,8 @@ export default Router()
 
     .put("/user/update/:userId", userIsAuthenticated, UserController.update)
 
-    .get("/transaction/all", FinancesController.getAll)
-    .get("/transaction/filter", FinancesController.getFinancesById)
-    .post("/transaction/deposit", userIsAuthenticated, FinancesController.createFinances)
-    .post("/transaction/expense", userIsAuthenticated, FinancesController.createFinances)
-    .post("/transaction/investment", userIsAuthenticated, FinancesController.createFinances)
-    .put("/transaction/update/:transaction_id", userIsAuthenticated, FinancesController.updateFinancesById)
-    .delete("/transaction/delete/:transaction_id", userIsAuthenticated, FinancesController.deleteFinancesById);
+    .get("/transaction/all", TransactionsController.getAllTransactions)
+    .get("/transaction/filter", TransactionsController.getTransactionsByCategory)
+    .post("/transaction/create", userIsAuthenticated, TransactionsController.createTransaction)
+    .put("/transaction/update/:transaction_id", userIsAuthenticated, TransactionsController.updateTransactionById)
+    .delete("/transaction/delete/:transaction_id", userIsAuthenticated, TransactionsController.deleteTransactionById);

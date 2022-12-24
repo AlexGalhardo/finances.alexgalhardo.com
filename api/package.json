@@ -16,7 +16,7 @@
 		"start": "npm run build && node dist/server.js",
 		"nodemon": "npx nodemon dist/server.js",
 		"pm2": "npx pm2 start dist/server.js --name galhardo-app-api --interpreter node --watch",
-		"dev": "concurrently \"npm run watch-compile\" \"npm run watch-dev\"",
+		"dev": "concurrently \"npm run watch-compile\" \"node ./dist/server.js\"",
 		"watch-compile": "swc src -w --out-dir dist",
 		"watch-dev": "node ./dist/server.js",
 		"build": "swc src -d dist",

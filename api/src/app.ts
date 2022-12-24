@@ -31,7 +31,7 @@ app.use(express.json())
     })
     .get("/", (req: Request, res: Response) => {
         return res.status(200).json({
-            status: "Galhardo APP HTTP REST API is working",
+            status: "GALHARDO FINANCES HTTP REST API is working",
         });
     });
 

@@ -8,22 +8,22 @@ datasource db {
 }
 
 model User {
-    id                      String        @id @default(uuid())
-    name                    String
-    email                   String        @unique
-    password                String
-    reset_password_token    String?
-    jwt_token               String?
-    created_at              DateTime      @default(now())
-    updated_at              DateTime      @updatedAt
-    SubscriptionTransaction Transaction[]
-    Account                 Account[]
+    id                   String        @id @default(uuid())
+    name                 String
+    email                String        @unique
+    password             String
+    reset_password_token String?
+    jwt_token            String?
+    Account              Account[]
+    created_at           DateTime      @default(now())
+    updated_at           DateTime      @updatedAt
+    Transaction          Transaction[]
 
     @@map("users")
 }
 
 model Account {
-    account_id                   String @id @default(uuid())
+    id                           String        @id @default(uuid())
     current_balance              Int
     total_expenses               Int
     total_food                   Int
@@ -37,25 +37,30 @@ model Account {
     investments_variable_income  Int
     investments_criptocurrencies Int
     user_id                      String
-    user                         User   @relation(fields: [user_id], references: [id])
+    user                         User          @relation(fields: [user_id], references: [id])
     user_email                   String
     account_json                 Json
+    Transaction                  Transaction[]
+    created_at                   DateTime      @default(now())
+    updated_at                   DateTime      @updatedAt
 
     @@map("accounts")
 }
 
 model Transaction {
-    id               String    @id @default(uuid())
-    created_at       DateTime  @default(now())
-    updated_at       DateTime?
+    id               String   @id @default(uuid())
     user_id          String
-    user             User      @relation(fields: [user_id], references: [id])
+    user             User     @relation(fields: [user_id], references: [id])
     user_email       String
+    account_id       String
+    account          Account  @relation(fields: [account_id], references: [id])
     type             String
     category         String
     description      String
-    total            Int
+    amount           Int
     transaction_json Json
+    created_at       DateTime @default(now())
+    updated_at       DateTime @updatedAt
 
     @@map("transactions")
 }

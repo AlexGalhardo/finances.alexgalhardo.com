@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-import { makeUsersRepository } from "../../factories/makeUsersRepository";
+import { getUsersRepository } from "../../factories/getUsersRepository";
 import UserDeleteByIdUseCase from "./UserDeleteByIdUseCase";
 import UserLoginUseCase from "./UserLoginUseCase";
 import UserLogoutUseCase from "./UserLogoutUseCase";
@@ -17,13 +17,13 @@ class UserController {
     async register(req: Request, res: Response) {
         const { name, email, password } = req.body;
 
-        const { httpStatusCodeResponse, response } = await new UserRegisterUseCase(makeUsersRepository()).execute({
+        const response = await new UserRegisterUseCase(getUsersRepository()).execute({
             name,
             email,
             password,
         });
 
-        return res.status(httpStatusCodeResponse).json(response);
+        return res.status(response ? 200 : 400).json(response);
     }
 
     async update(req: Request, res: Response) {
@@ -31,29 +31,41 @@ class UserController {
 
         const { name, email, password } = req.body;
 
-        const { httpStatusCodeResponse, response } = await new UserUpdateByIdUseCase(makeUsersRepository()).execute({
+        const response = await new UserUpdateByIdUseCase(getUsersRepository()).execute({
             id: userId,
             name,
             email,
             password,
         });
 
-        return res.status(httpStatusCodeResponse).json(response);
+        return res.status(response ? 200 : 400).json(response);
     }
 
     async login(req: Request, res: Response) {
         const { email, password } = req.body;
 
-        const { httpStatusCodeResponse, response } = await new UserLoginUseCase(makeUsersRepository()).execute({
+        const user = await new UserLoginUseCase(getUsersRepository()).execute({
             email,
             password,
         });
 
-        return res.status(httpStatusCodeResponse).json(response);
+        const jwtToken = jwt.sign(
+            {
+                userId: user.id,
+            },
+            process.env.JWT_SECRET as string,
+            { expiresIn: "1h" },
+        );
+
+        return res.status(user ? 200 : 404).json({
+            success: true,
+            message: `${email} login successfully`,
+            jwt_token: jwtToken,
+        });
     }
 
     async logout(req: Request, res: Response) {
-        const { httpStatusCodeResponse, response } = await new UserLogoutUseCase(makeUsersRepository()).execute(
+        const { httpStatusCodeResponse, response } = await new UserLogoutUseCase(getUsersRepository()).execute(
             this.getDecodedJwtToken(req).userId,
         );
 
@@ -63,7 +75,7 @@ class UserController {
     async deleteById(req: Request, res: Response) {
         const { user_id } = req.params;
 
-        const { httpStatusCodeResponse, response } = await new UserDeleteByIdUseCase(makeUsersRepository()).execute(
+        const { httpStatusCodeResponse, response } = await new UserDeleteByIdUseCase(getUsersRepository()).execute(
             user_id,
         );
 
