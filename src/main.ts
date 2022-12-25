@@ -289,20 +289,21 @@ document.querySelector<HTMLDivElement>("#FILTER")!.innerHTML = `
 		<div class="col-lg-3">
 			<label>Category:</label>
 			<select class="form-select" id="search_transaction_category" name="search_transaction_category" required>
-				<option value="ALL" selected>ALL</option>
-				<option value="WAGE">WAGE</option>
-				<option value="FREELANCER">FREELANCER</option>
-				<option value="FOOD">FOOD</option>
-				<option value="SUBSCRIPTIONS">SUBSCRIPTION</option>
-				<option value="SHOP">SHOP</option>
-				<option value="ENTERTAINMENT">ENTERTAINMENT</option>
-				<option value="TRANSPORT">TRANSPORT</option>
-				<option value="HOUSE">HOUSE</option>
-				<option value="SERVICES">SERVICES</option>
-				<option value="FIXED_INCOME">FIXED INCOME</option>
-				<option value="VARIABLE_INCOME">VARIABLE INCOME</option>
-				<option value="CRIPTOCURRENCIES">CRIPTOCURRENCIES</option>
-				<option value="OTHERS">OTHERS</option>
+				<option class="fw-bold" value="ALL" selected>ALL</option>
+				<option class="text-success fw-bold" value="WAGE">WAGE</option>
+				<option class="text-success fw-bold" value="FREELANCER">FREELANCER</option>
+				<option class="text-success fw-bold" value="INVESTMENT_PROFIT">INVESTMENT PROFIT</option>
+				<option class="text-danger fw-bold" value="FOOD">FOOD</option>
+				<option class="text-danger fw-bold" value="SUBSCRIPTIONS">SUBSCRIPTION</option>
+				<option class="text-danger fw-bold" value="SHOP">SHOP</option>
+				<option class="text-danger fw-bold" value="ENTERTAINMENT">ENTERTAINMENT</option>
+				<option class="text-danger fw-bold" value="TRANSPORT">TRANSPORT</option>
+				<option class="text-danger fw-bold" value="HOUSE">HOUSE</option>
+				<option class="text-danger fw-bold" value="SERVICES">SERVICES</option>
+				<option class="text-primary fw-bold" value="FIXED_INCOME">FIXED INCOME</option>
+				<option class="text-primary fw-bold" value="VARIABLE_INCOME">VARIABLE INCOME</option>
+				<option class="text-primary fw-bold" value="CRIPTOCURRENCIES">CRIPTOCURRENCIES</option>
+				<option class="text-primary fw-bold" value="OTHERS">OTHERS</option>
 			</select>
 		</div>
 
@@ -323,7 +324,7 @@ document.querySelector<HTMLDivElement>("#FILTER")!.innerHTML = `
 document.querySelector<HTMLDivElement>("#EXPORT")!.innerHTML = `
 	<div class="d-flex justify-content-between mb-5">
 		<a class="btn btn-outline-dark mb-3" id="button_export_json"><i class="bi bi-filetype-json"></i> Export JSON</a>
-		<a class="btn btn-outline-dark mb-3 disabled" id="button_export_csv"><i class="bi bi-filetype-csv"></i> Export CSV</a>
+		<a class="btn btn-outline-dark mb-3" id="button_export_csv"><i class="bi bi-filetype-csv"></i> Export CSV</a>
 	</div>
 `;
 

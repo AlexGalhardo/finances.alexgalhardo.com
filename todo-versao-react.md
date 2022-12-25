@@ -1,0 +1,3 @@
+- Buscar por nome da transação
+- Button para editar transação
+- Paginação com Limite de 20 transações por página
