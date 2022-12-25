@@ -18,6 +18,7 @@ export enum TransactionCategoryEnum {
     FIXED_INCOME = "FIXED_INCOME",
     VARIABLE_INCOME = "VARIABLE_INCOME",
     CRIPTOCURRENCIES = "CRIPTOCURRENCIES",
+    OTHERS = "OTHERS",
 }
 
 export interface ITransaction {

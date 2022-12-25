@@ -86,7 +86,7 @@ export default class PostgresTransactionsRepository implements ITransactionsRepo
 
             if(category === 'FOOD') Account.total_food += amount
 
-            if(category === 'SUBSCRIPTION') Account.total_subscriptions += amount
+            if(category === 'SUBSCRIPTIONS') Account.total_subscriptions += amount
 
             if(category === 'SHOP') Account.total_shop += amount
 

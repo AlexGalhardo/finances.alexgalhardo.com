@@ -30,7 +30,7 @@ function getTransactions() {
 						<small>${account.transactions[i].created_at}</small>
 					</div>
 					<div class="ms-auto">
-						<h5 class="fw-bold ${colorType}">${simbolType} R$ ${transformToBRL(account.transactions[i].total)}</h5>
+						<h5 class="fw-bold ${colorType}">${simbolType} R$ ${transformToBRL(account.transactions[i].amount)}</h5>
 							<form>
 								<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Edit</button>
 								<button type="submit" class="btn btn-sm btn-outline-danger button_delete_transaction" id="${account.transactions[i].id}"><i class="bi bi-trash"></i> Delete</button>

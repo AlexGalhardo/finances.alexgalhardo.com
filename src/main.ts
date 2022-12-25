@@ -1,8 +1,8 @@
-import { newDeposit } from './new-deposit'
+import { newDeposit } from './newDeposit'
 import { allTransactions } from './allTransactions'
 import { currentBalance, currentExpense, currentInvestments, investments_others, percentage_others, investments_criptocurrencies, investments_fixed_income, investments_variable_income, percentage_criptocurrencies, percentage_entertainment, percentage_fixed_income, percentage_food, percentage_house, percentage_shop, percentage_subscriptions, percentage_transport, percentage_variable_income, total_entertainment, total_food, total_house, total_shop, total_subscriptions, total_transport, total_services, percentage_services } from './getDashboardData'
-import { newInvestment } from './new-investment'
-import { newExpense } from './new-withdraw'
+import { newInvestment } from './newInvestment'
+import { newExpense } from './newExpense'
 import { searchTransactions } from './searchTransactions'
 import { deleteTransaction } from './deleteTransaction'
 
@@ -107,7 +107,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 						<label>Category:</label>
 						<select class="form-select" name="expense_category_selected" id="expense_category" required>
 							<option value="FOOD" selected>FOOD</option>
-							<option value="SUBSCRIPTION">SUBSCRIPTION</option>
+							<option value="SUBSCRIPTIONS">SUBSCRIPTION</option>
 							<option value="SHOP">SHOP</option>
 							<option value="ENTERTAINMENT">ENTERTAINMENT</option>
 							<option value="TRANSPORT">TRANSPORT</option>
@@ -267,7 +267,7 @@ document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 				<option value="WAGE">WAGE</option>
 				<option value="FREELANCER">FREELANCER</option>
 				<option value="FOOD">FOOD</option>
-				<option value="SUBSCRIPTION">SUBSCRIPTION</option>
+				<option value="SUBSCRIPTIONS">SUBSCRIPTION</option>
 				<option value="SHOP">SHOP</option>
 				<option value="ENTERTAINMENT">ENTERTAINMENT</option>
 				<option value="TRANSPORT">TRANSPORT</option>

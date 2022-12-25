@@ -2,23 +2,23 @@ import { v4 as uuidv4 } from 'uuid';
 import { getDateTimeBrazil, transformStringInputValueMaskToNumber } from './getDashboardData';
 
 export function newDeposit(element: HTMLButtonElement,
-							totalDeposit: HTMLInputElement,
+							amountDeposit: HTMLInputElement,
 							depositDescription: HTMLInputElement,
 							depositCategory: HTMLSelectElement) {
 
     element.addEventListener('click', () => {
 
-		if(totalDeposit.value && depositDescription.value && depositCategory.value){
+		if(amountDeposit.value && depositDescription.value && depositCategory.value){
 			let Account = JSON.parse(localStorage.getItem('galhardo_finances')!)
-			const totalDeposited = transformStringInputValueMaskToNumber(totalDeposit.value)
+			const amountDeposited = transformStringInputValueMaskToNumber(amountDeposit.value)
 
-			if(totalDeposited <= 0){
+			if(amountDeposited <= 0){
 				alert('Enter a valid deposit value greater than 0!')
 			}
 
-			if(totalDeposited > 0){
+			if(amountDeposited > 0){
 				if(Account){
-					Account.current_balance += totalDeposited
+					Account.current_balance += amountDeposited
 
 					Account.transactions.push({
 						id: uuidv4(),
@@ -27,7 +27,7 @@ export function newDeposit(element: HTMLButtonElement,
 						type: "DEPOSIT",
 						category: depositCategory.value,
 						description: depositDescription.value,
-						total: totalDeposited
+						amount: amountDeposited
 					})
 
 					localStorage.setItem('galhardo_finances', JSON.stringify(Account))
@@ -57,12 +57,12 @@ export function newDeposit(element: HTMLButtonElement,
 								type: "DEPOSIT",
 								category: depositCategory.value,
 								description: depositDescription.value,
-								total: totalDeposited
+								amount: amountDeposited
 							}
 						]
 					}
 
-					Account.current_balance += totalDeposited
+					Account.current_balance += amountDeposited
 
 					localStorage.setItem('galhardo_finances', JSON.stringify(Account))
 				}

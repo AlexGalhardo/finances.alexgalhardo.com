@@ -2,33 +2,33 @@ import { v4 as uuidv4 } from 'uuid';
 import { getDateTimeBrazil, transformStringInputValueMaskToNumber } from './getDashboardData';
 
 export function newInvestment(element: HTMLButtonElement,
-							totalInvestment: HTMLInputElement,
+							amountInvestment: HTMLInputElement,
 							investmentDescription: HTMLInputElement,
 							investmentCategory: HTMLSelectElement) {
 
     element.addEventListener('click', () => {
 
-		if(totalInvestment.value && investmentDescription.value && investmentCategory.value){
+		if(amountInvestment.value && investmentDescription.value && investmentCategory.value){
 			let Account = JSON.parse(localStorage.getItem('galhardo_finances')!)
-			const totalInvested = transformStringInputValueMaskToNumber(totalInvestment.value)
+			const amountInvested = transformStringInputValueMaskToNumber(amountInvestment.value)
 
-			if(totalInvested <= 0){
+			if(amountInvested <= 0){
 				alert('Enter a valid investment value greater than 0!')
 			}
 
-			if(totalInvested > 0){
+			if(amountInvested > 0){
 				if(Account){
-					if(totalInvested <= Account.current_balance){
-						Account.current_balance -= totalInvested
-						Account.investments_total += totalInvested
+					if(amountInvested <= Account.current_balance){
+						Account.current_balance -= amountInvested
+						Account.investments_total += amountInvested
 
-						if(investmentCategory.value === 'FIXED_INCOME') Account.investments_fixed_income += totalInvested
+						if(investmentCategory.value === 'FIXED_INCOME') Account.investments_fixed_income += amountInvested
 
-						if(investmentCategory.value === 'VARIABLE_INCOME') Account.investments_variable_income += totalInvested
+						if(investmentCategory.value === 'VARIABLE_INCOME') Account.investments_variable_income += amountInvested
 
-						if(investmentCategory.value === 'CRIPTOCURRENCIES') Account.investments_criptocurrencies += totalInvested
+						if(investmentCategory.value === 'CRIPTOCURRENCIES') Account.investments_criptocurrencies += amountInvested
 
-						if(investmentCategory.value === 'OTHERS') Account.investments_others += totalInvested
+						if(investmentCategory.value === 'OTHERS') Account.investments_others += amountInvested
 
 						Account.transactions.push({
 							id: uuidv4(),
@@ -37,7 +37,7 @@ export function newInvestment(element: HTMLButtonElement,
 							type: "INVESTMENT",
 							category: investmentCategory.value,
 							description: investmentDescription.value,
-							total: totalInvested
+							amount: amountInvested
 						})
 
 						localStorage.setItem('galhardo_finances', JSON.stringify(Account))
@@ -70,21 +70,21 @@ export function newInvestment(element: HTMLButtonElement,
 								type: "INVESTMENT",
 								category: investmentCategory.value,
 								description: investmentDescription.value,
-								total: totalInvested
+								amount: amountInvested
 							}
 						]
 					}
 
-					Account.current_balance -= totalInvested
-					Account.investments_total += totalInvested
+					Account.current_balance -= amountInvested
+					Account.investments_total += amountInvested
 
-					if(investmentCategory.value === 'FIXED_INCOME') Account.investments_fixed_income += totalInvested
+					if(investmentCategory.value === 'FIXED_INCOME') Account.investments_fixed_income += amountInvested
 
-					if(investmentCategory.value === 'VARIABLE_INCOME') Account.investments_variable_income += totalInvested
+					if(investmentCategory.value === 'VARIABLE_INCOME') Account.investments_variable_income += amountInvested
 
-					if(investmentCategory.value === 'CRIPTOCURRENCIES') Account.investments_criptocurrencies += totalInvested
+					if(investmentCategory.value === 'CRIPTOCURRENCIES') Account.investments_criptocurrencies += amountInvested
 
-					if(investmentCategory.value === 'OTHERS') Account.investments_others += totalInvested
+					if(investmentCategory.value === 'OTHERS') Account.investments_others += amountInvested
 
 					localStorage.setItem('galhardo_finances', JSON.stringify(Account))
 				}

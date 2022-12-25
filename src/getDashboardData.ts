@@ -1,6 +1,57 @@
 import { v4 as uuidv4 } from 'uuid';
 
-let Account = {
+enum TransactionTypeEnum {
+    DEPOSIT = "DEPOSIT",
+    EXPENSE = "EXPENSE",
+    INVESTMENT = "INVESTMENT",
+}
+
+enum TransactionCategoryEnum {
+    WAGE = "WAGE",
+    FREELANCER = "FREELANCER",
+    INVESTMENT_PROFIT = "INVESTMENT_PROFIT",
+    FOOD = "FOOD",
+    SUBSCRIPTIONS = "SUBSCRIPTIONS",
+    SHOP = "SHOP",
+    ENTERTAINMENT = "ENTERTAINMENT",
+    TRANSPORT = "TRANSPORT",
+    HOUSE = "HOUSE",
+    SERVICES = "SERVICES",
+    FIXED_INCOME = "FIXED_INCOME",
+    VARIABLE_INCOME = "VARIABLE_INCOME",
+    CRIPTOCURRENCIES = "CRIPTOCURRENCIES",
+    OTHERS = "OTHERS",
+}
+
+interface ITransaction {
+    id: string;
+    created_at: string;
+    updated_at: string | null;
+    type: TransactionTypeEnum,
+    category: TransactionCategoryEnum,
+    description: string;
+    amount: number;
+}
+interface IAccount {
+	account_id: string;
+    current_balance: number;
+    total_expenses: number;
+    total_food: number;
+    total_subscriptions: number;
+    total_shop: number;
+    total_entertainment: number;
+    total_transport: number;
+	total_house: number,
+	total_services: number,
+	investments_total: number,
+	investments_fixed_income: number,
+	investments_variable_income: number,
+	investments_criptocurrencies: number,
+	investments_others: number,
+    transactions: ITransaction[];
+}
+
+let Account: IAccount = {
 	account_id: uuidv4(),
 	current_balance: 0,
 	total_expenses: 0,
@@ -21,6 +72,50 @@ let Account = {
 
 if(localStorage.getItem('galhardo_finances')){
 	Account = JSON.parse(localStorage.getItem('galhardo_finances')!)
+	Account.current_balance = 0;
+	Account.total_expenses = 0;
+	Account.total_food = 0;
+	Account.total_subscriptions = 0;
+	Account.total_shop = 0;
+	Account.total_entertainment = 0;
+	Account.total_transport = 0;
+	Account.total_house = 0;
+	Account.total_services = 0;
+	Account.investments_total = 0;
+	Account.investments_fixed_income = 0;
+	Account.investments_variable_income = 0;
+	Account.investments_criptocurrencies = 0;
+	Account.investments_others = 0;
+
+	for(let i = 0; i < Account.transactions.length; i++){
+
+		if(Account.transactions[i].type === "DEPOSIT"){
+			Account.current_balance += Account.transactions[i].amount
+		}
+
+		else if(Account.transactions[i].type === "EXPENSE"){
+			Account.total_expenses += Account.transactions[i].amount
+			Account.current_balance -= Account.transactions[i].amount
+
+			if(Account.transactions[i].category === "FOOD") Account.total_food += Account.transactions[i].amount
+			if(Account.transactions[i].category === "SUBSCRIPTIONS") Account.total_subscriptions += Account.transactions[i].amount
+			if(Account.transactions[i].category === "SHOP") Account.total_shop += Account.transactions[i].amount
+			if(Account.transactions[i].category === "ENTERTAINMENT") Account.total_entertainment += Account.transactions[i].amount
+			if(Account.transactions[i].category === "TRANSPORT") Account.total_transport += Account.transactions[i].amount
+			if(Account.transactions[i].category === "HOUSE") Account.total_house += Account.transactions[i].amount
+			if(Account.transactions[i].category === "SERVICES") Account.total_services += Account.transactions[i].amount
+		}
+
+		else if(Account.transactions[i].type === "INVESTMENT"){
+			Account.investments_total += Account.transactions[i].amount
+			Account.current_balance -= Account.transactions[i].amount
+
+			if(Account.transactions[i].category === "FIXED_INCOME") Account.investments_fixed_income += Account.transactions[i].amount
+			if(Account.transactions[i].category === "VARIABLE_INCOME") Account.investments_variable_income += Account.transactions[i].amount
+			if(Account.transactions[i].category === "CRIPTOCURRENCIES") Account.investments_criptocurrencies += Account.transactions[i].amount
+			if(Account.transactions[i].category === "OTHERS") Account.investments_others += Account.transactions[i].amount
+		}
+	}
 }
 
 export function transformToBRL(amount: number){
@@ -52,7 +147,7 @@ export function getTransactionCategoryIcon(category: string) {
 			return `<i class="bi bi-file-earmark-medical"></i>`
 		case 'FOOD':
 			return `<i class="bi bi-apple"></i>`
-		case 'SUBSCRIPTION':
+		case 'SUBSCRIPTIONS':
 			return `<i class="bi bi-bookmark-star"></i>`
 		case 'SHOP':
 			return `<i class="bi bi-shop"></i>`
