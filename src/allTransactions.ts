@@ -1,4 +1,3 @@
-import { deleteTransaction } from "./deleteTransaction";
 import { getTransactionCategoryIcon, transformToBRL } from "./getDashboardData";
 
 function getTransactions() {
