@@ -1,13 +1,12 @@
+import { deleteTransaction } from "./deleteTransaction";
 import { getTransactionCategoryIcon, transformToBRL } from "./getDashboardData";
 
 function getTransactions() {
 
-	if(localStorage.getItem('finances_account')){
-		let account = JSON.parse(localStorage.getItem('finances_account')!)
+	if(localStorage.getItem('galhardo_finances')){
+		let account = JSON.parse(localStorage.getItem('galhardo_finances')!)
 
 		account.transactions.reverse()
-
-		console.log(account.transactions)
 
 		if(!account.transactions) return 'No transactions available'
 
@@ -33,8 +32,10 @@ function getTransactions() {
 					</div>
 					<div class="ms-auto">
 						<h5 class="fw-bold ${colorType}">${simbolType} R$ ${transformToBRL(account.transactions[i].total)}</h5>
-							<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Edit</button>
-							<button class="btn btn-sm btn-outline-danger" disabled><i class="bi bi-trash"></i> Delete</button>
+							<form>
+								<button class="btn btn-sm btn-outline-secondary" disabled><i class="bi bi-pencil-square"></i> Edit</button>
+								<button type="submit" class="btn btn-sm btn-outline-danger button_delete_transaction" id="${account.transactions[i].id}"><i class="bi bi-trash"></i> Delete</button>
+							</form>
 					</div>
 				</li>
 			`

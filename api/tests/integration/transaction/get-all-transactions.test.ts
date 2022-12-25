@@ -23,9 +23,6 @@ describe("testing get all users", () => {
 
         const expected_response = await new PostgresTransactionsRepository().getAll(testAccountId);
 
-        console.log("expected_response => ", expected_response);
-        console.log("response => ", response.body);
-
         expect(response.statusCode).toBe(HttpStatusCodeEnum.OK);
         expect(response.body).toMatchObject(expected_response);
     });

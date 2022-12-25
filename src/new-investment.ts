@@ -7,12 +7,9 @@ export function newInvestment(element: HTMLButtonElement,
 							investmentCategory: HTMLSelectElement) {
 
     element.addEventListener('click', () => {
-		// console.log('totalInvestment => ', totalInvestment.value)
-		// console.log('investmentDescription => ', investmentDescription.value)
-		// console.log('investmentCategory => ', investmentCategory.value)
 
 		if(totalInvestment.value && investmentDescription.value && investmentCategory.value){
-			let Account = JSON.parse(localStorage.getItem('finances_account')!)
+			let Account = JSON.parse(localStorage.getItem('galhardo_finances')!)
 			const totalInvested = transformStringInputValueMaskToNumber(totalInvestment.value)
 
 			if(totalInvested <= 0){
@@ -31,6 +28,8 @@ export function newInvestment(element: HTMLButtonElement,
 
 						if(investmentCategory.value === 'CRIPTOCURRENCIES') Account.investments_criptocurrencies += totalInvested
 
+						if(investmentCategory.value === 'OTHERS') Account.investments_others += totalInvested
+
 						Account.transactions.push({
 							id: uuidv4(),
 							created_at: getDateTimeBrazil(),
@@ -41,7 +40,7 @@ export function newInvestment(element: HTMLButtonElement,
 							total: totalInvested
 						})
 
-						localStorage.setItem('finances_account', JSON.stringify(Account))
+						localStorage.setItem('galhardo_finances', JSON.stringify(Account))
 					} else {
 						alert("You dont have sufficient balance to make this investment!");
 					}
@@ -62,6 +61,7 @@ export function newInvestment(element: HTMLButtonElement,
 						investments_fixed_income: 0,
 						investments_variable_income: 0,
 						investments_criptocurrencies: 0,
+						investments_others: 0,
 						transactions: [
 							{
 								id: uuidv4(),
@@ -84,7 +84,9 @@ export function newInvestment(element: HTMLButtonElement,
 
 					if(investmentCategory.value === 'CRIPTOCURRENCIES') Account.investments_criptocurrencies += totalInvested
 
-					localStorage.setItem('finances_account', JSON.stringify(Account))
+					if(investmentCategory.value === 'OTHERS') Account.investments_others += totalInvested
+
+					localStorage.setItem('galhardo_finances', JSON.stringify(Account))
 				}
 			}
 		}

@@ -7,12 +7,9 @@ export function newExpense(element: HTMLButtonElement,
 							expenseCategory: HTMLSelectElement) {
 
     element.addEventListener('click', () => {
-		// console.log('totalExpense => ', totalExpense.value)
-		// console.log('expenseDescription => ', expenseDescription.value)
-		// console.log('expenseCategory => ', expenseCategory.value)
 
 		if(totalExpense.value && expenseDescription.value && expenseCategory.value){
-			let Account = JSON.parse(localStorage.getItem('finances_account')!)
+			let Account = JSON.parse(localStorage.getItem('galhardo_finances')!)
 			const totalWithdraw = transformStringInputValueMaskToNumber(totalExpense.value)
 
 			if(totalWithdraw <= 0){
@@ -49,7 +46,7 @@ export function newExpense(element: HTMLButtonElement,
 							total: totalWithdraw
 						})
 
-						localStorage.setItem('finances_account', JSON.stringify(Account))
+						localStorage.setItem('galhardo_finances', JSON.stringify(Account))
 					} else {
 						alert("You dont have sufficient balance to make this expense!");
 					}
@@ -70,6 +67,7 @@ export function newExpense(element: HTMLButtonElement,
 						investments_fixed_income: 0,
 						investments_variable_income: 0,
 						investments_criptocurrencies: 0,
+						investments_others: 0,
 						transactions: [
 							{
 								id: uuidv4(),
@@ -100,7 +98,7 @@ export function newExpense(element: HTMLButtonElement,
 
 					if(expenseCategory.value === 'SERVICES') Account.total_services += totalWithdraw
 
-					localStorage.setItem('finances_account', JSON.stringify(Account))
+					localStorage.setItem('galhardo_finances', JSON.stringify(Account))
 				}
 			}
 		}

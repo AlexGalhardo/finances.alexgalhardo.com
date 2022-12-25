@@ -8,8 +8,8 @@ export function searchTransactions(buttonSearchTransactions: HTMLButtonElement,
 	buttonSearchTransactions.addEventListener('click', (event: Event) => {
 		event.preventDefault()
 
-		if(localStorage.getItem('finances_account')){
-			let account = JSON.parse(localStorage.getItem('finances_account')!)
+		if(localStorage.getItem('galhardo_finances')){
+			let account = JSON.parse(localStorage.getItem('galhardo_finances')!)
 
 			account.transactions.reverse()
 

@@ -1,9 +1,10 @@
 import { newDeposit } from './new-deposit'
 import { allTransactions } from './allTransactions'
-import { currentBalance, currentExpense, currentInvestments, investments_criptocurrencies, investments_fixed_income, investments_variable_income, percentage_criptocurrencies, percentage_entertainment, percentage_fixed_income, percentage_food, percentage_house, percentage_shop, percentage_subscriptions, percentage_transport, percentage_variable_income, total_entertainment, total_food, total_house, total_shop, total_subscriptions, total_transport, total_services, percentage_services } from './getDashboardData'
+import { currentBalance, currentExpense, currentInvestments, investments_others, percentage_others, investments_criptocurrencies, investments_fixed_income, investments_variable_income, percentage_criptocurrencies, percentage_entertainment, percentage_fixed_income, percentage_food, percentage_house, percentage_shop, percentage_subscriptions, percentage_transport, percentage_variable_income, total_entertainment, total_food, total_house, total_shop, total_subscriptions, total_transport, total_services, percentage_services } from './getDashboardData'
 import { newInvestment } from './new-investment'
 import { newExpense } from './new-withdraw'
 import { searchTransactions } from './searchTransactions'
+import { deleteTransaction } from './deleteTransaction'
 
 document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
   <div class="fixed-top shadow-sm bg-light mb-5">
@@ -29,6 +30,11 @@ document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="#">
 								<button class="btn btn-lg btn-outline-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalInvestir"><i class="bi bi-bar-chart"></i> Invest</button>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" target="_blank" href="https://github.com/AlexGalhardo/Galhardo-Finances">
+								<button class="btn btn-lg btn-outline-dark"><i class="bi bi-github"></i> Source Code</button>
 							</a>
 						</li>
 					</ul>
@@ -144,6 +150,7 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 							<option value="FIXED_INCOME" selected>Fixed Income</option>
 							<option value="VARIABLE_INCOME">Variable Income</option>
 							<option value="CRIPTOCURRENCIES">Criptocurrencies</option>
+							<option value="OTHERS">Others</option>
 						</select>
 
 						<br>
@@ -238,6 +245,11 @@ document.querySelector<HTMLDivElement>('#INVESTMENTS')!.innerHTML = `
 						<td>R$ ${investments_criptocurrencies}</td>
 						<td>${percentage_criptocurrencies} %</td>
 					</tr>
+					<tr>
+						<th><i class="bi bi-gem"></i> Others</th>
+						<td>R$ ${investments_others}</td>
+						<td>${percentage_others} %</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -264,6 +276,7 @@ document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 				<option value="FIXED_INCOME">FIXED INCOME</option>
 				<option value="VARIABLE_INCOME">VARIABLE INCOME</option>
 				<option value="CRIPTOCURRENCIES">CRIPTOCURRENCIES</option>
+				<option value="OTHERS">OTHERS</option>
 			</select>
 		</div>
 
@@ -328,3 +341,5 @@ function maskInputToBrazilReal (e: any) {
 	inputValue = inputValue.replace(/(\d)(\d{3}),/g, "$1.$2,");
 	e.target.value = `R$ ${inputValue}`;
 }
+
+deleteTransaction(document.querySelectorAll('.button_delete_transaction')!)

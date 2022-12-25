@@ -7,12 +7,9 @@ export function newDeposit(element: HTMLButtonElement,
 							depositCategory: HTMLSelectElement) {
 
     element.addEventListener('click', () => {
-		console.log('totalDeposit => ', totalDeposit.value)
-		console.log('depositDescription => ', depositDescription.value)
-		console.log('depositCategory => ', depositCategory.value)
 
 		if(totalDeposit.value && depositDescription.value && depositCategory.value){
-			let Account = JSON.parse(localStorage.getItem('finances_account')!)
+			let Account = JSON.parse(localStorage.getItem('galhardo_finances')!)
 			const totalDeposited = transformStringInputValueMaskToNumber(totalDeposit.value)
 
 			if(totalDeposited <= 0){
@@ -33,7 +30,7 @@ export function newDeposit(element: HTMLButtonElement,
 						total: totalDeposited
 					})
 
-					localStorage.setItem('finances_account', JSON.stringify(Account))
+					localStorage.setItem('galhardo_finances', JSON.stringify(Account))
 				}
 				else {
 					Account = {
@@ -51,6 +48,7 @@ export function newDeposit(element: HTMLButtonElement,
 						investments_fixed_income: 0,
 						investments_variable_income: 0,
 						investments_criptocurrencies: 0,
+						investments_others: 0,
 						transactions: [
 							{
 								id: uuidv4(),
@@ -66,7 +64,7 @@ export function newDeposit(element: HTMLButtonElement,
 
 					Account.current_balance += totalDeposited
 
-					localStorage.setItem('finances_account', JSON.stringify(Account))
+					localStorage.setItem('galhardo_finances', JSON.stringify(Account))
 				}
 			}
 		}

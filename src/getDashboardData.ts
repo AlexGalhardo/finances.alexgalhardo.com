@@ -15,11 +15,12 @@ let Account = {
 	investments_fixed_income: 0,
 	investments_variable_income: 0,
 	investments_criptocurrencies: 0,
+	investments_others: 0,
 	transactions: []
 }
 
-if(localStorage.getItem('finances_account')){
-	Account = JSON.parse(localStorage.getItem('finances_account')!)
+if(localStorage.getItem('galhardo_finances')){
+	Account = JSON.parse(localStorage.getItem('galhardo_finances')!)
 }
 
 export function transformToBRL(amount: number){
@@ -69,6 +70,8 @@ export function getTransactionCategoryIcon(category: string) {
 			return `<i class="bi bi-graph-down-arrow"></i>`
 		case 'CRIPTOCURRENCIES':
 			return `<i class="bi bi-currency-bitcoin"></i>`
+		case 'OTHERS':
+			return `<i class="bi bi-gem"></i>`
 		default:
 			return '';
 	}
@@ -86,6 +89,9 @@ export const percentage_variable_income = transformToFixedTwo(Account.investment
 
 export const investments_criptocurrencies = transformToBRL(Account.investments_criptocurrencies)
 export const percentage_criptocurrencies = transformToFixedTwo(Account.investments_total ? Account.investments_criptocurrencies / Account.investments_total * 100 : 0)
+
+export const investments_others = transformToBRL(Account.investments_others)
+export const percentage_others = transformToFixedTwo(Account.investments_total ? Account.investments_others / Account.investments_total * 100 : 0)
 
 export const total_food = transformToBRL(Account.total_food)
 export const percentage_food = transformToFixedTwo(Account.total_expenses ? Account.total_food / Account.total_expenses * 100 : 0)
