@@ -8,7 +8,6 @@ export function dowloadExportJsonFile(element: HTMLButtonElement) {
 
             element.setAttribute("href", dataUri);
             element.setAttribute("download", exportFileDefaultName);
-            element.click();
         } else {
             alert(`There's no data to export for now!`);
         }
