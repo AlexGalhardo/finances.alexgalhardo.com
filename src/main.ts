@@ -1,12 +1,40 @@
-import { newDeposit } from './newDeposit'
-import { allTransactions } from './allTransactions'
-import { currentBalance, currentExpense, currentInvestments, investments_others, percentage_others, investments_criptocurrencies, investments_fixed_income, investments_variable_income, percentage_criptocurrencies, percentage_entertainment, percentage_fixed_income, percentage_food, percentage_house, percentage_shop, percentage_subscriptions, percentage_transport, percentage_variable_income, total_entertainment, total_food, total_house, total_shop, total_subscriptions, total_transport, total_services, percentage_services } from './getDashboardData'
-import { newInvestment } from './newInvestment'
-import { newExpense } from './newExpense'
-import { searchTransactions } from './searchTransactions'
-import { deleteTransaction } from './deleteTransaction'
+import { newDeposit } from "./newDeposit";
+import { allTransactions } from "./allTransactions";
+import {
+    currentBalance,
+    currentExpense,
+    currentInvestments,
+    investments_others,
+    percentage_others,
+    investments_criptocurrencies,
+    investments_fixed_income,
+    investments_variable_income,
+    percentage_criptocurrencies,
+    percentage_entertainment,
+    percentage_fixed_income,
+    percentage_food,
+    percentage_house,
+    percentage_shop,
+    percentage_subscriptions,
+    percentage_transport,
+    percentage_variable_income,
+    total_entertainment,
+    total_food,
+    total_house,
+    total_shop,
+    total_subscriptions,
+    total_transport,
+    total_services,
+    percentage_services,
+} from "./getDashboardData";
+import { newInvestment } from "./newInvestment";
+import { newExpense } from "./newExpense";
+import { searchTransactions } from "./searchTransactions";
+import { deleteTransaction } from "./deleteTransaction";
+import { dowloadExportJsonFile } from "./downloadExportJsonFile";
+import { dowloadExportCSVFile } from "./downloadExportCSVFile";
 
-document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
+document.querySelector<HTMLDivElement>("#navbar")!.innerHTML = `
   <div class="fixed-top shadow-sm bg-light mb-5">
 		<nav class="container pt-2 pb-2 col-lg-12 navbar navbar-expand-lg fixed navbar-dark bg-light text-bold">
 			<div class="container-fluid">
@@ -42,9 +70,9 @@ document.querySelector<HTMLDivElement>('#navbar')!.innerHTML = `
 			</div>
 		</nav>
 	</div>
-`
+`;
 
-document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
+document.querySelector<HTMLDivElement>("#modais")!.innerHTML = `
     <!-- Modal Depositar -->
 	<div class="modal fade" id="modalDepositar" tabindex="-1" aria-labelledby="modalDepositarLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -160,18 +188,18 @@ document.querySelector<HTMLDivElement>('#modais')!.innerHTML = `
 			</div>
 		</div>
 	</div>
-`
+`;
 
-document.querySelector<HTMLDivElement>('#BALANCE')!.innerHTML = `
+document.querySelector<HTMLDivElement>("#BALANCE")!.innerHTML = `
 	<div class="card mb-3 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
 			<h4 class="my-0 fw-bold text-success"><i class="bi bi-cash"></i> Current Balance</h4>
 			<h5 class="fw-bold text-success">R$ ${currentBalance}</h5>
 		</div>
 	</div>
-`
+`;
 
-document.querySelector<HTMLDivElement>('#EXPENSES')!.innerHTML = `
+document.querySelector<HTMLDivElement>("#EXPENSES")!.innerHTML = `
 	<div class="card mb-3 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
 			<h4 class="my-0 fw-bold text-start text-danger"><i class="bi bi-cash-stack"></i> Expenses </h4>
@@ -219,9 +247,9 @@ document.querySelector<HTMLDivElement>('#EXPENSES')!.innerHTML = `
 			</table>
 		</div>
 	</div>
-`
+`;
 
-document.querySelector<HTMLDivElement>('#INVESTMENTS')!.innerHTML = `
+document.querySelector<HTMLDivElement>("#INVESTMENTS")!.innerHTML = `
 	<div class="card mb-3 rounded-3 shadow-sm">
 		<div class="card-header py-3 d-flex justify-content-between">
 			<h4 class="my-0 fw-bold text-start text-primary"><i class="bi bi-bar-chart"></i> Investments </h4>
@@ -254,11 +282,9 @@ document.querySelector<HTMLDivElement>('#INVESTMENTS')!.innerHTML = `
 			</table>
 		</div>
 	</div>
-`
+`;
 
-document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
-	<h3 class="mb-3">Filter Transaction</h3>
-
+document.querySelector<HTMLDivElement>("#FILTER")!.innerHTML = `
 	<form class="mb-3 d-flex justify-content-between" action="#" id="form_search_transactions">
 		<div class="col-lg-3">
 			<label>Category:</label>
@@ -292,54 +318,62 @@ document.querySelector<HTMLDivElement>('#FILTER')!.innerHTML = `
 
 		<button class="mt-4 btn btn-outline-primary mb-3" id="button_search_transactions"><i class="bi bi-search"></i> Search</button>
 	</form>
-`
+`;
 
-document.querySelector<HTMLDivElement>('#EXPORT')!.innerHTML = `
+document.querySelector<HTMLDivElement>("#EXPORT")!.innerHTML = `
 	<div class="d-flex justify-content-between mb-5">
-		<h3>Export Data</h3>
-		<button class="btn btn-outline-dark mb-3" disabled><i class="bi bi-filetype-json"></i> Export JSON</button>
-		<button class="btn btn-outline-dark mb-3" disabled><i class="bi bi-filetype-xlsx"></i> Export EXCEL</button>
-		<button class="btn btn-outline-dark mb-3" disabled><i class="bi bi-filetype-csv"></i> Export CSV</button>
+		<a class="btn btn-outline-dark mb-3" id="button_export_json"><i class="bi bi-filetype-json"></i> Export JSON</a>
+		<a class="btn btn-outline-dark mb-3 disabled" id="button_export_csv"><i class="bi bi-filetype-csv"></i> Export CSV</a>
 	</div>
-`
+`;
 
-document.querySelector<HTMLDivElement>('#TRANSACTIONS')!.innerHTML = `
+document.querySelector<HTMLDivElement>("#TRANSACTIONS")!.innerHTML = `
 	<h3><i class="bi bi-receipt-cutoff"></i> Transactions</h3>
 	<ul class="list-group list-group-item-action" id="ul_transactions">
 		${allTransactions}
 	</ul>
-`
-newDeposit(document.querySelector<HTMLButtonElement>('#confirm_deposit')!,
-		   document.querySelector<HTMLInputElement>('#total_to_deposit')!,
-		   document.querySelector<HTMLInputElement>('#deposit_description')!,
-		   document.querySelector<HTMLSelectElement>('#deposit_category')!)
+`;
+newDeposit(
+    document.querySelector<HTMLButtonElement>("#confirm_deposit")!,
+    document.querySelector<HTMLInputElement>("#total_to_deposit")!,
+    document.querySelector<HTMLInputElement>("#deposit_description")!,
+    document.querySelector<HTMLSelectElement>("#deposit_category")!,
+);
 
-newExpense(document.querySelector<HTMLButtonElement>('#confirm_expense')!,
-		   document.querySelector<HTMLInputElement>('#total_to_expense')!,
-		   document.querySelector<HTMLInputElement>('#expense_description')!,
-		   document.querySelector<HTMLSelectElement>('#expense_category')!)
+newExpense(
+    document.querySelector<HTMLButtonElement>("#confirm_expense")!,
+    document.querySelector<HTMLInputElement>("#total_to_expense")!,
+    document.querySelector<HTMLInputElement>("#expense_description")!,
+    document.querySelector<HTMLSelectElement>("#expense_category")!,
+);
 
-newInvestment(document.querySelector<HTMLButtonElement>('#confirm_investment')!,
-		   document.querySelector<HTMLInputElement>('#total_to_investment')!,
-		   document.querySelector<HTMLInputElement>('#investment_description')!,
-		   document.querySelector<HTMLSelectElement>('#investment_category')!)
+newInvestment(
+    document.querySelector<HTMLButtonElement>("#confirm_investment")!,
+    document.querySelector<HTMLInputElement>("#total_to_investment")!,
+    document.querySelector<HTMLInputElement>("#investment_description")!,
+    document.querySelector<HTMLSelectElement>("#investment_category")!,
+);
 
-searchTransactions(document.querySelector<HTMLButtonElement>('#button_search_transactions')!,
-		   document.querySelector<HTMLSelectElement>('#search_transaction_category')!,
-		   document.querySelector<HTMLSelectElement>('#search_transaction_start_date')!,
-		   document.querySelector<HTMLSelectElement>('#search_transaction_final_date')!)
+searchTransactions(
+    document.querySelector<HTMLButtonElement>("#button_search_transactions")!,
+    document.querySelector<HTMLSelectElement>("#search_transaction_category")!,
+    document.querySelector<HTMLSelectElement>("#search_transaction_start_date")!,
+    document.querySelector<HTMLSelectElement>("#search_transaction_final_date")!,
+);
 
 document.getElementById("total_to_deposit")!.addEventListener("keyup", maskInputToBrazilReal);
 document.getElementById("total_to_expense")!.addEventListener("keyup", maskInputToBrazilReal);
 document.getElementById("total_to_investment")!.addEventListener("keyup", maskInputToBrazilReal);
 
-function maskInputToBrazilReal (e: any) {
-	let inputValue = e.target.value.replace(/\D/g, "");
-	inputValue = (inputValue / 100).toFixed(2) + "";
-	inputValue = inputValue.replace(".", ",");
-	inputValue = inputValue.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
-	inputValue = inputValue.replace(/(\d)(\d{3}),/g, "$1.$2,");
-	e.target.value = `R$ ${inputValue}`;
+function maskInputToBrazilReal(e: any) {
+    let inputValue = e.target.value.replace(/\D/g, "");
+    inputValue = (inputValue / 100).toFixed(2) + "";
+    inputValue = inputValue.replace(".", ",");
+    inputValue = inputValue.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
+    inputValue = inputValue.replace(/(\d)(\d{3}),/g, "$1.$2,");
+    e.target.value = `R$ ${inputValue}`;
 }
 
-deleteTransaction(document.querySelectorAll('.button_delete_transaction')!)
+deleteTransaction(document.querySelectorAll(".button_delete_transaction")!);
+dowloadExportJsonFile(document.querySelector<HTMLButtonElement>("#button_export_json")!);
+dowloadExportCSVFile(document.querySelector<HTMLButtonElement>("#button_export_csv")!);
