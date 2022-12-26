@@ -72,22 +72,145 @@ let Account: IAccount = {
 
 if (localStorage.getItem("galhardo_finances")) {
     Account = JSON.parse(localStorage.getItem("galhardo_finances")!);
-    Account.current_balance = 0;
-    Account.total_expenses = 0;
-    Account.total_food = 0;
-    Account.total_subscriptions = 0;
-    Account.total_shop = 0;
-    Account.total_entertainment = 0;
-    Account.total_transport = 0;
-    Account.total_house = 0;
-    Account.total_services = 0;
-    Account.investments_total = 0;
-    Account.investments_fixed_income = 0;
-    Account.investments_variable_income = 0;
-    Account.investments_criptocurrencies = 0;
-    Account.investments_others = 0;
 
-    for (let i = 0; i < Account.transactions.length; i++) {
+    Account.current_balance = Account.transactions
+		.map((transaction) => {
+			if(transaction.type === TransactionTypeEnum.DEPOSIT){
+				return transaction.amount
+			}
+            return 0
+		})
+		.reduce((a, b) => a + b, 0);
+
+    Account.total_expenses = Account.transactions
+		.map((transaction) => {
+			if(transaction.type === TransactionTypeEnum.EXPENSE){
+				return transaction.amount
+			}
+            return 0
+		})
+		.reduce((a, b) => a + b, 0);
+
+    Account.total_food = Account.transactions
+		.map((transaction) => {
+			if(transaction.type === TransactionTypeEnum.EXPENSE
+                && transaction.category === TransactionCategoryEnum.FOOD){
+				return transaction.amount
+			}
+            return 0
+		})
+		.reduce((a, b) => a + b, 0);
+
+    Account.total_subscriptions = Account.transactions
+		.map((transaction) => {
+			if(transaction.type === TransactionTypeEnum.EXPENSE
+                && transaction.category === TransactionCategoryEnum.SUBSCRIPTIONS){
+				return transaction.amount
+			}
+            return 0
+		})
+		.reduce((a, b) => a + b, 0);
+
+    Account.total_shop = Account.transactions
+		.map((transaction) => {
+			if(transaction.type === TransactionTypeEnum.EXPENSE
+                && transaction.category === TransactionCategoryEnum.SHOP){
+				return transaction.amount
+			}
+            return 0
+		})
+		.reduce((a, b) => a + b, 0);
+
+    Account.total_shop = Account.transactions
+    .map((transaction) => {
+        if(transaction.type === TransactionTypeEnum.EXPENSE
+            && transaction.category === TransactionCategoryEnum.ENTERTAINMENT){
+            return transaction.amount
+        }
+        return 0
+    })
+    .reduce((a, b) => a + b, 0);
+
+    Account.total_shop = Account.transactions
+    .map((transaction) => {
+        if(transaction.type === TransactionTypeEnum.EXPENSE
+            && transaction.category === TransactionCategoryEnum.TRANSPORT){
+            return transaction.amount
+        }
+        return 0
+    })
+    .reduce((a, b) => a + b, 0);
+
+    Account.total_shop = Account.transactions
+    .map((transaction) => {
+        if(transaction.type === TransactionTypeEnum.EXPENSE
+            && transaction.category === TransactionCategoryEnum.HOUSE){
+            return transaction.amount
+        }
+        return 0
+    })
+    .reduce((a, b) => a + b, 0);
+
+    Account.total_shop = Account.transactions
+    .map((transaction) => {
+        if(transaction.type === TransactionTypeEnum.EXPENSE
+            && transaction.category === TransactionCategoryEnum.SERVICES){
+            return transaction.amount
+        }
+        return 0
+    })
+    .reduce((a, b) => a + b, 0);
+
+    Account.investments_total = Account.transactions
+		.map((transaction) => {
+			if(transaction.type === TransactionTypeEnum.INVESTMENT){
+				return transaction.amount
+			}
+            return 0
+		})
+		.reduce((a, b) => a + b, 0);
+
+    Account.investments_fixed_income = Account.transactions
+		.map((transaction) => {
+			if(transaction.type === TransactionTypeEnum.INVESTMENT
+                && transaction.category === TransactionCategoryEnum.FIXED_INCOME){
+				return transaction.amount
+			}
+            return 0
+		})
+		.reduce((a, b) => a + b, 0);
+
+    Account.investments_variable_income = Account.transactions
+		.map((transaction) => {
+			if(transaction.type === TransactionTypeEnum.INVESTMENT
+                && transaction.category === TransactionCategoryEnum.VARIABLE_INCOME){
+				return transaction.amount
+			}
+            return 0
+		})
+		.reduce((a, b) => a + b, 0);
+
+    Account.investments_criptocurrencies = Account.transactions
+		.map((transaction) => {
+			if(transaction.type === TransactionTypeEnum.INVESTMENT
+                && transaction.category === TransactionCategoryEnum.CRIPTOCURRENCIES){
+				return transaction.amount
+			}
+            return 0
+		})
+		.reduce((a, b) => a + b, 0);
+
+    Account.investments_others = Account.transactions
+		.map((transaction) => {
+			if(transaction.type === TransactionTypeEnum.INVESTMENT
+                && transaction.category === TransactionCategoryEnum.OTHERS){
+				return transaction.amount
+			}
+            return 0
+		})
+		.reduce((a, b) => a + b, 0);
+
+    /* for (let i = 0; i < Account.transactions.length; i++) {
         if (Account.transactions[i].type === "DEPOSIT") {
             Account.current_balance += Account.transactions[i].amount;
         } else if (Account.transactions[i].type === "EXPENSE") {
@@ -118,7 +241,7 @@ if (localStorage.getItem("galhardo_finances")) {
             if (Account.transactions[i].category === "OTHERS")
                 Account.investments_others += Account.transactions[i].amount;
         }
-    }
+    } */
 
     localStorage.setItem("galhardo_finances", JSON.stringify(Account));
 }
