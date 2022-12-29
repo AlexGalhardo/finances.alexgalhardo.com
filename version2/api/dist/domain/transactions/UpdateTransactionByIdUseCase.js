@@ -7,10 +7,10 @@ Object.defineProperty(exports, "default", {
     get: ()=>GetAllTransactionsUseCase
 });
 class GetAllTransactionsUseCase {
-    async execute(transactionObject) {
-        return this.transactionsRepository.updateById(transactionObject);
-    }
     constructor(transactionsRepository){
         this.transactionsRepository = transactionsRepository;
+    }
+    async execute(transactionObject) {
+        return this.transactionsRepository.updateById(transactionObject);
     }
 }

@@ -7,10 +7,10 @@ Object.defineProperty(exports, "default", {
     get: ()=>UserLogoutUseCase
 });
 class UserLogoutUseCase {
-    async execute(userId) {
-        return this.usersRepository.logout(userId);
-    }
     constructor(usersRepository){
         this.usersRepository = usersRepository;
+    }
+    async execute(user_id) {
+        return this.usersRepository.logout(user_id);
     }
 }

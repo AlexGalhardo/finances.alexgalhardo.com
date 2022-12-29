@@ -7,5 +7,5 @@ export interface IGetDashboardDataResponse {
 }
 
 export interface IAccountsRepository {
-    getDashboardData(user_id: string): Promise<Account>;
+    getDashboardData(user_id: string) /*: Promise<Account | null> */;
 }

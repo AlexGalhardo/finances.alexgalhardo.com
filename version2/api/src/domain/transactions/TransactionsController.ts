@@ -12,7 +12,7 @@ import UpdateTransactionByIdUseCase from "./UpdateTransactionByIdUseCase";
 class TransactionsController {
     async getAllTransactions(req: Request, res: Response) {
         const allTransactions = await new GetAllTransactionsUseCase(getTransactionsRepository()).execute(
-            getDecodedJwtToken(req).userId,
+            getDecodedJwtToken(req).user_id,
         );
 
         return res.status(allTransactions ? 200 : 404).json(allTransactions);
@@ -25,7 +25,7 @@ class TransactionsController {
         const { category, startDate, finalDate } = req.body;
 
         const response = await new GetTransactionsByCategoryUseCase(getTransactionsRepository()).execute(
-            jwtPayload.userId,
+            jwtPayload.user_id,
             category,
             startDate,
             finalDate,
@@ -38,7 +38,7 @@ class TransactionsController {
         const { type, category, description, amount } = req.body;
 
         const response = await new CreateTransactionUseCase(getTransactionsRepository()).execute({
-            user_id: getDecodedJwtToken(req).userId,
+            user_id: getDecodedJwtToken(req).user_id,
             type,
             category,
             description,

@@ -7,6 +7,9 @@ Object.defineProperty(exports, "default", {
     get: ()=>UserUpdateByIdUseCase
 });
 class UserUpdateByIdUseCase {
+    constructor(usersRepository){
+        this.usersRepository = usersRepository;
+    }
     async execute({ id , name , email , password  }) {
         return this.usersRepository.updateById({
             id,
@@ -14,8 +17,5 @@ class UserUpdateByIdUseCase {
             email,
             password
         });
-    }
-    constructor(usersRepository){
-        this.usersRepository = usersRepository;
     }
 }

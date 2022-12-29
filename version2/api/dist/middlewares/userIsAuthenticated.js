@@ -23,7 +23,7 @@ const userIsAuthenticated = async (req, res, next)=>{
     try {
         const JWT_TOKEN = req.headers.authorization.split(" ")[1];
         const decoded = _jsonwebtoken.default.verify(JWT_TOKEN, process.env.JWT_SECRET);
-        const userExists = await new _postgresUsersRepository.default().userExists(decoded.userId);
+        const userExists = await new _postgresUsersRepository.default().userExists(decoded.user_id);
         if (!userExists) {
             return res.status(422).json({
                 success: false,

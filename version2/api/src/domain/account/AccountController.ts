@@ -8,12 +8,14 @@ import GetDashboardDataUseCase from "./GetDashboardDataUseCase";
 class AccountController {
     async getDashboardData(req: Request, res: Response) {
         const dashboardData = await new GetDashboardDataUseCase(getAccountsRepository()).execute(
-            getDecodedJwtToken(req).userId,
+            // getDecodedJwtToken(req).user_id,
+            "54e526ea-4c31-48d2-85ef-91e369be2343",
         );
+
+        console.log("dashboardData => ", dashboardData);
 
         return res.status(dashboardData ? 200 : 404).json({
             success: !!dashboardData,
-            message: dashboardData ? "success" : "something went wrong",
             data: dashboardData,
         });
     }

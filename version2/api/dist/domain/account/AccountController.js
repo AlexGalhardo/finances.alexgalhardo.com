@@ -7,7 +7,6 @@ Object.defineProperty(exports, "default", {
     get: ()=>_default
 });
 const _getAccountsRepository = require("../../factories/getAccountsRepository");
-const _decodeJwtToken = require("../../helpers/DecodeJwtToken");
 const _getDashboardDataUseCase = /*#__PURE__*/ _interopRequireDefault(require("./GetDashboardDataUseCase"));
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -16,7 +15,9 @@ function _interopRequireDefault(obj) {
 }
 class AccountController {
     async getDashboardData(req, res) {
-        const dashboardData = await new _getDashboardDataUseCase.default((0, _getAccountsRepository.getAccountsRepository)()).execute((0, _decodeJwtToken.getDecodedJwtToken)(req).userId);
+        const dashboardData = await new _getDashboardDataUseCase.default((0, _getAccountsRepository.getAccountsRepository)()).execute(// getDecodedJwtToken(req).user_id,
+        "54e526ea-4c31-48d2-85ef-91e369be2343");
+        console.log("dashboardData => ", dashboardData);
         return res.status(dashboardData ? 200 : 404).json({
             success: !!dashboardData,
             message: dashboardData ? "success" : "something went wrong",

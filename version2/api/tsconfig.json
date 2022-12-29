@@ -1,34 +1,24 @@
 {
 	"compilerOptions": {
-		"target": "es2020",
-		"module": "es2020",
+		"target": "es2022",
+		"module": "es2022",
 		"allowJs": true,
 		"removeComments": true,
 		"resolveJsonModule": true,
-		"typeRoots": [
-			"./node_modules/@types"
-		],
 		"sourceMap": true,
 		"outDir": "dist",
-		"strict": true,
-		"lib": [
-			"es2020"
-		],
+		"strict": false,
 		"baseUrl": ".",
 		"forceConsistentCasingInFileNames": true,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
-		"moduleResolution": "Node",
+		"moduleResolution": "Node16",
 		"skipLibCheck": true,
-		"paths": {
-			"@functions/*": [
-				"./src/repositories/*"
-			]
-		}
 	},
 	"include": [
-		"src/**/*"
+		"src/**/*",
+		"src/repositories/json/AccountsRepository.json"
 	],
 	"exclude": [
 		"node_modules",

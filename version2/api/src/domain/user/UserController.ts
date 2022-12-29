@@ -26,7 +26,7 @@ class UserController {
         const { name, email, password } = req.body;
 
         const response = await new UserUpdateByIdUseCase(getUsersRepository()).execute({
-            id: getDecodedJwtToken(req).userId,
+            id: getDecodedJwtToken(req).user_id,
             name,
             email,
             password,
@@ -45,7 +45,7 @@ class UserController {
 
         const jwtToken = jwt.sign(
             {
-                userId: user?.id,
+                user_id: user?.id,
             },
             process.env.JWT_SECRET as string,
             { expiresIn: "1h" },
@@ -60,7 +60,7 @@ class UserController {
     }
 
     async logout(req: Request, res: Response) {
-        const response = await new UserLogoutUseCase(getUsersRepository()).execute(getDecodedJwtToken(req).userId);
+        const response = await new UserLogoutUseCase(getUsersRepository()).execute(getDecodedJwtToken(req).user_id);
 
         return res.status(response ? 200 : 400).json({
             success: true,

@@ -16,6 +16,13 @@ function _interopRequireDefault(obj) {
     };
 }
 class TelegramBOTLogger {
+    constructor(token, channelName){
+        this.isThereToken(token);
+        this.isThereChannel(channelName);
+        this.token = token;
+        this.channelName = channelName;
+        this.baseUrl = `https://api.telegram.org/bot${token}`;
+    }
     isThereToken(token) {
         if (!token) throw new Error("There is no Telegram Token in TelegramLogger Class Constructor");
     }
@@ -57,13 +64,6 @@ class TelegramBOTLogger {
         }).on("error", (e)=>{
             console.log(e);
         });
-    }
-    constructor(token, channelName){
-        this.isThereToken(token);
-        this.isThereChannel(channelName);
-        this.token = token;
-        this.channelName = channelName;
-        this.baseUrl = `https://api.telegram.org/bot${token}`;
     }
 }
 const _default = new TelegramBOTLogger(process.env.TELEGRAM_BOT_HTTP_TOKEN, process.env.TELEGRAM_BOT_CHANNEL_ID);

@@ -34,6 +34,7 @@ var TransactionCategoryEnum;
     TransactionCategoryEnum["FIXED_INCOME"] = "FIXED_INCOME";
     TransactionCategoryEnum["VARIABLE_INCOME"] = "VARIABLE_INCOME";
     TransactionCategoryEnum["CRIPTOCURRENCIES"] = "CRIPTOCURRENCIES";
+    TransactionCategoryEnum["OTHERS"] = "OTHERS";
 })(TransactionCategoryEnum || (TransactionCategoryEnum = {}));
 var HttpStatusCodeEnum;
 (function(HttpStatusCodeEnum) {

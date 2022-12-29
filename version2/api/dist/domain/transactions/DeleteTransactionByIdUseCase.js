@@ -7,10 +7,10 @@ Object.defineProperty(exports, "default", {
     get: ()=>DeleteTransactionByIdUseCase
 });
 class DeleteTransactionByIdUseCase {
-    async execute(userId) {
-        return this.transactionRepository.deleteById(userId);
-    }
     constructor(transactionRepository){
         this.transactionRepository = transactionRepository;
+    }
+    async execute(user_id) {
+        return this.transactionRepository.deleteById(user_id);
     }
 }
