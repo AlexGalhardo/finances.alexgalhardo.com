@@ -10,7 +10,7 @@ export default Router()
     .post("/user/login", UserController.login)
     .post("/user/logout", userIsAuthenticated, UserController.logout)
 
-    .put("/user/update/:userId", userIsAuthenticated, UserController.update)
+    .put("/user/update/:user_id", userIsAuthenticated, UserController.update)
 
     .get("/transaction/all", userIsAuthenticated, TransactionsController.getAllTransactions)
     .get("/transaction/filter", userIsAuthenticated, TransactionsController.getTransactionsByCategory)
@@ -18,4 +18,4 @@ export default Router()
     .put("/transaction/update/:transaction_id", userIsAuthenticated, TransactionsController.updateTransactionById)
     .delete("/transaction/delete/:transaction_id", userIsAuthenticated, TransactionsController.deleteTransactionById)
 
-    .get("/account/dashboard", userIsAuthenticated, AccountController.getDashboardData);
+    .get("/account/dashboard", AccountController.getDashboardData);

@@ -7,7 +7,7 @@ export default class UserLogoutUseCase {
         this.usersRepository = usersRepository;
     }
 
-    async execute(userId: string) {
-        return this.usersRepository.logout(userId);
+    async execute(user_id: string) {
+        return this.usersRepository.logout(user_id);
     }
 }

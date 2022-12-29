@@ -7,10 +7,10 @@ Object.defineProperty(exports, "default", {
     get: ()=>UserLoginUseCase
 });
 class UserLoginUseCase {
-    async execute({ email , password  }) {
-        return this.usersRepository.login(email, password);
-    }
     constructor(usersRepository){
         this.usersRepository = usersRepository;
+    }
+    async execute({ email , password  }) {
+        return this.usersRepository.login(email, password);
     }
 }

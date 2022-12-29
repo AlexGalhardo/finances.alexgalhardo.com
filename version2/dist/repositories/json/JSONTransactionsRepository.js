@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 Object.defineProperty(exports, "default", {
     enumerable: true,
-    get: ()=>PostgresTransactionsRepository
+    get: ()=>JSONTransactionsRepository
 });
 const _crypto = require("crypto");
 const _prisma = /*#__PURE__*/ _interopRequireDefault(require("../../config/prisma"));
@@ -14,7 +14,7 @@ function _interopRequireDefault(obj) {
         default: obj
     };
 }
-class PostgresTransactionsRepository {
+class JSONTransactionsRepository {
     async getAll(user_id) {
         const queryResponse = await _prisma.default.transaction.findMany({
             where: {

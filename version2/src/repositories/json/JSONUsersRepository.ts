@@ -1,15 +1,18 @@
 import { User } from "@prisma/client";
 import { randomUUID } from "crypto";
+import fs from "fs";
 import jwt from "jsonwebtoken";
 
 import prisma from "../../config/prisma";
 import Bcrypt from "../../helpers/Bcrypt";
 import { IUpdateUserParams, IUsersRepository, registerUserParams } from "../../ports/IUsersRepository";
 
-export default class PostgresUsersRepository implements IUsersRepository {
+// const AccountsRepository = JSON.parse(fs.readFileSync('./AccountsRepository.json', 'utf-8'));
+import AccountsRepository from "./AccountsRepository.json";
+
+export default class JSONUsersRepository implements IUsersRepository {
     async register(registerUserObject: registerUserParams): Promise<{ userRegistred: User; jwtToken: string } | null> {
-        const { email, name } = registerUserObject;
-        const { password } = registerUserObject;
+        const { email, name, password } = registerUserObject;
 
         const newuser_id = randomUUID();
 
@@ -51,18 +54,15 @@ export default class PostgresUsersRepository implements IUsersRepository {
     }
 
     async login(email: string, password: string): Promise<User | null> {
-        const user = await prisma.user.findFirst({
-            where: {
-                email,
-            },
-        });
+        if (AccountsRepository) {
+            for (let i = 0; i < AccountsRepository.length; i++) {
+                if (AccountsRepository[i].user_email === email) {
+                    const passwordIsValid = await Bcrypt.compare(password, AccountsRepository[i].password);
 
-        if (user) {
-            const passwordIsValid = await Bcrypt.compare(password, user.password);
-
-            if (passwordIsValid) return user;
+                    if (passwordIsValid) AccountsRepository[i];
+                }
+            }
         }
-
         return null;
     }
 

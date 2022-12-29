@@ -32,7 +32,7 @@ class UserController {
     async update(req, res) {
         const { name , email , password  } = req.body;
         const response = await new _userUpdateByIdUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute({
-            id: (0, _decodeJwtToken.getDecodedJwtToken)(req).userId,
+            id: (0, _decodeJwtToken.getDecodedJwtToken)(req).user_id,
             name,
             email,
             password
@@ -46,7 +46,7 @@ class UserController {
             password
         });
         const jwtToken = _jsonwebtoken.default.sign({
-            userId: user?.id
+            user_id: user?.id
         }, process.env.JWT_SECRET, {
             expiresIn: "1h"
         });
@@ -58,7 +58,7 @@ class UserController {
         });
     }
     async logout(req, res) {
-        const response = await new _userLogoutUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute((0, _decodeJwtToken.getDecodedJwtToken)(req).userId);
+        const response = await new _userLogoutUseCase.default((0, _getUsersRepository.getUsersRepository)()).execute((0, _decodeJwtToken.getDecodedJwtToken)(req).user_id);
         return res.status(response ? 200 : 400).json({
             success: true,
             message: `logout successfully`

@@ -8,7 +8,7 @@ import { TransactionTypeEnum, TransactionCategoryEnum } from "../src/helpers/Int
 const prisma = new PrismaClient();
 
 export const testAccountId = randomUUID();
-export const testUserId = randomUUID();
+export const testuser_id = randomUUID();
 export const testUserEmail = "test@gmail.com";
 export const testUserPassword = "test123";
 
@@ -20,7 +20,7 @@ const main = async () => {
     await prisma.user.createMany({
         data: [
             {
-                id: testUserId,
+                id: testuser_id,
                 email: testUserEmail,
                 name: "test",
                 password: await Bcrypt.hash(testUserPassword),
@@ -36,7 +36,7 @@ const main = async () => {
             {
                 id: testAccountId,
                 user_email: testUserEmail,
-                user_id: testUserId,
+                user_id: testuser_id,
                 current_balance: 348990,
                 total_expenses: 201010,
                 total_food: 11880,
@@ -60,7 +60,7 @@ const main = async () => {
         data: [
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.DEPOSIT,
@@ -71,7 +71,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -82,7 +82,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -93,7 +93,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -104,7 +104,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -115,7 +115,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -126,7 +126,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -137,7 +137,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -148,7 +148,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -159,7 +159,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -170,7 +170,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -181,7 +181,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -192,7 +192,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,
@@ -203,7 +203,7 @@ const main = async () => {
             },
             {
                 id: randomUUID(),
-                user_id: testUserId,
+                user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
                 type: TransactionTypeEnum.EXPENSE,

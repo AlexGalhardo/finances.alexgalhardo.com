@@ -94,7 +94,7 @@ export interface IUsersRepository {
     register(registerUserObject: registerUserParams): Promise<{ userRegistred: User; jwtToken: string } | null>;
     updateById(updateUserParamsObject: IUpdateUserParams): Promise<User | null>;
     login(email: string, password: string): Promise<User | null>;
-    userExists(userId: string): Promise<boolean>;
-    logout(userId: string): Promise<boolean>;
-    deleteById(userId: string): Promise<boolean>;
+    userExists(user_id: string): Promise<boolean>;
+    logout(user_id: string): Promise<boolean>;
+    deleteById(user_id: string): Promise<boolean>;
 }

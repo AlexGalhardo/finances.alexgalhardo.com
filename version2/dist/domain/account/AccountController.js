@@ -16,7 +16,8 @@ function _interopRequireDefault(obj) {
 }
 class AccountController {
     async getDashboardData(req, res) {
-        const dashboardData = await new _getDashboardDataUseCase.default((0, _getAccountsRepository.getAccountsRepository)()).execute((0, _decodeJwtToken.getDecodedJwtToken)(req).userId);
+        const dashboardData = await new _getDashboardDataUseCase.default((0, _getAccountsRepository.getAccountsRepository)()).execute((0, _decodeJwtToken.getDecodedJwtToken)(req).user_id);
+        console.log("dashboardData => ", dashboardData);
         return res.status(dashboardData ? 200 : 404).json({
             success: !!dashboardData,
             message: dashboardData ? "success" : "something went wrong",

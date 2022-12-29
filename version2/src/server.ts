@@ -5,6 +5,6 @@ GraphqlServer.listen().then(({ url }) => console.log(`GALHARDO FINANCES GraphqlS
 
 app.listen(process.env.PORT || 3333, () =>
     console.log(
-        `GALHARDO FINANCES HTTP REST API server is running at ${process.env.API_URL}${process.env.PORT ?? 3333}`,
+        `GALHARDO FINANCES HTTP REST API server is running at ${process.env.API_URL}:${process.env.PORT ?? 3333}`,
     ),
 );

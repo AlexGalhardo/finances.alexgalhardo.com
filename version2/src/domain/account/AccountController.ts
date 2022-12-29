@@ -8,8 +8,10 @@ import GetDashboardDataUseCase from "./GetDashboardDataUseCase";
 class AccountController {
     async getDashboardData(req: Request, res: Response) {
         const dashboardData = await new GetDashboardDataUseCase(getAccountsRepository()).execute(
-            getDecodedJwtToken(req).userId,
+            getDecodedJwtToken(req).user_id,
         );
+
+        console.log("dashboardData => ", dashboardData);
 
         return res.status(dashboardData ? 200 : 404).json({
             success: !!dashboardData,

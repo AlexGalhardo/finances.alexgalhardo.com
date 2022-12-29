@@ -7,10 +7,10 @@ Object.defineProperty(exports, "default", {
     get: ()=>GetDashboardDataUseCase
 });
 class GetDashboardDataUseCase {
-    async execute(user_id) {
-        return this.accountsRepository.getDashboardData(user_id);
-    }
     constructor(accountsRepository){
         this.accountsRepository = accountsRepository;
+    }
+    async execute(user_id) {
+        return this.accountsRepository.getDashboardData(user_id);
     }
 }

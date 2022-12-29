@@ -7,10 +7,10 @@ Object.defineProperty(exports, "default", {
     get: ()=>UserDeleteByIdUseCase
 });
 class UserDeleteByIdUseCase {
-    async execute(userId) {
-        return this.usersRepository.deleteById(userId);
-    }
     constructor(usersRepository){
         this.usersRepository = usersRepository;
+    }
+    async execute(user_id) {
+        return this.usersRepository.deleteById(user_id);
     }
 }

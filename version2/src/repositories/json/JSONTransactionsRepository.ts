@@ -13,7 +13,7 @@ import {
     IUpdateTransactionParams,
 } from "../../ports/ITransactionsRepository";
 
-export default class PostgresTransactionsRepository implements ITransactionsRepository {
+export default class JSONTransactionsRepository implements ITransactionsRepository {
     async getAll(user_id: string): Promise<Transaction[]> {
         const queryResponse = await prisma.transaction.findMany({
             where: {

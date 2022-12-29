@@ -4,21 +4,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 Object.defineProperty(exports, "default", {
     enumerable: true,
-    get: ()=>PostgresUsersRepository
+    get: ()=>JSONUsersRepository
 });
 const _crypto = require("crypto");
 const _jsonwebtoken = /*#__PURE__*/ _interopRequireDefault(require("jsonwebtoken"));
 const _prisma = /*#__PURE__*/ _interopRequireDefault(require("../../config/prisma"));
 const _bcrypt = /*#__PURE__*/ _interopRequireDefault(require("../../helpers/Bcrypt"));
+const _accountsRepositoryJson = /*#__PURE__*/ _interopRequireDefault(require("./AccountsRepository.json"));
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
     };
 }
-class PostgresUsersRepository {
+class JSONUsersRepository {
     async register(registerUserObject) {
-        const { email , name  } = registerUserObject;
-        const { password  } = registerUserObject;
+        const { email , name , password  } = registerUserObject;
         const newuser_id = (0, _crypto.randomUUID)();
         const jwtToken = _jsonwebtoken.default.sign({
             user_id: newuser_id
@@ -54,14 +54,13 @@ class PostgresUsersRepository {
         return queryResponse;
     }
     async login(email, password) {
-        const user = await _prisma.default.user.findFirst({
-            where: {
-                email
+        if (_accountsRepositoryJson.default) {
+            for(let i = 0; i < _accountsRepositoryJson.default.length; i++){
+                if (_accountsRepositoryJson.default[i].user_email === email) {
+                    const passwordIsValid = await _bcrypt.default.compare(password, _accountsRepositoryJson.default[i].password);
+                    if (passwordIsValid) _accountsRepositoryJson.default[i];
+                }
             }
-        });
-        if (user) {
-            const passwordIsValid = await _bcrypt.default.compare(password, user.password);
-            if (passwordIsValid) return user;
         }
         return null;
     }

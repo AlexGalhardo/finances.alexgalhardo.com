@@ -7,7 +7,7 @@ export default class DeleteTransactionByIdUseCase {
         this.transactionRepository = transactionRepository;
     }
 
-    async execute(userId: string) {
-        return this.transactionRepository.deleteById(userId);
+    async execute(user_id: string) {
+        return this.transactionRepository.deleteById(user_id);
     }
 }
