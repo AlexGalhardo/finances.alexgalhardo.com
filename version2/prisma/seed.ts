@@ -34,7 +34,7 @@ const main = async () => {
     await prisma.account.createMany({
         data: [
             {
-                id: testAccountId,
+                account_id: testAccountId,
                 user_email: testUserEmail,
                 user_id: testuser_id,
                 current_balance: 348990,
@@ -59,7 +59,7 @@ const main = async () => {
     await prisma.transaction.createMany({
         data: [
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -70,7 +70,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -81,7 +81,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -92,7 +92,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -103,7 +103,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -114,7 +114,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -125,7 +125,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -136,7 +136,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -147,7 +147,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -158,7 +158,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -169,7 +169,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -180,7 +180,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -191,7 +191,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,
@@ -202,7 +202,7 @@ const main = async () => {
                 created_at: DateTime.getNow(),
             },
             {
-                id: randomUUID(),
+                transaction_id: randomUUID(),
                 user_id: testuser_id,
                 user_email: testUserEmail,
                 account_id: testAccountId,

@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-    id                   String        @id @default(uuid())
+    user_id              String        @id @default(uuid())
     name                 String
     email                String        @unique
     password             String
@@ -23,7 +23,7 @@ model User {
 }
 
 model Account {
-    id                           String        @id @default(uuid())
+    account_id                   String        @id @default(uuid())
     current_balance              Int
     total_expenses               Int
     total_food                   Int
@@ -38,7 +38,7 @@ model Account {
     investments_variable_income  Int
     investments_criptocurrencies Int
     user_id                      String
-    user                         User          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    user                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
     user_email                   String
     Transaction                  Transaction[]
     created_at                   String
@@ -48,18 +48,18 @@ model Account {
 }
 
 model Transaction {
-    id          String  @id @default(uuid())
-    user_id     String
-    user        User    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    user_email  String
-    account_id  String
-    account     Account @relation(fields: [account_id], references: [id])
-    type        String
-    category    String
-    description String
-    amount      Int
-    created_at  String
-    updated_at  String?
+    transaction_id String  @id @default(uuid())
+    user_id        String
+    user           User    @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+    user_email     String
+    account_id     String
+    account        Account @relation(fields: [account_id], references: [account_id])
+    type           String
+    category       String
+    description    String
+    amount         Int
+    created_at     String
+    updated_at     String?
 
     @@map("transactions")
 }

@@ -1,4 +1,5 @@
-/* eslint-disable no-plusplus */ "use strict";
+/* eslint-disable no-plusplus */ // import { Account } from "@prisma/client";
+"use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -13,11 +14,14 @@ function _interopRequireDefault(obj) {
     };
 }
 class JSONAccountsRepository {
-    async getDashboardData(user_id) {
+    async getDashboardData(user_id) /* : Promise<Account | null> */ {
         if (_accountsRepositoryJson.default) {
-            return _accountsRepositoryJson.default.find((account)=>{
-                return account.user_id === user_id;
-            });
+            for(let i = 0; i < _accountsRepositoryJson.default.length; i++){
+                console.log("AccountsRepository index i => ", _accountsRepositoryJson.default[i], _accountsRepositoryJson.default[i].user_id === user_id);
+                if (_accountsRepositoryJson.default[i].user_id === user_id) {
+                    return _accountsRepositoryJson.default[i];
+                }
+            }
         }
         return null;
     }
