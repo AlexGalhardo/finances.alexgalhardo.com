@@ -15,7 +15,7 @@ enum TransactionType {
 }
 
 enum DepositCategory {
-	WAGE,
+	SALARY,
 	FREELANCER,
 	INVESTMENT_PROFIT
 }

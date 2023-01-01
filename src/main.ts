@@ -95,7 +95,7 @@ document.querySelector<HTMLDivElement>("#modais")!.innerHTML = `
 
 						<label>Category:</label>
 						<select class="form-select" name="deposit_category_selected" id="deposit_category" required>
-							<option value="WAGE" selected>WAGE</option>
+							<option value="SALARY" selected>SALARY</option>
 							<option value="FREELANCER">FREELANCER</option>
 							<option value="INVESTMENT_PROFIT">INVESTMENT PROFIT</option>
 						</select>
@@ -290,7 +290,7 @@ document.querySelector<HTMLDivElement>("#FILTER")!.innerHTML = `
 			<label>Category:</label>
 			<select class="form-select" id="search_transaction_category" name="search_transaction_category" required>
 				<option class="fw-bold" value="ALL" selected>ALL</option>
-				<option class="text-success fw-bold" value="WAGE">WAGE</option>
+				<option class="text-success fw-bold" value="SALARY">SALARY</option>
 				<option class="text-success fw-bold" value="FREELANCER">FREELANCER</option>
 				<option class="text-success fw-bold" value="INVESTMENT_PROFIT">INVESTMENT PROFIT</option>
 				<option class="text-danger fw-bold" value="FOOD">FOOD</option>
