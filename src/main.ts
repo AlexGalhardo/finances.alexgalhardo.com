@@ -34,6 +34,28 @@ import { deleteTransaction } from "./deleteTransaction";
 import { dowloadExportJsonFile } from "./downloadExportJsonFile";
 import { dowloadExportCSVFile } from "./downloadExportCSVFile";
 
+document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
+	<div id="navbar"></div>
+	<div id="modais"></div>
+
+	<main style="margin-top: 100px; margin-bottom: 50px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<div id="BALANCE"></div>
+					<div id="EXPENSES"></div>
+					<div id="INVESTMENTS"></div>
+				</div>
+				<div class="col-lg-7">
+					<div id="FILTER"></div>
+					<div id="EXPORT"></div>
+					<div id="TRANSACTIONS"></div>
+				</div>
+			</div>
+		</div>
+	</main>
+`
+
 document.querySelector<HTMLDivElement>("#navbar")!.innerHTML = `
   <div class="fixed-top shadow-sm bg-light mb-5">
 		<nav class="container pt-2 pb-2 col-lg-12 navbar navbar-expand-lg fixed navbar-dark bg-light text-bold">
@@ -334,6 +356,7 @@ document.querySelector<HTMLDivElement>("#TRANSACTIONS")!.innerHTML = `
 		${allTransactions}
 	</ul>
 `;
+
 newDeposit(
     document.querySelector<HTMLButtonElement>("#confirm_deposit")!,
     document.querySelector<HTMLInputElement>("#total_to_deposit")!,
