@@ -1,4 +1,0 @@
-- Buscar por nome da transação
-- Button para editar transação
-- Paginação com Limite de 20 transações por página
-- usar map e reduce para somar dados da dashboard

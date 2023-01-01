@@ -1,5 +1,5 @@
 <div align="center">
-<h1 align="center"><a href="https://galhardo-finances.vercel.app/" target="_blank">💵 Galhardo FINANCES MVP 1.0 💵</a></h1>
+<h1 align="center"><a href="https://galhardo-finances.vercel.app/" target="_blank">💵 Galhardo Finances MVP 1.0 💵</a></h1>
 <h3 align="center">A Simple Web App Project To Learn ReactJS and Clean Architecture</h3>
 </div>
 
@@ -7,41 +7,42 @@ https://user-images.githubusercontent.com/19540357/209189378-6a34e4ca-5d90-4667-
 
 ## WHY THIS PROJECT ?
 
--   <b>"Talk is cheap. Show me the code." - Linus Torvalds</b>
--   First Commit: December 19, 2022
--   I created this project to learn mostly ReactJS v18+ and Clean Architecture Principles
--   With an API using REST, Graphql and gRPC
--   Using ESLint/Prettier, PostgreSQL, Docker, PrismaORM, and Tests (Unit, Integration, End to End)
+- <b>"Talk is cheap. Show me the code." - Linus Torvalds</b>
+- First Commit: December 19, 2022
+- I created this project to learn mostly ReactJS v18+ and Clean Architecture Principles
+- With an API REST, Graphql and gRPC
+- And also using ESLint/Prettier, PostgreSQL, MongoDB, SQLite, Docker, PrismaORM, and Tests
 
-## <a href="https://galhardo-finances.vercel.app/" target="_blank">LIVE DEMO</a>
+## <a href="https://galhardo-finances.vercel.app/" target="_blank">VERSION 1.0 MVP LIVE DEMO</a>
 
--   **Currently Version: MVP 1.0**
--   You can access: https://galhardo-finances.vercel.app/
--   All the data in this version are stored in your browser localStorage
+- You can access: https://galhardo-finances.vercel.app/
+- All the data in this version are stored in your browser localStorage
 
-### Version 1.0 (this version)
+### Version 1.0 MVP (this version)
 
--   Using Bootstrap5 with pure JavaScript/Typescript from Vite boilerplate
--   Storing Data in browser localStorage
+- FrontEnd: Using Bootstrap5 with pure JavaScript/Typescript from Vite boilerplate
+- Storing Data in browser localStorage
 
-### Version 2.0 (in development)
+### [Version 2.0](https://github.com/AlexGalhardo/Galhardo-Finances-Version-2)
 
--   Using Bootstrap5 with pure JavaScript/Typescript from Vite boilerplate
--   A backend REST, GraphQL and gRPC API using Clean Architecture Principles (NodeJS + TypeScript + PrismaORM + PostgreSQL + Docker + ESLint/Prettier)
+- Source Code: https://github.com/AlexGalhardo/Galhardo-Finances-Version-2
+- FrontEnd: Same frontend from version 1, but now using API to save data
+- API: Using REST, GraphQL and gRPC API using Clean Architecture Principles
 
-### Version 3.0 (in development)
+### [Version 3.0](https://github.com/AlexGalhardo/Galhardo-Finances-Version-3)
 
--   Using Bootstrap5 with ReactJS + TypeScript Vite Boilerplate
--   A backend REST, GraphQL and gRPC API using Clean Architecture Principles (NodeJS + TypeScript + PrismaORM + PostgreSQL + Docker + ESLint/Prettier)
+- Source Code: https://github.com/AlexGalhardo/Galhardo-Finances-Version-3
+- FrontEnd: Using ReactJS v18 from vite boilerplate and using API to save data
+- API: using API from version 2.0
 
-### How To Use Locally
+### How To Install and Use Locally (this version 1.0)
 
--   $ `git clone https://github.com/AlexGalhardo/Galhardo-Finances`
--   $ `cd Galhardo-Finances/`
--   $ `npm i`
--   $ `npm run dev` (to start development locall server)
--   Go to: http://localhost:5173
--   $ `npm run build` (to create build)
+- $ `git clone https://github.com/AlexGalhardo/Galhardo-Finances`
+- $ `cd Galhardo-Finances/`
+- $ `npm i`
+- $ `npm run dev` (to start development locall server)
+- Go to: http://localhost:5173
+- $ `npm run build` (to create build)
 
 ## LICENSE
 

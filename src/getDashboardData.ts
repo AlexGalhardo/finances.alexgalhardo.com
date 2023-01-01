@@ -73,7 +73,7 @@ let Account: IAccount = {
 if (localStorage.getItem("galhardo_finances")) {
     Account = JSON.parse(localStorage.getItem("galhardo_finances")!);
 
-    Account.current_balance = Account.transactions
+    /* Account.current_balance = Account.transactions
 		.map((transaction) => {
 			if(transaction.type === TransactionTypeEnum.DEPOSIT){
 				return transaction.amount
@@ -208,9 +208,9 @@ if (localStorage.getItem("galhardo_finances")) {
 			}
             return 0
 		})
-		.reduce((a, b) => a + b, 0);
+		.reduce((a, b) => a + b, 0); */
 
-    /* for (let i = 0; i < Account.transactions.length; i++) {
+    for (let i = 0; i < Account.transactions.length; i++) {
         if (Account.transactions[i].type === "DEPOSIT") {
             Account.current_balance += Account.transactions[i].amount;
         } else if (Account.transactions[i].type === "EXPENSE") {
@@ -241,7 +241,7 @@ if (localStorage.getItem("galhardo_finances")) {
             if (Account.transactions[i].category === "OTHERS")
                 Account.investments_others += Account.transactions[i].amount;
         }
-    } */
+    }
 
     localStorage.setItem("galhardo_finances", JSON.stringify(Account));
 }
