@@ -95,7 +95,7 @@ document.querySelector<HTMLDivElement>("#navbar")!.innerHTML = `
 `;
 
 document.querySelector<HTMLDivElement>("#modais")!.innerHTML = `
-    <!-- Modal Depositar -->
+    <!-- Modal DEPOSIT -->
 	<div class="modal fade" id="modalDepositar" tabindex="-1" aria-labelledby="modalDepositarLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -106,20 +106,20 @@ document.querySelector<HTMLDivElement>("#modais")!.innerHTML = `
 				<div class="modal-body">
 					<form method="GET" action="/">
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Total to deposit</label>
+							<label for="exampleFormControlInput1" class="form-label">Total Deposit</label>
 							<input class="form-control" id="total_to_deposit" placeholder="R$ 10.00" min="100" required value="">
 						</div>
 
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label">Deposit Description</label>
-							<input type="text" class="form-control" id="deposit_description" placeholder="Exemplo: Freelancer do Primo" required value="">
+							<input type="text" class="form-control" id="deposit_description" placeholder="Example: Google Salary" required value="">
 						</div>
 
 						<label>Category:</label>
-						<select class="form-select" name="deposit_category_selected" id="deposit_category" required>
-							<option value="SALARY" selected>SALARY</option>
-							<option value="FREELANCER">FREELANCER</option>
-							<option value="INVESTMENT_PROFIT">INVESTMENT PROFIT</option>
+						<select class="form-select fw-bold text-success" name="deposit_category_selected" id="deposit_category" required>
+							<option class="fw-bold text-success" value="SALARY" selected>SALARY</option>
+							<option class="fw-bold text-success" value="FREELANCER">FREELANCER</option>
+							<option class="fw-bold text-success" value="INVESTMENT_PROFIT">INVESTMENT PROFIT</option>
 						</select>
 
 						<br>
@@ -132,7 +132,7 @@ document.querySelector<HTMLDivElement>("#modais")!.innerHTML = `
 
 
 
-	<!-- Modal SACAR -->
+	<!-- Modal EXPENSE -->
 	<div class="modal fade" id="modalSacar" tabindex="-1" aria-labelledby="modalSacarLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -144,25 +144,25 @@ document.querySelector<HTMLDivElement>("#modais")!.innerHTML = `
 				<div class="modal-body">
 					<form method="GET" action="/">
 						<div class="mb-3">
-							<label for="" class="form-label">Total to expense</label>
+							<label for="" class="form-label">Total Expense</label>
 							<input class="form-control" id="total_to_expense" placeholder="R$ 10.00" required>
 						</div>
 
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">Deposit Description</label>
+							<label for="exampleFormControlInput1" class="form-label">Expense Description</label>
 							<input type="text" class="form-control" id="expense_description"
 								placeholder="Example: Dinner Pizza Dominós" required>
 						</div>
 
 						<label>Category:</label>
-						<select class="form-select" name="expense_category_selected" id="expense_category" required>
-							<option value="FOOD" selected>FOOD</option>
-							<option value="SUBSCRIPTIONS">SUBSCRIPTION</option>
-							<option value="SHOP">SHOP</option>
-							<option value="ENTERTAINMENT">ENTERTAINMENT</option>
-							<option value="TRANSPORT">TRANSPORT</option>
-							<option value="HOUSE">HOUSE</option>
-							<option value="SERVICES">SERVICES</option>
+						<select class="form-select text-danger fw-bold" name="expense_category_selected" id="expense_category" required>
+							<option class="text-danger fw-bold" value="FOOD" selected><i class="bi bi-apple"></i> FOOD</option>
+							<option class="text-danger fw-bold" value="SUBSCRIPTIONS"><i class="bi bi-apple"></i> SUBSCRIPTION</option>
+							<option class="text-danger fw-bold" value="SHOP">SHOP</option>
+							<option class="text-danger fw-bold" value="ENTERTAINMENT">ENTERTAINMENT</option>
+							<option class="text-danger fw-bold" value="TRANSPORT">TRANSPORT</option>
+							<option class="text-danger fw-bold" value="HOUSE">HOUSE</option>
+							<option class="text-danger fw-bold" value="SERVICES">SERVICES</option>
 						</select>
 
 						<br>
@@ -185,7 +185,7 @@ document.querySelector<HTMLDivElement>("#modais")!.innerHTML = `
 				<div class="modal-body">
 					<form method="GET" action="/">
 						<div class="mb-3">
-							<label for="" class="form-label">Total to invest</label>
+							<label for="" class="form-label">Total Invest</label>
 							<input class="form-control" id="total_to_investment" placeholder="R$ 10.00" required>
 						</div>
 
@@ -196,11 +196,11 @@ document.querySelector<HTMLDivElement>("#modais")!.innerHTML = `
 						</div>
 
 						<label>Category:</label>
-						<select class="form-select" name="investment_category_selected" id="investment_category" required>
-							<option value="FIXED_INCOME" selected>Fixed Income</option>
-							<option value="VARIABLE_INCOME">Variable Income</option>
-							<option value="CRIPTOCURRENCIES">Criptocurrencies</option>
-							<option value="OTHERS">Others</option>
+						<select class="fw-bold text-primary form-select" name="investment_category_selected" id="investment_category" required>
+							<option class="fw-bold text-primary" value="FIXED_INCOME" selected>Fixed Income</option>
+							<option class="fw-bold text-primary" value="VARIABLE_INCOME">Variable Income</option>
+							<option class="fw-bold text-primary" value="CRIPTOCURRENCIES">Criptocurrencies</option>
+							<option class="fw-bold text-primary" value="OTHERS">Others</option>
 						</select>
 
 						<br>
@@ -310,8 +310,8 @@ document.querySelector<HTMLDivElement>("#FILTER")!.innerHTML = `
 	<form class="mb-3 d-flex justify-content-between" action="#" id="form_search_transactions">
 		<div class="col-lg-3">
 			<label>Category:</label>
-			<select class="form-select" id="search_transaction_category" name="search_transaction_category" required>
-				<option class="fw-bold" value="ALL" selected>ALL</option>
+			<select class="form-select fw-bold" id="search_transaction_category" name="search_transaction_category" required>
+				<option class="fw-bold text-warning" value="ALL" selected>ALL</option>
 				<option class="text-success fw-bold" value="SALARY">SALARY</option>
 				<option class="text-success fw-bold" value="FREELANCER">FREELANCER</option>
 				<option class="text-success fw-bold" value="INVESTMENT_PROFIT">INVESTMENT PROFIT</option>
