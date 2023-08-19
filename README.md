@@ -10,12 +10,26 @@ https://user-images.githubusercontent.com/19540357/210174870-3e3d7362-6878-48a4-
 
 ### How To Install and Use Locally
 
-- $ `git clone https://github.com/AlexGalhardo/Galhardo-Finances`
-- $ `cd Galhardo-Finances/`
-- $ `npm i`
-- $ `npm run dev` (to start development locall server)
+```
+git clone https://github.com/AlexGalhardo/Galhardo-Finances
+```
+```
+cd Galhardo-Finances/
+```
+
+```
+npm i
+```
+
+```
+npm run dev
+```
+
 - Go to: http://localhost:5173
-- $ `npm run build` (to create build)
+
+```
+npm run build
+```
 
 ## LICENSE
 
