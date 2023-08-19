@@ -1,5 +1,5 @@
 <div align="center">
-<h1 align="center"><a href="https://galhardo-finances.vercel.app/" target="_blank">💵 Galhardo Finances 💵</a></h1>
+<h1 align="center"><a href="https://finances.alexgalhardo.com/" target="_blank">💵 Galhardo Finances 💵</a></h1>
 </div>
 
 https://user-images.githubusercontent.com/19540357/210174870-3e3d7362-6878-48a4-88bc-0469061b6fda.mp4
