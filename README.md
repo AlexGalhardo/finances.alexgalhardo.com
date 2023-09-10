@@ -1,40 +1,70 @@
 <div align="center">
-<h1 align="center"><a href="https://finances.alexgalhardo.com/" target="_blank">💵 Galhardo Finances 💵</a></h1>
+<h1 align="center"><a href="https://finances.alexgalhardo.com/" target="_blank">finances.alexgalhardo.com</a></h1>
 </div>
 
-https://user-images.githubusercontent.com/19540357/210174870-3e3d7362-6878-48a4-88bc-0469061b6fda.mp4
+<https://user-images.githubusercontent.com/19540357/210174870-3e3d7362-6878-48a4-88bc-0469061b6fda.mp4>
 
 ## Introduction
 
-- A simple project that I created to control my personal finances, using Vite and vanilla Javascript to control the DOM, in addition to saving the data in localStorage, and being able to export the data in JSON and CSV format
+*   A simple project I created to control my personal finances, using Vite and vanilla Javascript to control the DOM, in addition to saving the data in localStorage, and being able to export the data in JSON and CSV format
 
-### How To Install and Use Locally
-- Clone project
-```
-git clone https://github.com/AlexGalhardo/Galhardo-Finances
-```
-- Enter folder
-```
-cd Galhardo-Finances/
-```
-- Install dependencies
-```
-npm i
-```
-- Up local server
-```
-npm run dev
-```
+## Tools Used
 
-- Go to: http://localhost:5173
+*   [Linux Mint XFCE 21.04](https://linuxmint.com/)
+*   [Git for control version](https://git-scm.com/)
+*   [Vite v4](https://vitejs.dev/)
+*   [Boostrap v5](https://getbootstrap.com/)
+*   [NodeJS v20](https://nodejs.org/en)
+*   Code Editor: [VSCode](https://code.visualstudio.com/)
+*   Deploy: <https://vercel.com/>
+*   Vanilla Javascript manipulating HTML DOM
 
-- Create build to production
-```
-npm run build
-```
+## Development Setup Local
+
+*   Clone project
+
+<!---->
+
+    git clone https://github.com/AlexGalhardo/Galhardo-Finances
+
+*   Enter folder
+
+<!---->
+
+    cd Galhardo-Finances/
+
+*   Install dependencies
+
+<!---->
+
+    npm i
+
+*   Up local server
+
+<!---->
+
+    npm run dev
+
+*   Go to: <http://localhost:5173>
+
+*   Create build to production
+
+<!---->
+
+    npm run build
+
+## Before Submit Commits & PRs
+
+*   Run command:
+
+<!---->
+
+    npm run format
+
+<!---->
 
 ## LICENSE
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2022-present, Alex Galhardo
+Copyright (c) April 2023-present, Alex Galhardo
