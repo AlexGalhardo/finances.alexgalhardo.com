@@ -25,13 +25,13 @@
 
 <!---->
 
-    git clone https://github.com/AlexGalhardo/Galhardo-Finances
+    git clone https://github.com/AlexGalhardo/finances.alexgalhardo.com
 
 *   Enter folder
 
 <!---->
 
-    cd Galhardo-Finances/
+    cd finances.alexgalhardo.com/
 
 *   Install dependencies
 
@@ -47,11 +47,21 @@
 
 *   Go to: <http://localhost:5173>
 
-*   Create build to production
+## Build for deploy
+
+*   Create build
 
 <!---->
 
     npm run build
+
+*   Preview production build locally
+
+<!---->
+
+    npm run preview
+
+*   Go to: <http://localhost:4173/>
 
 ## Before Submit Commits & PRs
 
