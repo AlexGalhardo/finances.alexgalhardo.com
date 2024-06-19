@@ -5,7 +5,7 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"format": "npx prettier --write src/*.ts src/**/*.ts src/**/**/*.ts src/**/**/**/*.ts",
+		"format": "npx prettier --write src/*.ts",
 		"prepare": "npx husky install"
 	},
 	"dependencies": {
