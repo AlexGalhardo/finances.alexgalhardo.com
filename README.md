@@ -1,77 +1,45 @@
 <div align="center">
-<h1 align="center"><a href="https://finances.alexgalhardo.com/" target="_blank">finances.alexgalhardo.com</a></h1>
+	<h1 align="center"><a href="https://finances.alexgalhardo.com/" target="_blank">finances.alexgalhardo.com</a></h1>
 </div>
 
 <https://user-images.githubusercontent.com/19540357/210174870-3e3d7362-6878-48a4-88bc-0469061b6fda.mp4>
 
 ## Introduction
 
-*   A simple project I created to control my personal finances, using Vite and vanilla Javascript to control the DOM, in addition to saving the data in localStorage, and being able to export the data in JSON and CSV format
-
-## Tools Used
-
-*   [Linux Mint XFCE 21.04](https://linuxmint.com/)
-*   [Git for control version](https://git-scm.com/)
-*   [Vite v4](https://vitejs.dev/)
-*   [Boostrap v5](https://getbootstrap.com/)
-*   [NodeJS v20](https://nodejs.org/en)
-*   Code Editor: [VSCode](https://code.visualstudio.com/)
-*   Deploy: <https://vercel.com/>
-*   Vanilla Javascript manipulating HTML DOM
+*   A simple project I created using Vite and vanilla Javascript to manipulate the DOM, in addition to saving the data in localStorage, and being able to export the data in JSON and CSV format
 
 ## Development Setup Local
 
-*   Clone project
+1. Clone repository
+```bash
+git clone git@github.com:AlexGalhardo/finances.alexgalhardo.com.git
+```
 
-<!---->
+2. Enter folder
+```bash
+cd finances.alexgalhardo.com/
+```
 
-    git clone https://github.com/AlexGalhardo/finances.alexgalhardo.com
+3. Run setup.sh
+```bash
+chmod +x setup.sh && ./setup.sh
+```
 
-*   Enter folder
-
-<!---->
-
-    cd finances.alexgalhardo.com/
-
-*   Install dependencies
-
-<!---->
-
-    npm i
-
-*   Up local server
-
-<!---->
-
-    npm run dev
-
-*   Go to: <http://localhost:5173>
+4. Go to: <http://localhost:5173>
 
 ## Build for deploy
 
-*   Create build
+1. Creating build
+```bash
+npm run build
+```
 
-<!---->
+2. Preview production build locally
+```bash
+npm run preview
+```
 
-    npm run build
-
-*   Preview production build locally
-
-<!---->
-
-    npm run preview
-
-*   Go to: <http://localhost:4173/>
-
-## Before Submit Commits & PRs
-
-*   Run command:
-
-<!---->
-
-    npm run format
-
-<!---->
+3. Go to: <http://localhost:4173/>
 
 ## LICENSE
 

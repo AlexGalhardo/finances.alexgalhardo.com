@@ -1,38 +1,38 @@
-import { newDeposit } from "./newDeposit";
-import { allTransactions } from "./allTransactions";
+import { newDeposit } from "./new-deposit";
+import { allTransactions } from "./all-transactions";
 import {
-	currentBalance,
-	currentExpense,
-	currentInvestments,
-	investments_others,
-	percentage_others,
-	investments_criptocurrencies,
-	investments_fixed_income,
-	investments_variable_income,
-	percentage_criptocurrencies,
-	percentage_entertainment,
-	percentage_fixed_income,
-	percentage_food,
-	percentage_house,
-	percentage_shop,
-	percentage_subscriptions,
-	percentage_transport,
-	percentage_variable_income,
-	total_entertainment,
-	total_food,
-	total_house,
-	total_shop,
-	total_subscriptions,
-	total_transport,
-	total_services,
-	percentage_services,
-} from "./getDashboardData";
-import { newInvestment } from "./newInvestment";
-import { newExpense } from "./newExpense";
-import { searchTransactions } from "./searchTransactions";
-import { deleteTransaction } from "./deleteTransaction";
-import { dowloadExportJsonFile } from "./downloadExportJsonFile";
-import { dowloadExportCSVFile } from "./downloadExportCSVFile";
+    currentBalance,
+    currentExpense,
+    currentInvestments,
+    investments_others,
+    percentage_others,
+    investments_criptocurrencies,
+    investments_fixed_income,
+    investments_variable_income,
+    percentage_criptocurrencies,
+    percentage_entertainment,
+    percentage_fixed_income,
+    percentage_food,
+    percentage_house,
+    percentage_shop,
+    percentage_subscriptions,
+    percentage_transport,
+    percentage_variable_income,
+    total_entertainment,
+    total_food,
+    total_house,
+    total_shop,
+    total_subscriptions,
+    total_transport,
+    total_services,
+    percentage_services,
+} from "./get-dashboard-data";
+import { newInvestment } from "./new-investment";
+import { newExpense } from "./new-expense";
+import { searchTransactions } from "./search-transactions";
+import { deleteTransaction } from "./delete-transaction";
+import { dowloadExportJsonFile } from "./download-export-json-file";
+import { dowloadExportCSVFile } from "./download-export-csv-file";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 	<div id="navbar"></div>
@@ -358,60 +358,46 @@ document.querySelector<HTMLDivElement>("#TRANSACTIONS")!.innerHTML = `
 `;
 
 newDeposit(
-	document.querySelector<HTMLButtonElement>("#confirm_deposit")!,
-	document.querySelector<HTMLInputElement>("#total_to_deposit")!,
-	document.querySelector<HTMLInputElement>("#deposit_description")!,
-	document.querySelector<HTMLSelectElement>("#deposit_category")!,
+    document.querySelector<HTMLButtonElement>("#confirm_deposit")!,
+    document.querySelector<HTMLInputElement>("#total_to_deposit")!,
+    document.querySelector<HTMLInputElement>("#deposit_description")!,
+    document.querySelector<HTMLSelectElement>("#deposit_category")!,
 );
 
 newExpense(
-	document.querySelector<HTMLButtonElement>("#confirm_expense")!,
-	document.querySelector<HTMLInputElement>("#total_to_expense")!,
-	document.querySelector<HTMLInputElement>("#expense_description")!,
-	document.querySelector<HTMLSelectElement>("#expense_category")!,
+    document.querySelector<HTMLButtonElement>("#confirm_expense")!,
+    document.querySelector<HTMLInputElement>("#total_to_expense")!,
+    document.querySelector<HTMLInputElement>("#expense_description")!,
+    document.querySelector<HTMLSelectElement>("#expense_category")!,
 );
 
 newInvestment(
-	document.querySelector<HTMLButtonElement>("#confirm_investment")!,
-	document.querySelector<HTMLInputElement>("#total_to_investment")!,
-	document.querySelector<HTMLInputElement>("#investment_description")!,
-	document.querySelector<HTMLSelectElement>("#investment_category")!,
+    document.querySelector<HTMLButtonElement>("#confirm_investment")!,
+    document.querySelector<HTMLInputElement>("#total_to_investment")!,
+    document.querySelector<HTMLInputElement>("#investment_description")!,
+    document.querySelector<HTMLSelectElement>("#investment_category")!,
 );
 
 searchTransactions(
-	document.querySelector<HTMLButtonElement>("#button_search_transactions")!,
-	document.querySelector<HTMLSelectElement>("#search_transaction_category")!,
-	document.querySelector<HTMLSelectElement>(
-		"#search_transaction_start_date",
-	)!,
-	document.querySelector<HTMLSelectElement>(
-		"#search_transaction_final_date",
-	)!,
+    document.querySelector<HTMLButtonElement>("#button_search_transactions")!,
+    document.querySelector<HTMLSelectElement>("#search_transaction_category")!,
+    document.querySelector<HTMLSelectElement>("#search_transaction_start_date")!,
+    document.querySelector<HTMLSelectElement>("#search_transaction_final_date")!,
 );
 
-document
-	.getElementById("total_to_deposit")!
-	.addEventListener("keyup", maskInputToBrazilReal);
-document
-	.getElementById("total_to_expense")!
-	.addEventListener("keyup", maskInputToBrazilReal);
-document
-	.getElementById("total_to_investment")!
-	.addEventListener("keyup", maskInputToBrazilReal);
+document.getElementById("total_to_deposit")!.addEventListener("keyup", maskInputToBrazilReal);
+document.getElementById("total_to_expense")!.addEventListener("keyup", maskInputToBrazilReal);
+document.getElementById("total_to_investment")!.addEventListener("keyup", maskInputToBrazilReal);
 
 function maskInputToBrazilReal(e: any) {
-	let inputValue = e.target.value.replace(/\D/g, "");
-	inputValue = (inputValue / 100).toFixed(2) + "";
-	inputValue = inputValue.replace(".", ",");
-	inputValue = inputValue.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
-	inputValue = inputValue.replace(/(\d)(\d{3}),/g, "$1.$2,");
-	e.target.value = `R$ ${inputValue}`;
+    let inputValue = e.target.value.replace(/\D/g, "");
+    inputValue = (inputValue / 100).toFixed(2) + "";
+    inputValue = inputValue.replace(".", ",");
+    inputValue = inputValue.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
+    inputValue = inputValue.replace(/(\d)(\d{3}),/g, "$1.$2,");
+    e.target.value = `R$ ${inputValue}`;
 }
 
 deleteTransaction(document.querySelectorAll(".button_delete_transaction")!);
-dowloadExportJsonFile(
-	document.querySelector<HTMLButtonElement>("#button_export_json")!,
-);
-dowloadExportCSVFile(
-	document.querySelector<HTMLButtonElement>("#button_export_csv")!,
-);
+dowloadExportJsonFile(document.querySelector<HTMLButtonElement>("#button_export_json")!);
+dowloadExportCSVFile(document.querySelector<HTMLButtonElement>("#button_export_csv")!);
